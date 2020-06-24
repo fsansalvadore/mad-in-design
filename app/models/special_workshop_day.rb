@@ -1,0 +1,2 @@
+class SpecialWorkshopDay < ApplicationRecord
+end

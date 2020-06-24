@@ -1,0 +1,2 @@
+class PeopleCategory < ApplicationRecord
+end

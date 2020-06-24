@@ -1,0 +1,2 @@
+class SiteGlobalSetting < ApplicationRecord
+end

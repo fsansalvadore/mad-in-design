@@ -1,5 +1,29 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  #workshops controller
+  get '/workshops'                                              => 'workshops#index'
+  get '/workshops/:year/n/:slug'                                => 'workshops#show'
+  get '/workshops/:year/s/:slug'                                => 'workshops#special_workshop_index'
+  get '/workshops/:year/s/:slug/teams/:team'                    => 'workshops#special_workshop_team'
+  get '/workshops/:year/s/:slug/teams/:team/giornate/:giornata' => 'workshops#special_workshop_giornata'
+
+  #projects controller
+  get '/projects'                            => 'projects#index'
+  get '/projects/:slug'                      => 'projects#show'
+
+  #people controller
+  get '/people'                              => 'people#index'
+
+  #pages controller
+  get '/about'                               => 'pages#about'
+  get '/contatti'                            => 'pages#contacts'
+  get '/privacy-cookie-policy'               => 'pages#privacy'
+
+  # Error pages
+  get '/404', to: 'errors#not_found'
+  get '/422', to: 'errors#unacceptable'
+  get '/500', to: 'errors#internal_error'
 end

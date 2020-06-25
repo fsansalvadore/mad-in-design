@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_24_133721) do
+ActiveRecord::Schema.define(version: 2020_06_25_104748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,27 @@ ActiveRecord::Schema.define(version: 2020_06_24_133721) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -53,6 +74,17 @@ ActiveRecord::Schema.define(version: 2020_06_24_133721) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["workshop_id"], name: "index_article_content_modules_on_workshop_id"
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "home_pages", force: :cascade do |t|
@@ -90,6 +122,7 @@ ActiveRecord::Schema.define(version: 2020_06_24_133721) do
     t.boolean "published", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
     t.index ["people_category_id"], name: "index_people_on_people_category_id"
   end
 
@@ -98,6 +131,7 @@ ActiveRecord::Schema.define(version: 2020_06_24_133721) do
     t.boolean "published", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -133,17 +167,36 @@ ActiveRecord::Schema.define(version: 2020_06_24_133721) do
     t.index ["site_global_settings_id"], name: "index_socials_on_site_global_settings_id"
   end
 
-  create_table "special_workshop_days", force: :cascade do |t|
+  create_table "team_outcome_content_modules", force: :cascade do |t|
+    t.text "rich_text"
+    t.string "image"
+    t.string "image_description"
+    t.integer "video_provider"
+    t.string "video_url"
+    t.boolean "visible"
+    t.integer "position"
+    t.bigint "team_outcome_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_outcome_id"], name: "index_team_outcome_content_modules_on_team_outcome_id"
+  end
+
+  create_table "team_outcomes", force: :cascade do |t|
     t.string "title"
     t.text "subtitle"
     t.string "cover"
     t.integer "priority"
-    t.boolean "published", default: true
+    t.boolean "published"
     t.string "meta_title"
     t.string "meta_description"
     t.string "meta_keywords"
+    t.bigint "workshop_team_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.integer "position"
+    t.index ["slug"], name: "index_team_outcomes_on_slug", unique: true
+    t.index ["workshop_team_id"], name: "index_team_outcomes_on_workshop_team_id"
   end
 
   create_table "workshop_carousel_images", force: :cascade do |t|
@@ -154,24 +207,11 @@ ActiveRecord::Schema.define(version: 2020_06_24_133721) do
     t.index ["workshop_id"], name: "index_workshop_carousel_images_on_workshop_id"
   end
 
-  create_table "workshop_day_content_modules", force: :cascade do |t|
-    t.text "rich_text"
-    t.string "image"
-    t.string "image_description"
-    t.integer "video_provider"
-    t.string "video_url"
-    t.boolean "visible"
-    t.integer "position"
-    t.bigint "special_workshop_day_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["special_workshop_day_id"], name: "index_workshop_day_content_modules_on_special_workshop_day_id"
-  end
-
   create_table "workshop_outcome_images", force: :cascade do |t|
     t.bigint "workshop_outcome_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
     t.index ["workshop_outcome_id"], name: "index_workshop_outcome_images_on_workshop_outcome_id"
   end
 
@@ -184,11 +224,30 @@ ActiveRecord::Schema.define(version: 2020_06_24_133721) do
     t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image_1"
+    t.string "image_2"
+    t.string "image_3"
+    t.string "image_4"
+    t.string "image_5"
+    t.string "outcome_images"
     t.index ["workshop_id"], name: "index_workshop_outcomes_on_workshop_id"
   end
 
+  create_table "workshop_teams", force: :cascade do |t|
+    t.string "title"
+    t.string "project_leader"
+    t.string "image"
+    t.bigint "workshop_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
+    t.string "slug"
+    t.index ["slug"], name: "index_workshop_teams_on_slug", unique: true
+    t.index ["workshop_id"], name: "index_workshop_teams_on_workshop_id"
+  end
+
   create_table "workshops", force: :cascade do |t|
-    t.integer "type", default: 0
+    t.integer "typology", default: 0
     t.string "title"
     t.text "subtitle"
     t.string "cover"
@@ -206,14 +265,71 @@ ActiveRecord::Schema.define(version: 2020_06_24_133721) do
     t.string "slug"
     t.datetime "start_date"
     t.datetime "end_date"
+    t.string "outcome_1_title"
+    t.string "outcome_1_subtitle"
+    t.text "outcome_1_content"
+    t.boolean "outcome_1_display"
+    t.string "outcome_1_img_1"
+    t.string "outcome_1_img_2"
+    t.string "outcome_1_img_3"
+    t.string "outcome_1_img_4"
+    t.string "outcome_1_img_5"
+    t.string "outcome_2_title"
+    t.string "outcome_2_subtitle"
+    t.text "outcome_2_content"
+    t.boolean "outcome_2_display"
+    t.string "outcome_2_img_1"
+    t.string "outcome_2_img_2"
+    t.string "outcome_2_img_3"
+    t.string "outcome_2_img_4"
+    t.string "outcome_2_img_5"
+    t.string "outcome_3_title"
+    t.string "outcome_3_subtitle"
+    t.text "outcome_3_content"
+    t.boolean "outcome_3_display"
+    t.string "outcome_3_img_1"
+    t.string "outcome_3_img_2"
+    t.string "outcome_3_img_3"
+    t.string "outcome_3_img_4"
+    t.string "outcome_3_img_5"
+    t.string "outcome_4_title"
+    t.string "outcome_4_subtitle"
+    t.text "outcome_4_content"
+    t.boolean "outcome_4_display"
+    t.string "outcome_4_img_1"
+    t.string "outcome_4_img_2"
+    t.string "outcome_4_img_3"
+    t.string "outcome_4_img_4"
+    t.string "outcome_4_img_5"
+    t.string "outcome_5_title"
+    t.string "outcome_5_subtitle"
+    t.text "outcome_5_content"
+    t.boolean "outcome_5_display"
+    t.string "outcome_5_img_1"
+    t.string "outcome_5_img_2"
+    t.string "outcome_5_img_3"
+    t.string "outcome_5_img_4"
+    t.string "outcome_5_img_5"
+    t.string "outcome_6_title"
+    t.string "outcome_6_subtitle"
+    t.text "outcome_6_content"
+    t.boolean "outcome_6_display"
+    t.string "outcome_6_img_1"
+    t.string "outcome_6_img_2"
+    t.string "outcome_6_img_3"
+    t.string "outcome_6_img_4"
+    t.string "outcome_6_img_5"
     t.index ["slug"], name: "index_workshops_on_slug", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "article_content_modules", "workshops"
   add_foreign_key "people", "people_categories"
   add_foreign_key "socials", "site_global_settings", column: "site_global_settings_id"
+  add_foreign_key "team_outcome_content_modules", "team_outcomes"
+  add_foreign_key "team_outcomes", "workshop_teams"
   add_foreign_key "workshop_carousel_images", "workshops"
-  add_foreign_key "workshop_day_content_modules", "special_workshop_days"
   add_foreign_key "workshop_outcome_images", "workshop_outcomes"
   add_foreign_key "workshop_outcomes", "workshops"
+  add_foreign_key "workshop_teams", "workshops"
 end

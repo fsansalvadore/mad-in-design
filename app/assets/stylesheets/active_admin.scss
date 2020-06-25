@@ -1,3 +1,4 @@
+@import 'activeadmin_addons/all';
 
 // SASS variable overrides must be declared before loading up Active Admin's styles.
 //
@@ -10,10 +11,67 @@
 
 // Active Admin's got SASS!
 @import "active_admin/mixins";
-@import "arctic_admin/base";
+@import "active_admin/base";
+// @import "arctic_admin/base";
+@import 'activeadmin/quill_editor_input';
+@import "activeadmin_sortable_table";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
 
+.header #tabs li.has_nested:hover ul {
+  display: block;
+}
+
+#active_admin_content #main_content_wrapper {
+  float: none;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+#title_bar #titlebar_left, #title_bar #titlebar_right {
+    height: auto;
+    max-width: 1000px;
+    margin: 0 auto;
+    vertical-align: none;
+    display: block;
+}
+
+.form-aligned {
+  margin-left: 20%;
+  padding: 10px;
+  width: 80%;
+
+  div {
+    margin-bottom: 10px;
+
+    img {
+      max-width: 500px;
+      max-height: 300px;
+    }
+  }
+}
+
+.image-preview {
+  max-height: 200px;
+  max-width: 600px;
+}
+
+.delete-btn {
+  background-color: #FD1015;
+  padding: 4px 10px;
+  margin: 10px 0;
+  color: #fff !important;
+  border-radius: 20px;
+  text-decoration: none !important;
+  text-transform: capitalize;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #DE0D11;
+    cursor: pointer !important;
+  }
+}

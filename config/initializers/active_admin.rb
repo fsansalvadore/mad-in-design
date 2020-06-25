@@ -1,7 +1,15 @@
+ActiveAdmin::ResourceController.class_eval do
+  def find_resource
+    finder = resource_class.is_a?(FriendlyId) ? :slug : :id
+    scoped_collection.find_by(finder => params[:id])
+  end
+end
+
 ActiveAdmin.setup do |config|
   meta_tags_options = { viewport: 'width=device-width, initial-scale=1' }
   config.meta_tags = meta_tags_options
   config.meta_tags_for_logged_out_pages = meta_tags_options
+
   # == Site Title
   #
   # Set the title that is displayed on the main layout
@@ -288,7 +296,7 @@ ActiveAdmin.setup do |config|
   # hand side with a filter for each attribute of the registered model.
   # You can enable or disable them for all resources here.
   #
-  # config.filters = true
+  config.filters = false
   #
   # By default the filters include associations in a select, which means
   # that every record will be loaded for each association (up

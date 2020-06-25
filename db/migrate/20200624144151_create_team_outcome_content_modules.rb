@@ -1,6 +1,6 @@
-class CreateWorkshopDayContentModules < ActiveRecord::Migration[6.0]
+class CreateTeamOutcomeContentModules < ActiveRecord::Migration[6.0]
   def change
-    create_table :workshop_day_content_modules do |t|
+    create_table :team_outcome_content_modules do |t|
       t.text :rich_text
       t.string :image
       t.string :image_description
@@ -8,7 +8,7 @@ class CreateWorkshopDayContentModules < ActiveRecord::Migration[6.0]
       t.string :video_url
       t.boolean :visible
       t.integer :position
-      t.references :special_workshop_day, null: false, foreign_key: true
+      t.references :team_outcome, null: false, foreign_key: true
 
       t.timestamps
     end

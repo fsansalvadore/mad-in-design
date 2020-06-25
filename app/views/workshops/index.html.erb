@@ -1,1 +1,42 @@
 <h1>Workshops Index</h1>
+
+<% @workshops.each do |w| %>
+  <hr>
+  <div>
+    <h3><%= w.title %></h3>
+    <p>Typology: <%= w.typology %></p>
+    <p>Subtitle: <%= w.subtitle %></p>
+    <p>Cover: <%= w.cover  %> <%= cl_image_tag w.cover.key, height: 100, width: 200, crop: :fill %></p>
+    <p>Testo: <%= raw w.body_copy %></p>
+    <p>Published: <%= w.published %></p>
+    <p>Data Inizio: <%= w.start_date %></p>
+    <br>
+    <hr>
+    <h5>Esiti: <%= w.workshop_outcomes.count %></h5>
+    <% w.workshop_outcomes.each do |wo| %>
+      <h6><%= wo.title %></h6>
+      <p><%= wo.sottotitolo %></p>
+      <p><%= wo.content %></p>
+      <p>Images Attached: <%= wo.outcome_images.attached? %></p>
+        <% wo.outcome_images.each do |img| %>
+          <%= puts img %>
+          <%= cl_image_tag img.key, height: 100, width: 200, crop: :fill %>
+        <% end %>
+        <%= cl_image_tag wo.image_1.key, height: 100 if wo.image_1.attached? %>
+        <%= cl_image_tag wo.image_2.key, height: 100 if wo.image_2.attached? %>
+        <%= cl_image_tag wo.image_3.key, height: 100 if wo.image_3.attached? %>
+        <%= cl_image_tag wo.image_4.key, height: 100 if wo.image_4.attached? %>
+        <%= cl_image_tag wo.image_5.key, height: 100 if wo.image_5.attached? %>
+    <% end %>
+    <br>
+    <hr>
+    <h5>Squadre: <%= w.workshop_teams.count %></h5>
+    <% w.workshop_teams.each do |wt| %>
+      <h6><%= wt.title %></h6>
+      <%= cl_image_tag wt.image.key, height: 100, width: 200, crop: :fill %>
+      <% wt.team_outcomes.each do |wt_to| %>
+        <p><%= wt_to.title %></p>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

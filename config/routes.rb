@@ -3,9 +3,16 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root to: 'pages#home'
 
+  namespace :admin do
+    resources :workshops do
+      resources :workshop_teams do
+        resources :team_outcomes
+      end
+    end
+  end
   #workshops controller
   get '/workshops'                                              => 'workshops#index'
-  get '/workshops/:year/n/:slug'                                => 'workshops#show'
+  get '/workshops/:year/n/:slug'                                => 'workshops#show', as: 'workshop'
   get '/workshops/:year/s/:slug'                                => 'workshops#special_workshop_index'
   get '/workshops/:year/s/:slug/teams/:team'                    => 'workshops#special_workshop_team'
   get '/workshops/:year/s/:slug/teams/:team/giornate/:giornata' => 'workshops#special_workshop_giornata'

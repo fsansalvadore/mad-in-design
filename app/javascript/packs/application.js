@@ -1,34 +1,91 @@
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
 
-// Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
-// or the `imagePath` JavaScript helper below.
-//
-// const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)
-
-
-// ----------------------------------------------------
-// Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
-// WRITE YOUR OWN JS STARTING FROM HERE 👇
-// ----------------------------------------------------
-
-// External imports
 import "bootstrap";
 
-// Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
-
 document.addEventListener('turbolinks:load', () => {
-  // Call your functions here, e.g:
-  // initSelect2();
+  (function($) {
+    'use strict';
+
+    // Page loading
+    $(window).on('load', function() {
+        $('#preloader-active').delay(450).fadeOut('slow');
+        $('body').delay(450).css({
+            'overflow': 'visible'
+        });
+    });
+
+    // var scrollProgress = function() {
+    var docHeight = $(document).height(),
+        windowHeight = $(window).height(),
+        scrollPercent;
+    $(window).on('scroll', function() {
+        scrollPercent = $(window).scrollTop() / (docHeight - windowHeight) * 100;
+        $('.scroll-progress').width(scrollPercent + '%');
+    });
+
+    // Off canvas sidebar
+    // var OffCanvas = function() {
+        $('#off-canvas-toggle').on('click', function() {
+            $('body').toggleClass("canvas-opened");
+        });
+
+        $('.dark-mark').on('click', function() {
+            $('body').removeClass("canvas-opened");
+        });
+        $('.off-canvas-close').on('click', function() {
+            $('body').removeClass("canvas-opened");
+        });
+    // };
+
+    // Search form
+    // var openSearchForm = function() {
+        $('.search-close').hide();
+        $('button.search-icon').on('click', function() {
+            $(this).hide();
+            $('body').toggleClass("open-search-form");
+            $('.search-close').show();
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+        });
+        $('.search-close').on('click', function() {
+            $(this).hide();
+            $('body').removeClass("open-search-form");
+            $('button.search-icon').show();
+        });
+    // };
+
+    // Mobile menu
+    // var mobileMenu = function() {
+        var menu = $('ul#navigation');
+        if (menu.length) {
+            menu.slicknav({
+                prependTo: ".mobile_menu",
+                closedSymbol: '+',
+                openedSymbol: '-'
+            });
+        };
+    // };
+
+    //Load functions
+    $(document).ready(function() {
+        OffCanvas();
+        customScrollbar();
+        numberCounter();
+        megaMenu();
+        magPopup();
+        scrollToTop();
+        headerSticky();
+        stickySidebar();
+        customSlickSlider();
+        mobileMenu();
+        scrollProgress();
+        niceSelectBox();
+        openSearchForm();
+        VSticker();
+    });
+
+})(jQuery);
 });

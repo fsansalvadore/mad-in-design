@@ -50,6 +50,11 @@ gem 'friendly_id', '~> 5.2.4'
 gem 'lightbox2-rails', '~> 2.8', '>= 2.8.2.1'
 gem 'rack-rewrite', '~> 1.5.0'
 
+gem 'modernizr-rails', '~> 2.7', '>= 2.7.1'
+gem 'sticky-rails', '~> 1.0', '>= 1.0.3'
+gem 'jquery-slick-rails', '~> 1.9'
+gem 'popper_js', '~> 1.14.5'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

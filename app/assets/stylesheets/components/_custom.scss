@@ -1,0 +1,38 @@
+.home-banner {
+  position: relative;
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-size: cover;
+
+  .banner-text {
+    max-width: 1200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h4 {
+      font-weight: 400;
+    }
+
+    * {
+      color: #fff;
+    }
+
+    p {
+      font-weight: 300;
+    }
+
+    .subtitle {
+      margin-top: 20px;
+      max-width: 500px;
+    }
+  }
+}
+
+.font-light {
+  font-weight: 300;
+}

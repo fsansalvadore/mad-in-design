@@ -1,0 +1,32 @@
+.sostenitori {
+  margin-top: 20px;
+
+  .group {
+    padding-bottom: 50px;
+  }
+
+  h5 {
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+  .s-grid {
+    display: grid;
+    row-gap: 30px;
+    column-gap: 10px;
+
+    &.x1 {
+      grid-template-columns: 1fr;
+    }
+    &.x2 {
+      grid-template-columns: 1fr 1fr;
+    }
+    &.x3 {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    img {
+      max-height: 55px;
+      max-width: 130px;
+    }
+  }
+}

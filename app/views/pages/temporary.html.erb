@@ -1,0 +1,47 @@
+<header class="main-header temporary header-style-2">
+    <div class="top-bar d-none d-md-block"></div>
+    <div id="sticker" class="header-bottom header-sticky background-white text-center">
+        <div class="container">
+            <div class="header-logo-center">
+                <a href="index.html">
+                    <%= image_tag "logo_Mind_Mad-in-Design.png", alt: "MIND - Mad in Design", class: "logo-img d-inline" %>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="position-relative temporary">
+
+    <div class="home-banner landing" style="background-image: linear-gradient(180deg, rgba(239, 120, 90, 0) 0%, #EF785A 100%), url(<%= image_path 'youssef-naddam-iJ2IG8ckCpA-unsplash_color.jpg'%>)">
+        <div class="banner-text">
+          <h4 class="title-label">MinD - Mad in Design</h4>
+          <h1>Design, Psichiatria e inclusione.</h1>
+          <p class="subtitle">Stiamo arrivando con un nuovo sito e tanti nuovi progetti.</p>
+          <a class="btn mt-30 btn-link text-xs-center" target="_blank" href="https://www.madindesign.com">Sostienici</a>
+        </div>
+        <div class="graphical_elements">
+          <div class="c1">
+          </div>
+          <div class="c2">
+          </div>
+          <div class="c3">
+          </div>
+          <div class="c4">
+          </div>
+          <div class="c5">
+          </div>
+        </div>
+    </div>
+
+    <div class="pt-50 pb-50 background-white">
+        <div class="container mb-50">
+            <div class="row">
+                <div class="col-lg-12">
+                    <%= render 'shared/sostenitori' %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>

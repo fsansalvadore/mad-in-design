@@ -11,6 +11,7 @@
   .mb-lg-30{margin-bottom:30px!important;}
   .main-search-form-cover{padding:10px 100px 50px 100px;}
   p.suggested{margin-left:50px;}
+  #mobile_menu_toggle {display: none;}
 }
 
 /* Tablet desktop :768px. */
@@ -25,6 +26,8 @@
 /* small mobile :992px. */
 @media (max-width:992px){
   .widget-area.pl-30{padding-left:0!important;}
+  #mobile_menu_toggle {display: flex !important;}
+  #mobile_menu {display: block !important;}
 }
 
 /* small mobile :768px. */
@@ -42,6 +45,10 @@
   .page-404{text-align:center;}
   .entry-header-1 h1{max-width:100%}
   .single-header-2 .entry-header-1{padding:50px;}
+  .sostenitori .s-grid.x3 {grid-template-columns: 1fr 1fr !important;}
+  .header-style-2 .header-bottom {height: 70px !important;}
+  .logo-img {max-height: 35px !important;}
+  .page {margin-top: 70px !important;}
 }
 
 /* Large Mobile :480px. */

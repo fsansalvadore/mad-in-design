@@ -1,12 +1,132 @@
 header.main-header {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  top: 0;
+  width: 100vw;
 }
 
 .top-bar {
   background-color: #FDD510;
   height: 50px;
+
+  .main-menu li {
+    margin-left: 20px;
+  }
+  .container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .row {
+      width: 100%;
+      display: block;
+
+      .text-right {
+        float: right;
+      }
+    }
+  }
 }
 
 .logo-img {
   max-height: 50px;
+}
+
+.header-bottom {
+  position: relative;
+}
+
+#mobile_menu_toggle {
+  position: relative;
+  margin-right: 2px;
+  padding: 4px;
+  width: 40px;
+  height: 40px;
+  background: #eee;
+  border-radius: 6px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    position: absolute;
+    height: 2px;
+    width: 20px;
+    background-color: #000;
+    will-change: transform;
+    transition: all 0.1s ease;
+
+    &:nth-of-type(1) {
+      transform: translate3d(0, -8px, 0) rotate(0);
+    }
+    &:nth-of-type(2) {
+      width: 15px;
+    }
+    &:nth-of-type(3) {
+      transform: translate3d(0, 8px, 0) rotate(0);
+    }
+  }
+
+  &.icon-anim {
+    span:nth-of-type(1) {
+      transform: translate3d(0, 0px, 0) rotate(45deg);
+    }
+    span:nth-of-type(2) {
+      width: 15px;
+      opacity: 0;
+    }
+    span:nth-of-type(3) {
+      transform: translate3d(0, 0px, 0) rotate(-45deg);
+    }
+  }
+}
+
+#mobile_menu {
+  display: none;
+  position: fixed;
+  overflow: hidden;
+  width: 100vw;
+  z-index: 100;
+  height: 100vh;
+  max-height: 100vh;
+  background-color: #fdfdfd;
+  transform: translate3d(100%, 0, 0);
+  transition: transform 0.25s ease;
+
+  nav {
+    overflow: scroll !important;
+  }
+
+  &.menu-open {
+    transform: translate3d(0%, 0, 0);
+  }
+
+  ul, li {
+    width: 100%;
+  }
+  .main-menu {
+    margin-top: 70px;
+    padding: 0 20px;
+
+    li {
+      border-bottom: 1px solid #ddd;
+    }
+  }
+
+  ul.highlight-links {
+    padding: 0 20px;
+
+    li {
+      background-color: $yellow;
+      margin: 6px 0;
+      border-radius: 6px;
+    }
+  }
+
+  li {
+    // height: 10%;
+    display: block;
+    padding: 1.5vh 4%;
+    font-size: 20px;
+  }
 }

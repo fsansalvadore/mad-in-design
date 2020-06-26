@@ -18,6 +18,8 @@ document.addEventListener('turbolinks:load', () => {
         });
     });
 
+    $(document).ready(function() {
+
     // var scrollProgress = function() {
     var docHeight = $(document).height(),
         windowHeight = $(window).height(),
@@ -40,6 +42,18 @@ document.addEventListener('turbolinks:load', () => {
             $('body').removeClass("canvas-opened");
         });
     // };
+    // Menu toggle
+    $('#mobile_menu_toggle').on('click', function() {
+        $('#mobile_menu').toggleClass("menu-open");
+        $(this).toggleClass("menu-anim");
+    });
+
+    $('.dark-mark').on('click', function() {
+        $('body').removeClass("canvas-opened");
+    });
+    $('.off-canvas-close').on('click', function() {
+        $('body').removeClass("canvas-opened");
+    });
 
     // Search form
     // var openSearchForm = function() {
@@ -69,22 +83,6 @@ document.addEventListener('turbolinks:load', () => {
         };
     // };
 
-    //Load functions
-    $(document).ready(function() {
-        OffCanvas();
-        customScrollbar();
-        numberCounter();
-        megaMenu();
-        magPopup();
-        scrollToTop();
-        headerSticky();
-        stickySidebar();
-        customSlickSlider();
-        mobileMenu();
-        scrollProgress();
-        niceSelectBox();
-        openSearchForm();
-        VSticker();
     });
 
 })(jQuery);

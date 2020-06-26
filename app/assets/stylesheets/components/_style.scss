@@ -216,6 +216,7 @@ transition:visibility 0s linear .3s,transform .3s ease,opacity .3s ease,-webkit-
   line-height:65px;
   display: flex;
   align-items: center;
+  transition: height 0.2s ease;
 }
 .header-style-2 .search-button{position:absolute;right:15px;top:0;line-height:70px;z-index:300;}
 .header-style-2 .topbar-inner{border-bottom:1px solid #f4f5f9;}

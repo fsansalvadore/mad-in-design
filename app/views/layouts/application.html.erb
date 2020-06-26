@@ -16,7 +16,10 @@
     <div class="scroll-progress primary-bg"></div>
     <%= render 'shared/preloader' %>
     <%= render 'shared/navbar' %>
-    <%= yield %>
+    <div class="page">
+      <%= yield %>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.min.js"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true, 'data-turbolinks-suppress-warning': 'true' %>
   </body>
 </html>

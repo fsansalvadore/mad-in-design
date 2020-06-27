@@ -3,6 +3,7 @@ class CreateProjectContentSections < ActiveRecord::Migration[6.0]
     create_table :project_content_sections do |t|
       t.text :rich_text
       t.string :image
+      t.string :image_width
       t.integer :video_provider
       t.string :video_url
       t.integer :position

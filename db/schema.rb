@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
   create_table "project_content_sections", force: :cascade do |t|
     t.text "rich_text"
     t.string "image"
+    t.string "image_width"
     t.integer "video_provider"
     t.string "video_url"
     t.integer "position"
@@ -162,7 +163,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
     t.string "role"
     t.text "description"
     t.string "photo"
-    t.date "year"
+    t.integer "year"
     t.integer "position"
     t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
@@ -171,8 +172,12 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
 
   create_table "projects", force: :cascade do |t|
     t.string "title"
+    t.string "meta_title"
+    t.string "meta_description"
+    t.string "meta_keywords"
     t.datetime "start_date"
     t.string "cover"
+    t.string "highlight_image"
     t.boolean "published"
     t.boolean "featured"
     t.integer "priority"

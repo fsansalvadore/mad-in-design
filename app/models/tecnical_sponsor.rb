@@ -1,0 +1,2 @@
+class TecnicalSponsor < ApplicationRecord
+end

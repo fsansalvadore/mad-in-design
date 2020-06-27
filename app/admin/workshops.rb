@@ -1,4 +1,5 @@
 ActiveAdmin.register Workshop do
+  menu priority: 5
   permit_params :typology,
                 :title,
                 :subtitle,

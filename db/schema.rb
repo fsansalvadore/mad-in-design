@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_25_104748) do
+ActiveRecord::Schema.define(version: 2020_06_27_151943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,29 @@ ActiveRecord::Schema.define(version: 2020_06_25_104748) do
     t.index ["workshop_id"], name: "index_article_content_modules_on_workshop_id"
   end
 
+  create_table "collaborators", force: :cascade do |t|
+    t.string "name"
+    t.string "link"
+    t.string "link_alt_text"
+    t.text "description"
+    t.string "photo"
+    t.integer "position"
+    t.boolean "published"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "committees", force: :cascade do |t|
+    t.string "name"
+    t.string "role"
+    t.text "description"
+    t.string "photo"
+    t.integer "position"
+    t.boolean "published"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -113,32 +136,51 @@ ActiveRecord::Schema.define(version: 2020_06_25_104748) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "people", force: :cascade do |t|
-    t.bigint "people_category_id", null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.string "role"
-    t.text "description"
-    t.boolean "published", default: true
+  create_table "partners", force: :cascade do |t|
+    t.string "name"
+    t.integer "position"
+    t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "image"
-    t.index ["people_category_id"], name: "index_people_on_people_category_id"
   end
 
-  create_table "people_categories", force: :cascade do |t|
-    t.string "title"
-    t.boolean "published", default: true
+  create_table "project_content_sections", force: :cascade do |t|
+    t.text "rich_text"
+    t.string "image"
+    t.string "image_width"
+    t.integer "video_provider"
+    t.string "video_url"
+    t.integer "position"
+    t.boolean "published"
+    t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_project_content_sections_on_project_id"
+  end
+
+  create_table "project_leaders", force: :cascade do |t|
+    t.string "name"
+    t.string "role"
+    t.text "description"
+    t.string "photo"
+    t.integer "year"
     t.integer "position"
+    t.boolean "published"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "projects", force: :cascade do |t|
     t.string "title"
+    t.string "meta_title"
+    t.string "meta_description"
+    t.string "meta_keywords"
     t.datetime "start_date"
     t.string "cover"
-    t.string "big_image"
+    t.string "highlight_image"
+    t.boolean "published"
+    t.boolean "featured"
+    t.integer "priority"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
@@ -165,6 +207,17 @@ ActiveRecord::Schema.define(version: 2020_06_25_104748) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["site_global_settings_id"], name: "index_socials_on_site_global_settings_id"
+  end
+
+  create_table "staffs", force: :cascade do |t|
+    t.string "name"
+    t.string "role"
+    t.text "description"
+    t.string "photo"
+    t.integer "position"
+    t.boolean "published"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "team_outcome_content_modules", force: :cascade do |t|
@@ -197,6 +250,15 @@ ActiveRecord::Schema.define(version: 2020_06_25_104748) do
     t.integer "position"
     t.index ["slug"], name: "index_team_outcomes_on_slug", unique: true
     t.index ["workshop_team_id"], name: "index_team_outcomes_on_workshop_team_id"
+  end
+
+  create_table "tecnical_sponsors", force: :cascade do |t|
+    t.string "logo"
+    t.string "alt_text"
+    t.integer "position"
+    t.boolean "published"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "workshop_carousel_images", force: :cascade do |t|
@@ -324,7 +386,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_104748) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "article_content_modules", "workshops"
-  add_foreign_key "people", "people_categories"
+  add_foreign_key "project_content_sections", "projects"
   add_foreign_key "socials", "site_global_settings", column: "site_global_settings_id"
   add_foreign_key "team_outcome_content_modules", "team_outcomes"
   add_foreign_key "team_outcomes", "workshop_teams"

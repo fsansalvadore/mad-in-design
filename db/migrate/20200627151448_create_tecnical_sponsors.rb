@@ -4,6 +4,7 @@ class CreateTecnicalSponsors < ActiveRecord::Migration[6.0]
       t.string :logo
       t.string :alt_text
       t.integer :position
+      t.boolean   :published
 
       t.timestamps
     end

@@ -7,6 +7,7 @@ class CreateProjectLeaders < ActiveRecord::Migration[6.0]
       t.string :photo
       t.date :year
       t.integer :position
+      t.boolean   :published
 
       t.timestamps
     end

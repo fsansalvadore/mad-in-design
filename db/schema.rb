@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
     t.text "description"
     t.string "photo"
     t.integer "position"
+    t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
     t.text "description"
     t.string "photo"
     t.integer "position"
+    t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -137,6 +139,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
   create_table "partners", force: :cascade do |t|
     t.string "name"
     t.integer "position"
+    t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -147,6 +150,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
     t.integer "video_provider"
     t.string "video_url"
     t.integer "position"
+    t.boolean "published"
     t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -160,6 +164,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
     t.string "photo"
     t.date "year"
     t.integer "position"
+    t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -205,6 +210,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
     t.text "description"
     t.string "photo"
     t.integer "position"
+    t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -245,6 +251,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
     t.string "logo"
     t.string "alt_text"
     t.integer "position"
+    t.boolean "published"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

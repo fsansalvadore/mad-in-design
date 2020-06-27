@@ -6,6 +6,7 @@ class CreateStaffs < ActiveRecord::Migration[6.0]
       t.text :description
       t.string :photo
       t.integer :position
+      t.boolean   :published
 
       t.timestamps
     end

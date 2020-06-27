@@ -3,6 +3,7 @@ class CreatePartners < ActiveRecord::Migration[6.0]
     create_table :partners do |t|
       t.string :name
       t.integer :position
+      t.boolean   :published
 
       t.timestamps
     end

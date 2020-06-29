@@ -11,6 +11,38 @@ ActiveAdmin.register Staff do
   include ActiveAdmin::SortableTable
   config.sort_order = 'position_asc'
 
+  member_action :publish_staff, method: :put do
+    staff = Staff.find(params[:id])
+    staff.update(published: true)
+    redirect_to admin_staff_path(staff)
+  end
+
+  member_action :unpublish_staff, method: :put do
+    staff = Staff.find(params[:id])
+    staff.update(published: false)
+    redirect_to admin_staff_path(staff)
+  end
+
+  action_item :publish, only: :show do
+    link_to "Pubblica", publish_admin_staff_path(staff), method: :put if !staff.published
+  end
+
+  action_item :unpublish, only: :show do
+    link_to "Metti offline", unpublish_admin_staff_path(staff), method: :put if staff.published
+  end
+
+  member_action :publish, method: :put do
+    staff = Staff.find(params[:id])
+    staff.update(published: true)
+    redirect_to admin_staffs_path
+  end
+
+  member_action :unpublish, method: :put do
+    staff = Staff.find(params[:id])
+    staff.update(published: false)
+    redirect_to admin_staffs_path
+  end
+
   index do
     handle_column
     column "Staff" do |staff|
@@ -23,6 +55,13 @@ ActiveAdmin.register Staff do
     end
     column :role
     column :published
+    column "Pubblica" do |staff|
+      if !staff.published
+        link_to "Pubblica", publish_admin_staff_path(staff), method: :put
+      else
+        link_to "Metti offline", unpublish_admin_staff_path(staff), method: :put
+      end
+    end
     actions
   end
 
@@ -52,11 +91,13 @@ ActiveAdmin.register Staff do
       f.input :published,           label: 'Pubblicato'
       f.input :name,                label: 'Nome'
       f.input :role,                label: 'Ruolo'
-      f.input :photo,               label: 'Foto', as: :file
+      f.input :photo,               label: 'Foto', as: :file, hint: "Peso max: 500Kb. Altezza: min 200px / Max 2000px. Larghezza: min 200px / Max 3000px"
       if f.object.photo.attached?
         div class: "form-aligned" do
           div cl_image_tag(f.object.photo.key)
-          div link_to "Rimuovi immagine", delete_image_admin_staff_path(f.object.photo.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+          if f.object.id.nil?
+            div link_to "Rimuovi immagine", delete_image_admin_staff_path(f.object.photo.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+          end
         end
       end
       f.input :description,         label: 'Descrizione', as: :quill_editor

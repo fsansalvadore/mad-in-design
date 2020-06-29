@@ -45,3 +45,128 @@
 .font-light {
   font-weight: 300;
 }
+
+.quick-links .nav-item.nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &:hover * {
+    color: #fff;
+    stroke: #fff;
+  }
+
+  &:first-of-type::after {
+    content: '';
+    height: 10px;
+    width: 1px;
+    background-color: #000;
+    position: absolute;
+    opacity: 0.3;
+    right: -3px;
+    transform: rotate(20deg);
+  }
+}
+
+span.link-arrow {
+  margin-left: 6px;
+}
+
+.sticky-box {
+  position: sticky;
+  top: 190px;
+}
+
+.box-round-shadow {
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+}
+
+.sidebar-widget {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 30px;
+}
+
+.big-card {
+  border-radius: 12px;
+  overflow: hidden;
+
+  &.bg-yellow {
+    background-color: $yellow;
+  }
+  &.bg-orange {
+    background-color: $orange;
+    p,a,svg path {
+      color: #fff;
+      stroke: #fff;
+    }
+  }
+  &.bg-blue {
+    background-color: $blue;
+    p,a,svg path {
+      color: #fff;
+      stroke: #fff;
+    }
+  }
+
+  .card-img-bg {
+    background-size: cover;
+    background-position: center;
+    min-height: 300px;
+  }
+
+  .card-label {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 20px;
+    font-weight:bold;
+    padding: 6px;
+    margin: 10px;
+  }
+}
+
+.card-content-area {
+  p {
+    color: $black;
+  }
+  a {
+    margin-top: 10px;
+    padding: 6px 0;
+    display: inline-block !important;
+    transition: all 0.2s ease;
+    font-weight: bold;
+    line-height: 100%;
+
+    &:hover {
+      color: var(--red);
+      * {
+        stroke: var(--red) !important;
+      }
+    }
+  }
+}
+
+.people .tab-content {
+  min-height: 400px;
+}
+
+.name_initials {
+  font-weight: bold;
+  opacity: 0.3;
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+.grid_img_box {
+  width: 100%;
+  height: 200px;
+
+  img {
+    max-width: 200px;
+    max-height: 180px;
+  }
+}

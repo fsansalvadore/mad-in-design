@@ -22,6 +22,9 @@ ActiveAdmin.setup do |config|
   #
   # config.site_title_link = "/"
 
+  # Internationalization I18n
+  config.before_action :set_admin_locale
+
   # Set an optional image to be displayed for the header
   # instead of a string (overrides :site_title)
   #

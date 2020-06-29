@@ -1,1 +1,185 @@
-<h1>People index</h1>
+<div class="main_content pb-50 pt-50 people">
+  <!--archive header-->
+  <div class="page-header page-header-style-1 text-center">
+      <div class="container">
+          <h2><span class="colorMind">People</span></h2>
+          <div class="breadcrumb">
+              <%= link_to "Home", root_path, rel: "nofollow"  %>
+              <span></span>
+              People
+          </div>
+          <div class="row mt-50">
+            <div class="col-12">
+              <!--Tab Nav  -->
+              <nav class="tab-nav w-100 style-1">
+                  <div class="nav nav-tabs d-flex justify-content-between" id="nav-tab" role="tablist">
+                      <% unless @staff_members.empty? || @staff_members.nil? %>
+                        <a class="nav-item nav-link active" id="nav-staff-tab" data-toggle="tab" href="#nav-staff" role="tab" aria-controls="nav-staff" aria-selected="true">Staff</a>
+                      <% end %>
+                      <% unless @committee.empty? || @committee.nil? %>
+                        <a class="nav-item nav-link" id="nav-committee-tab" data-toggle="tab" href="#nav-committee" role="tab" aria-controls="nav-committee" aria-selected="false">Comitato Scientifico</a>
+                      <% end %>
+                      <% unless @leaders.empty? || @leaders.nil? %>
+                        <a class="nav-item nav-link" id="nav-leaders-tab" data-toggle="tab" href="#nav-leaders" role="tab" aria-controls="nav-leaders" aria-selected="false">Project Leaders</a>
+                      <% end %>
+                      <% unless @partners.empty? || @partners.nil? %>
+                        <a class="nav-item nav-link" id="nav-partners-tab" data-toggle="tab" href="#nav-partners" role="tab" aria-controls="nav-partners" aria-selected="false">Partner e Istitutzioni</a>
+                      <% end %>
+                      <% unless @sponsors.empty? || @sponsors.nil? %>
+                        <a class="nav-item nav-link" id="nav-sponsors-tab" data-toggle="tab" href="#nav-sponsors" role="tab" aria-controls="nav-sponsors" aria-selected="false">Sponsor Tecnici</a>
+                      <% end %>
+                      <% unless @collaborators.empty? || @collaborators.nil? %>
+                        <a class="nav-item nav-link" id="nav-collaborators-tab" data-toggle="tab" href="#nav-collaborators" role="tab" aria-controls="nav-collaborators" aria-selected="false">Hanno lavorato con noi</a>
+                      <% end %>
+                  </div>
+              </nav>
+            </div>
+          </div>
+          <div class="bt-1 border-color-1 mt-30 mb-50"></div>
+      </div>
+  </div>
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="tab-content" id="nav-tabContent">
+          <!-- Tab Staff -->
+          <div class="tab-pane fade show active" id="nav-staff" role="tabpanel" aria-labelledby="nav-home">
+            <div class="row">
+              <% unless @staff_members.empty? || @staff_members.nil? %>
+                <% @staff_members.each do |staff| %>
+                  <div class="slider-single col-md-4 mb-30">
+                    <% clImg = cl_image_path(staff.photo.key) if staff.photo.attached? %>
+                    <div class="border-radius-5 people-img d-flex justify-content-center align-items-center" style="background-image: <%= "url(#{clImg})," if staff.photo.attached? %> linear-gradient(#fefefe, #eee)">
+                      <% if clImg.nil? %>
+                        <span class="name_initials"><%= staff.name.split(" ").map {|word| word.chars.first}.join.upcase%></span>
+                      <% end %>
+                    </div>
+                    <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
+                      <%= staff.name.strip unless staff.name.empty? || staff.name.nil? %>
+                    </h6>
+                    <div class="entry-meta font-small color-grey mt-10 pr-5 pl-5 people-role">
+                      <span class="post-on"><%= staff.role.strip unless staff.role.nil? || staff.role.empty? %></span>
+                    </div>
+                    <div class="font-description color-black mt-10 pr-5 pl-5 people-description">
+                      <%= raw staff.description unless staff.description.empty? || staff.description.nil? %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <!-- Tab Comitato Scientifico -->
+          <div class="tab-pane fade" id="nav-committee" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="block-tab-item post-module-1">
+              <div class="row">
+                <% unless @committee.empty? || @committee.nil? %>
+                  <% @committee.each do |member| %>
+                    <div class="slider-single col-md-4 mb-30">
+                      <% clImg = cl_image_path(member.photo.key) if member.photo.attached? %>
+                      <div class="border-radius-5 people-img" style="background-image: <%= "url(#{clImg})," if member.photo.attached? %> linear-gradient(#fefefe, #eee)">
+                      </div>
+                      <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
+                        <%= member.name.strip unless member.name.empty? || member.name.nil? %>
+                      </h6>
+                      <div class="entry-meta font-small color-grey mt-10 pr-5 pl-5 people-role">
+                        <span class="post-on"><%= member.role.strip unless member.role.nil? || member.role.empty? %></span>
+                      </div>
+                      <div class="font-description color-black mt-10 pr-5 pl-5 people-description">
+                        <%= raw member.description unless member.description.empty? || member.description.nil? %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <!-- Tab Project Leaders -->
+          <div class="tab-pane fade" id="nav-leaders" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="block-tab-item post-module-1">
+              <div class="row">
+                <% unless @leaders.empty? || @leaders.nil? %>
+                  <% @leaders.each do |leader| %>
+                    <div class="slider-single col-md-4 mb-30">
+                      <% clImg = cl_image_path(leader.photo.key) if leader.photo.attached? %>
+                      <div class="border-radius-5 people-img" style="background-image: <%= "url(#{clImg})," if leader.photo.attached? %> linear-gradient(#fefefe, #eee)">
+                      </div>
+                      <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
+                        <%= leader.name.strip unless leader.name.empty? || leader.name.nil? %>
+                      </h6>
+                      <div class="entry-meta font-small color-grey mt-10 pr-5 pl-5 people-role">
+                        <span class="post-on"><%= leader.role.strip unless leader.role.nil? || leader.role.empty? %></span>
+                      </div>
+                      <div class="font-description color-black mt-10 pr-5 pl-5 people-description">
+                        <%= raw leader.description unless leader.description.empty? || leader.description.nil? %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <!-- Tab Partner e Istituzioni -->
+          <div class="tab-pane fade" id="nav-partners" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="block-tab-item post-module-1">
+              <div class="row">
+                <% unless @partners.empty? || @partners.nil? %>
+                  <% @partners.each do |partner| %>
+                    <div class="slider-single grid_img_box d-flex justify-content-center align-items-center col-6 col-lg-3 col-md-4 mb-20">
+                      <% altTxt = partner.name.nil? ? nil : partner.name %>
+                      <%= cl_image_tag partner.logo.key, alt: "#{altTxt}" %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <!-- Tab Sponsor Tecnici -->
+          <div class="tab-pane fade" id="nav-sponsors" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="block-tab-item post-module-1">
+              <div class="row">
+                <% unless @sponsors.empty? || @sponsors.nil? %>
+                  <% @sponsors.each do |sponsor| %>
+                    <div class="slider-single grid_img_box d-flex justify-content-center align-items-center col-6 col-lg-3 col-md-4 mb-20">
+                      <% altTxt = sponsor.alt_text.nil? ? nil : sponsor.alt_text %>
+                      <%= cl_image_tag sponsor.logo.key, alt: "#{altTxt}" %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <!-- Tab Hanno lavorato con noi -->
+          <div class="tab-pane fade" id="nav-collaborators" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="block-tab-item post-module-1">
+              <div class="row">
+                <% unless @collaborators.empty? || @collaborators.nil? %>
+                  <% @collaborators.each do |collaborator| %>
+                    <div class="slider-single col-lg-3 col-md-6 mb-30">
+                      <% clImg = cl_image_path(collaborator.photo.key) if collaborator.photo.attached? %>
+                      <div class="border-radius-5 people-img" style="background-image: <%= "url(#{clImg})," if collaborator.photo.attached? %> linear-gradient(#fefefe, #eee)">
+                      </div>
+                      <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
+                        <%= collaborator.name unless collaborator.name.empty? || collaborator.name.nil? %>
+                      </h6>
+                      <div class="entry-meta font-small color-grey my-3 pr-5 pl-5">
+                        <% if collaborator.link && !collaborator.link.empty? %>
+                          <a href="<%= collaborator.link %>" target="_blank" class="readmore-btn font-small text-uppercase font-weight-ultra">Vai al sito<i class="ti-arrow-right ml-5"></i>
+                          </a>
+                        <% end %>
+                      </div>
+                      <div class="font-description color-black mt-10 pr-5 pl-5 people-description">
+                        <%= raw collaborator.description unless collaborator.description.empty? || collaborator.description.nil? %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

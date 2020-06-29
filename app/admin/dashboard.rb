@@ -24,9 +24,9 @@ ActiveAdmin.register_page "Dashboard" do
       column span: 1 do
         panel "Staff Members: #{Staff.where(published: true) ? Staff.where(published: true).count : '0'}" do
           if Staff.where(published: true).length > 0
-            table_for Staff.where(published: true).order(:order) do |member|
+            table_for Staff.where(published: true).order(:position) do |member|
               column "Nome" do |staff|
-                link_to("#{staff.nome} #{staff.cognome}", admin_staff_path(staff))
+                link_to("#{staff.name}", admin_staff_path(staff))
               end
               column "Ruolo", :role
             end

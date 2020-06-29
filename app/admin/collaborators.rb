@@ -18,7 +18,7 @@ ActiveAdmin.register Collaborator do
       link_to "#{collaborator.name}", admin_collaborator_path(collaborator)
     end
     column "Foto" do |collaborator|
-      if collaborator.photo.attached?
+      unless collaborator.photo.attached?
         image_tag(cl_image_path(collaborator.photo.key), class: "admin_table_thumb")
       end
     end
@@ -53,11 +53,13 @@ ActiveAdmin.register Collaborator do
       f.input :name,                label: 'Nome', hint: 'Obbligatorio'
       f.input :link,                label: 'Link', hint: 'Opzionale'
       # f.input :link_alt_text,       label: 'Ruolo'
-      f.input :photo,               label: 'Foto', as: :file
+      f.input :photo,               label: 'Foto', as: :file, hint: "Peso max: 500Kb. Altezza max 2000px. Larghezza max 3000px"
       if f.object.photo.attached?
         div class: "form-aligned" do
           div cl_image_tag(f.object.photo.key)
-          div link_to "Rimuovi immagine", delete_image_admin_staff_path(f.object.photo.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+          unless f.object.id.nil?
+            div link_to "Rimuovi immagine", delete_image_admin_staff_path(f.object.photo.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+          end
         end
       end
       f.input :description,         label: 'Descrizione', as: :quill_editor

@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
 
   create_table "partners", force: :cascade do |t|
     t.string "name"
+    t.string "logo"
     t.integer "position"
     t.boolean "published"
     t.datetime "created_at", precision: 6, null: false

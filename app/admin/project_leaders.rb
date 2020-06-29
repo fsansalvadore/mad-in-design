@@ -52,11 +52,13 @@ ActiveAdmin.register ProjectLeader do
       f.input :published,           label: 'Pubblicato'
       f.input :name,                label: 'Nome'
       f.input :year,                label: 'Anno'
-      f.input :photo,               label: 'Foto', as: :file
+      f.input :photo,               label: 'Foto', as: :file, hint: "Peso max: 500Kb. Altezza max 2000px. Larghezza max 3000px"
       if f.object.photo.attached?
         div class: "form-aligned" do
           div cl_image_tag(f.object.photo.key)
-          div link_to "Rimuovi immagine", delete_image_admin_staff_path(f.object.photo.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+          if f.object.id.nil?
+            div link_to "Rimuovi immagine", delete_image_admin_staff_path(f.object.photo.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+          end
         end
       end
       f.input :description,         label: 'Descrizione', as: :quill_editor

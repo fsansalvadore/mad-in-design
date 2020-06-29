@@ -71,19 +71,9 @@ document.addEventListener('turbolinks:load', () => {
         });
     // };
 
-    // Mobile menu
-    // var mobileMenu = function() {
-        var menu = $('ul#navigation');
-        if (menu.length) {
-            menu.slicknav({
-                prependTo: ".mobile_menu",
-                closedSymbol: '+',
-                openedSymbol: '-'
-            });
-        };
-    // };
-
     });
 
 })(jQuery);
 });
+
+import "controllers"

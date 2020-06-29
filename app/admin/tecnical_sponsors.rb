@@ -9,15 +9,58 @@ ActiveAdmin.register TecnicalSponsor do
   include ActiveAdmin::SortableTable
   config.sort_order = 'position_asc'
 
+  member_action :publish_tecnical_sponsor, method: :put do
+    tecnical_sponsor = TecnicalSponsor.find(params[:id])
+    tecnical_sponsor.update(published: true)
+    redirect_to admin_tecnical_sponsor_path(tecnical_sponsor)
+  end
+
+  member_action :unpublish_tecnical_sponsor, method: :put do
+    tecnical_sponsor = TecnicalSponsor.find(params[:id])
+    tecnical_sponsor.update(published: false)
+    redirect_to admin_tecnical_sponsor_path(tecnical_sponsor)
+  end
+
+  # action_item :publish, only: :show do
+  #   link_to "Anteprima live", tecnical_sponsor_path(tecnical_sponsor)
+  # end
+
+  action_item :publish, only: :show do
+    link_to "Pubblica", publish_admin_tecnical_sponsor_path(tecnical_sponsor), method: :put if !tecnical_sponsor.published
+  end
+
+  action_item :unpublish, only: :show do
+    link_to "Metti offline", unpublish_admin_tecnical_sponsor_path(tecnical_sponsor), method: :put if tecnical_sponsor.published
+  end
+
+  member_action :publish, method: :put do
+    tecnical_sponsor = TecnicalSponsor.find(params[:id])
+    tecnical_sponsor.update(published: true)
+    redirect_to admin_tecnical_sponsors_path
+  end
+
+  member_action :unpublish, method: :put do
+    tecnical_sponsor = TecnicalSponsor.find(params[:id])
+    tecnical_sponsor.update(published: false)
+    redirect_to admin_tecnical_sponsors_path
+  end
+
   index do
     handle_column
     column "Logo" do |sponsor|
-      if collaborator.photo.attached?
+      if sponsor.logo.attached?
         image_tag(cl_image_path(sponsor.logo.key), class: "admin_table_thumb")
       end
     end
     column :alt_text
     column :published
+    column "Pubblica" do |tecnical_sponsor|
+      if !tecnical_sponsor.published
+        link_to "Pubblica", publish_admin_tecnical_sponsor_path(tecnical_sponsor), method: :put
+      else
+        link_to "Metti offline", unpublish_admin_tecnical_sponsor_path(tecnical_sponsor), method: :put
+      end
+    end
     actions
   end
 
@@ -43,11 +86,13 @@ ActiveAdmin.register TecnicalSponsor do
     f.semantic_errors *f.object.errors.keys
     f.inputs 'Sponsor Tecnico' do
       f.input :published,          label: 'Pubblicato'
-      f.input :logo,               label: 'Logo', as: :file
+      f.input :logo,               label: 'Logo', as: :file, hint: "Peso max: 200Kb. Altezza max 1000px. Larghezza max 1000px"
       if f.object.logo.attached?
         div class: "form-aligned" do
           div cl_image_tag(f.object.logo.key)
-          div link_to "Rimuovi immagine", delete_image_admin_staff_path(f.object.logo.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+          unless f.object.id.nil?
+            div link_to "Rimuovi immagine", delete_image_admin_staff_path(f.object.logo.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+          end
         end
       end
       f.input :alt_text,           label: "Meta testo per l'immagine"

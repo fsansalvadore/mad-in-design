@@ -63,7 +63,11 @@ ul{padding:0;margin:0;}
 .section-padding{padding-top:120px;padding-bottom:120px}
 .font-x-small{font-size:11px;}
 .font-small{font-size:12px;}
+.font-small *{font-size:12px;}
+.font-description{font-size:14px;}
+.font-description *{font-size:14px;}
 .font-medium{font-size:15px;}
+.font-medium *{font-size:15px;}
 .font-large{font-size:20px;}
 .separator{border-top:1px solid #f2f2f2}
 .owl-carousel .owl-nav div{background:rgba(255,255,255,0.8) none repeat scroll 0 0;height:40px;left:20px;line-height:40px;font-size:22px;color:#646464;opacity:1;visibility:visible;position:absolute;text-align:center;top:50%;transform:translateY(-50%);transition:all 0.2s ease 0s;width:40px}

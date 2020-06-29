@@ -105,11 +105,15 @@ header.main-header {
     width: 100%;
   }
   .main-menu {
-    margin-top: 70px;
+    margin-top: 10px;
     padding: 0 20px;
 
     li {
       border-bottom: 1px solid #ddd;
+    }
+
+    li:last-of-type {
+      border-bottom: none;
     }
   }
 

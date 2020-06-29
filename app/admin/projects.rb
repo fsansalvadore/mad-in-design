@@ -118,7 +118,9 @@ ActiveAdmin.register Project do
             if n_f.object.image.attached?
               div class: "form-aligned" do
                 div cl_image_tag(n_f.object.image.key)
-                div link_to "Rimuovi immagine", delete_image_admin_staff_path(n_f.object.image.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+                if f.object.id.nil?
+                  div link_to "Rimuovi immagine", delete_image_admin_staff_path(n_f.object.image.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+                end
               end
             end
           n_f.input :image_width, label: "Larghezza Immagine", as: :select, collection: [["33% - 1/3", "one_third"],["50% - 1/2", "half"],["66% - 2/3", "two_thirds"], ["75% - 3/4", "three_fourths"], ["100%", "full"]], prompt: "Seleziona layout", hint: "Di default le immagini vengono visualizzate al 100% della larghezza."

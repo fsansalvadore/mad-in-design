@@ -19,6 +19,7 @@
     <div class="page">
       <%= yield %>
     </div>
+    <%= render 'shared/footer' %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.min.js"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true, 'data-turbolinks-suppress-warning': 'true' %>
   </body>

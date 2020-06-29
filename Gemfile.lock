@@ -64,6 +64,8 @@ GEM
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
     active_material (1.4.2)
+    active_storage_validations (0.8.9)
+      rails (>= 5.2.0)
     activeadmin_addons (1.7.1)
       active_material
       railties
@@ -153,6 +155,8 @@ GEM
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.13.1)
+    font-awesome-rails (4.7.0.5)
+      railties (>= 3.2, < 6.1)
     font-awesome-sass (5.13.0)
       sassc (>= 1.11)
     formtastic (3.1.5)
@@ -375,6 +379,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_storage_validations (~> 0.8.9)
   activeadmin!
   activeadmin_addons (~> 1.7, >= 1.7.1)
   activeadmin_dynamic_fields (~> 0.2.6)
@@ -390,6 +395,7 @@ DEPENDENCIES
   cloudinary (~> 1.15)
   devise (~> 4.2)
   dotenv-rails
+  font-awesome-rails (~> 4.7, >= 4.7.0.5)
   font-awesome-sass (~> 5.13)
   friendly_id (~> 5.2.4)
   inherited_resources!
@@ -398,6 +404,7 @@ DEPENDENCIES
   lightbox2-rails (~> 2.8, >= 2.8.2.1)
   listen (~> 3.2)
   mail_form (~> 1.8)
+  mini_magick (~> 4.10, >= 4.10.1)
   modernizr-rails (~> 2.7, >= 2.7.1)
   pg (>= 0.18, < 2.0)
   popper_js (~> 1.14.5)

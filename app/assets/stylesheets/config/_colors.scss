@@ -2,9 +2,9 @@
 
 // For example:
 $red: #FD1015;
-$blue: #167FFB;
+$blue: #84BBD8;
 $yellow: #FDD510;
-$orange: #E67E22;
+$orange: #EF785A;
 $green: #1EDD88;
 $gray: #0E0000;
 $light-gray: #F4F4F4;
@@ -83,8 +83,8 @@ button.search-icon,
 ul.header-social-network li a{color:#506172;}
 button.subscribe{border-color:#1d55c1;color:#1d55c1;}
 button.subscribe:hover{background:#1d55c1;color:#fff;}
-.color1{color:#ff2d55;}
-.color2{color:#007aff;}
+.color1{color:$orange;}
+.color2{color:$blue;}
 .color3{color:#4cd964;}
 .color4{color:#5856d6;}
 .colorMind{color:$yellow;}
@@ -103,7 +103,8 @@ button.subscribe:hover{background:#1d55c1;color:#fff;}
 .color-white{color:#ffffff!important;}
 .color-grey{color:#889097;}
 .background-white{background:#ffffff;}
-.color-black{color:#000000;}
+.color-black{color:#000000 !important;}
+.color-black *{color:#000000;}
 .facebook-icon:hover{color:#3b5998;}
 .twitter-icon:hover{color:#55acee;}
 .pinterest-icon:hover{color:#bd081c;}

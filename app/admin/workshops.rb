@@ -234,14 +234,18 @@ ActiveAdmin.register Workshop do
             if f.object.outcome_1_img_1.attached?
               div class: "form-aligned" do
                 div cl_image_tag(f.object.outcome_1_img_1.key)
-                div link_to "Rimuovi immagine", delete_image_admin_workshop_path(f.object.outcome_1_img_1.id),method: :delete,class: "delete-btn", data: { confirm: 'Are you sure?' }
+                if f.object.id.nil?
+                  div link_to "Rimuovi immagine", delete_image_admin_workshop_path(f.object.outcome_1_img_1.id),method: :delete,class: "delete-btn", data: { confirm: 'Are you sure?' }
+                end
               end
             end
             f.input :outcome_1_img_2, as: :file, label: "Immagine 2"
             if f.object.outcome_1_img_2.attached?
               div class: "form-aligned" do
                 div cl_image_tag(f.object.outcome_1_img_2.key)
-                div link_to "Rimuovi immagine", delete_image_admin_workshop_path(f.object.outcome_1_img_2.id),method: :delete,class: "delete-btn", data: { confirm: 'Are you sure?' }
+                if f.object.id.nil?
+                  div link_to "Rimuovi immagine", delete_image_admin_workshop_path(f.object.outcome_1_img_2.id),method: :delete,class: "delete-btn", data: { confirm: 'Are you sure?' }
+                end
               end
             end
             f.input :outcome_1_img_3, as: :file, label: "Immagine 3"

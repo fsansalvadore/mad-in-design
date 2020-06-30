@@ -5,6 +5,10 @@ header.main-header {
   width: 100vw;
 }
 
+.main-header .main-nav ul li a.active {
+  font-weight: bold;
+}
+
 .top-bar {
   background-color: #FDD510;
   height: 50px;

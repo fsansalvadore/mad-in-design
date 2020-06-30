@@ -5,6 +5,7 @@ require("channels")
 
 
 import "bootstrap";
+import { ActivePage } from './active-page';
 
 document.addEventListener('turbolinks:load', () => {
   (function($) {
@@ -17,6 +18,8 @@ document.addEventListener('turbolinks:load', () => {
             'overflow': 'visible'
         });
     });
+
+    ActivePage();
 
     $(document).ready(function() {
 

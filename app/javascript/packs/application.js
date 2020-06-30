@@ -7,6 +7,13 @@ require("channels")
 import "bootstrap";
 import { ActivePage } from './active-page';
 
+const on_change_category = ( el ) => {
+  var target = el.closest( 'fieldset' ).find( '.pub' );
+  target.prop( 'checked', ( el.val() == 'cat2' ) );
+  target.trigger( 'change' );
+  console.log('change');
+}
+
 document.addEventListener('turbolinks:load', () => {
   (function($) {
     'use strict';
@@ -18,6 +25,7 @@ document.addEventListener('turbolinks:load', () => {
             'overflow': 'visible'
         });
     });
+
 
     ActivePage();
 

@@ -1,6 +1,5 @@
 <main class="position-relative workshop">
   <div class="main_content pb-50 pt-50">
-  <!--archive header-->
   <div class="page-header page-header-style-1 text-center">
       <div class="container">
           <h2><span class="colorMind">Progetti</span></h2>
@@ -12,7 +11,6 @@
           <div class="bt-1 border-color-1 mt-30 mb-50"></div>
       </div>
   </div>
-  <!--main content-->
   <div class="main_content sidebar_right pb-50">
       <div class="container">
           <div class="row">
@@ -24,15 +22,13 @@
               </p>
             </div>
               <div class="col-lg-6 col-md-9 col-sm-12 mb-30">
-                <!--loop-list-->
                 <div class="loop-list loop-list-1">
                   <% @projects.each do |project| %>
                     <article class="row mb-50">
                         <div class="col-md-6">
                             <div class="post-thumb position-relative thumb-overlay mr-20">
                                 <div class="img-hover-slide border-radius-5 position-relative" style="background-image: url(<%= cl_image_path(project.cover.key) %>)">
-                                    <a class="img-link" href="single.html"></a>
-                                    <span class="top-right-icon background8"><i class="mdi mdi-flash-on"></i></span>
+                                  <%= link_to "", project_path(project), class: "img-link" %>
                                 </div>
                                 <ul class="social-share">
                                     <li><a href="#"><i class="ti-sharethis"></i></a></li>
@@ -44,20 +40,21 @@
                         </div>
                         <div class="col-md-6 align-center-vertical">
                             <div class="post-content">
-                                <div class="entry-meta meta-0 font-small mb-15"><span class="post-cat background4 color-white">Fashion</span></div>
+                                <div class="entry-meta meta-0 font-small mb-15"><span class="background1 color-white">Progetto</span></div>
                                 <h4 class="post-title">
-                                    <a href="single.html"><%= project.title %></a>
+                                    <%= link_to project.title, project_path(project) %>
                                 </h4>
                                 <div class="entry-meta meta-1 font-medium color-grey mt-15 mb-15">
-                                    <span class="post-on"><%= t project.start_date.strftime("%e %B %C") %></span>
+                                  <% unless project.start_date.nil? && project.start_date.empty? %>
+                                    <span class="post-on"><%= l project.start_date, format: :long, locale: :it %></span>
+                                  <% end %>
                                 </div>
-                                <a class="readmore-btn font-small text-uppercase font-weight-ultra" href="single.html">Read More<i class="ti-arrow-right ml-5 transition-02s"></i></a>
+                                <a class="readmore-btn font-small text-uppercase font-weight-ultra" href="single.html">Guarda il progetto<i class="ti-arrow-right ml-5 transition-02s"></i></a>
                             </div>
                         </div>
                     </article>
                   <% end %>
                 </div>
-                <!--pagination-->
                 <div class="pagination-area pt-30 text-center bt-1 border-color-1">
                     <div class="container">
                         <div class="row">
@@ -65,11 +62,11 @@
                                 <div class="single-wrap d-flex justify-content-center">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination justify-content-start">
-                                            <li class="page-item"><a class="page-link" href="#"><i class="flaticon-left"></i> </a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">01</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">02</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">03</a></li>
-                                            <li class="page-item"><a class="page-link" href="#"><i class="flaticon-right"></i> </a></li>
+                                          <li class="page-item"><a class="page-link" href="#"><i class="flaticon-left"></i> </a></li>
+                                          <li class="page-item active"><a class="page-link" href="#">01</a></li>
+                                          <li class="page-item"><a class="page-link" href="#">02</a></li>
+                                          <li class="page-item"><a class="page-link" href="#">03</a></li>
+                                          <li class="page-item"><a class="page-link" href="#"><i class="flaticon-right"></i> </a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -80,7 +77,6 @@
               </div>
               <div class="col-lg-2 col-md-3 col-sm-12 primary-sidebar sticky-sidebar">
                   <div class="widget-area">
-                    <!--Widget categories-->
                     <div class="sidebar-widget widget_categories mb-50">
                       <div class="widget-header position-relative mb-20 pb-10">
                         <h5 class="widget-title mb-10">Anni</h5>
@@ -88,12 +84,9 @@
                       </div>
                       <div class="post-block-list post-module-1 post-module-5">
                         <ul>
-                          <li class="cat-item cat-item-2"><a href="category.html">Beauty</a> (3)</li>
-                          <li class="cat-item cat-item-3"><a href="category.html">Book</a> (6)</li>
-                          <li class="cat-item cat-item-4"><a href="category.html">Design</a> (4)</li>
-                          <li class="cat-item cat-item-5"><a href="category.html">Fashion</a> (3)</li>
-                          <li class="cat-item cat-item-6"><a href="category.html">Lifestyle</a> (6)</li>
-                          <li class="cat-item cat-item-7"><a href="category.html">Travel</a> (2)</li>
+                          <% @years.each do |year| %>
+                            <li class="cat-item cat-item-2"><a href="category.html"><%= year %></a></li>
+                          <% end %>
                         </ul>
                       </div>
                     </div>

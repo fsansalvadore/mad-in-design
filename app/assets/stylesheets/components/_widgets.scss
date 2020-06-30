@@ -10,8 +10,8 @@ Styling for widgets
 .entry-meta .author-add{font-size:12px;}
 .entry-meta.meta-1 span{margin-right:10px;}
 .entry-meta.meta-1 span i{margin-right:3px;}
-.entry-meta.meta-0 span{padding:4px 10px 4px 19px;font-size:11px;letter-spacing:0.8px;font-weight:bold;text-transform:uppercase;border-radius:30px;position:relative;}
-.entry-meta.meta-0 span::before{content:"";width:6px;height:6px;background:none;margin-right:3px;border-radius:5px;display:inline-block;position:absolute;top:50%;left:8px;margin-top:-3px;border:1px solid #fff;}
+.entry-meta.meta-0 span{padding:4px 10px 4px 10px;font-size:11px;letter-spacing:0.8px;font-weight:bold;text-transform:uppercase;border-radius:30px;position:relative;}
+// .entry-meta.meta-0 span::before{content:"";width:6px;height:6px;background:none;margin-right:3px;border-radius:5px;display:inline-block;position:absolute;top:50%;left:8px;margin-top:-3px;border:1px solid #fff;}
 span.has-dot{position:relative;padding-left:10px;}
 span.has-dot::before{content:"";width:2px;height:2px;background:#999;border-radius:50%;position:absolute;top:50%;margin-top:-1px;display:block;left:-3px;}
 .widget-header .widget-title{position:relative;z-index:2;}

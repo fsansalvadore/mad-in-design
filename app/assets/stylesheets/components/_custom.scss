@@ -85,9 +85,12 @@ span.link-arrow {
 .sidebar-widget {
   display: flex;
   justify-content: center;
-  text-align: center;
   flex-direction: column;
   padding: 30px;
+}
+
+.home .sidebar-widget {
+  text-align: center;
 }
 
 .big-card {

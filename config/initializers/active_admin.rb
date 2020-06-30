@@ -224,7 +224,7 @@ ActiveAdmin.setup do |config|
   # To load a stylesheet:
     config.register_javascript 'https://media-library.cloudinary.com/global/all.js'
     config.register_javascript 'https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js'
-
+    config.register_javascript 'active_admin-custom.js'
   #
   # You can provide an options hash for more control, which is passed along to stylesheet_link_tag():
   #   config.register_stylesheet 'my_print_stylesheet.css', media: :print

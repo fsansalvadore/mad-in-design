@@ -11,6 +11,7 @@ ActiveAdmin.register Project do
                 :published,
                 project_content_sections_attributes: [
                   :id,
+                  :typology,
                   :rich_text,
                   :video_provider,
                   :video_url,
@@ -95,11 +96,13 @@ ActiveAdmin.register Project do
             f.input :featured, label: "In evidenza", hint: "I progetti in evidenza vengono visualizzati in Home Page"
             f.input :title, label: "Titolo", placeholder: 'Titolo', hint: "Obbligatorio"
             f.input :start_date, as: :date_time_picker, label: "Data"
-            f.input :cover, label: 'Immagine di in evidenza e di anteprima', as: :file
+            f.input :cover, label: 'Immagine di in evidenza e di anteprima', as: :file, hint: "Peso max: 500Kb. Altezza: min 200px / Max 2000px. Larghezza: min 200px / Max 3000px"
             if f.object.cover.attached?
               div class: "form-aligned" do
                 div cl_image_tag(f.object.cover.key)
-                div link_to "Rimuovi immagine", delete_image_admin_staff_path(f.object.cover.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+                unless f.object.id.nil?
+                  div link_to "Rimuovi immagine", delete_image_admin_staff_path(f.object.cover.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+                end
               end
             end
           end
@@ -111,23 +114,50 @@ ActiveAdmin.register Project do
             f.input :meta_keywords, label: "Meta Keywords", placeholder: 'Inserisci parole chiave', hint: "Le keywords verranno usate nei meta-tag della pagina e devono essere separate da una virgola."
           end
         end
-      f.inputs "Sezioni — Ogni sezione corrisponde a una tipologia di contenuto diverso: Testo / Video / Immagine / Post Instagram (Inserisci solo una tipologia per sezione)" do
+      f.inputs "Sezioni — Ogni sezione corrisponde a una tipologia di contenuto diverso: Testo / Video / Immagine (Inserisci solo una tipologia per sezione)" do
         f.has_many :project_content_sections, heading: 'Contenuto', allow_destroy: true, sortable: :position, sortable_start: 1 do |n_f|
           n_f.input :published, label: "Visibilità Sezione", hint: "Togli la spunta 'visibile' se vuoi omettere momentaneamente questa sezione."
+          n_f.input :typology,
+            label: "Tipologia Contenuto",
+            as: :select,
+            collection: [["Testo", 0], ["Immagine", 1], ["Video", 2]],
+            prompt: "Seleziona tipologia di media da inserire",
+            hint: "Seleziona tipologia di media da inserire.",
+            input_html: { 'onchange': 'selectChange(this)' }
 
-          n_f.input :rich_text, label: "Blocco Testo", as: :quill_editor, hint: "Inserisci qui un normale blocco di testo."
-          n_f.input :video_provider, label: "Sorgente Video", as: :select, collection: [["Nessuno", 0], ["Vimeo", 1], ["YouTube", 2]], prompt: "Seleziona sorgente video", hint: "Indica se il video proviene da YouTube o da Vimeo."
-          n_f.input :video_url, label: "Codice video", hint: "Inserire soltanto il codice identificativo dell'url. Esempio: https://vimeo.com/123456789 -> 123456789 | https://www.youtube.com/watch?v=123456789 -> 123456789"
-          n_f.input :image, label: 'Immagine', as: :file
+          n_f.input :rich_text,
+            label: "Blocco Testo",
+            as: :quill_editor,
+            hint: "Inserisci qui un normale blocco di testo.",
+            wrapper_html: { class: 'hideInput typ1 showInput' }
+          n_f.input :video_provider,
+            label: "Sorgente Video",
+            as: :select,
+            collection: [["Nessuno", 0], ["Vimeo", 1], ["YouTube", 2]],
+            prompt: "Seleziona sorgente video",
+            hint: "Indica se il video proviene da YouTube o da Vimeo.",
+            wrapper_html: { class: 'hideInput typ3' }
+          n_f.input :video_url, label: "Codice video", hint: "Inserire soltanto il codice identificativo dell'url. Esempio: https://vimeo.com/123456789 -> 123456789 | https://www.youtube.com/watch?v=123456789 -> 123456789",
+            wrapper_html: { class: 'hideInput typ3' }
+          n_f.input :image,
+            label: 'Immagine',
+            as: :file,
+            hint: "Peso max: 500Kb. Altezza: min 200px / Max 2000px. Larghezza: min 200px / Max 3000px",
+            wrapper_html: { class: 'hideInput typ2' }
             if n_f.object.image.attached?
               div class: "form-aligned" do
-                div cl_image_tag(n_f.object.image.key)
+                div cl_image_tag(n_f.object.image.key), wrapper_html: { class: 'hideInput typ2' }
                 if f.object.id.nil?
                   div link_to "Rimuovi immagine", delete_image_admin_staff_path(n_f.object.image.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
                 end
               end
             end
-          n_f.input :image_width, label: "Larghezza Immagine", as: :select, collection: [["33% - 1/3", "one_third"],["50% - 1/2", "half"],["66% - 2/3", "two_thirds"], ["75% - 3/4", "three_fourths"], ["100%", "full"]], prompt: "Seleziona layout", hint: "Di default le immagini vengono visualizzate al 100% della larghezza."
+          n_f.input :image_width,
+            label: "Larghezza Immagine",
+            as: :select,
+            collection: [["33% - 1/3", "one_third"],["50% - 1/2", "half"],["66% - 2/3", "two_thirds"], ["75% - 3/4", "three_fourths"], ["100%", "full"]],
+            prompt: "Seleziona layout", hint: "Di default le immagini vengono visualizzate al 100% della larghezza.",
+            wrapper_html: { class: 'hideInput typ2' }
         end
       end
     end

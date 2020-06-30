@@ -1,1 +1,155 @@
-<h1>Project show</h1>
+<main class="position-relative">
+    <!--main content-->
+    <div class="main_content sidebar_right pb-50 pt-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    <div class="entry-header entry-header-1 mb-30">
+                        <div class="entry-meta meta-0 font-small mb-15"><span class="post-cat background1 color-white">Progetto</span></div>
+                        <h1 class="post-title">
+                          <%= @project.title %>
+                        </h1>
+                        <div class="entry-meta meta-1 font-medium color-grey mt-15 mb-15">
+                            <span class="post-on"><%= l @project.start_date, format: :long, locale: :it %></span>
+                        </div>
+                        <div class="single-social-share clearfix mt-20">
+                            <ul class="d-inline-block list-inline">
+                                <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center color-white" target="_blank" href="#"><i class="ti-facebook"></i></a></li>
+                                <li class="list-inline-item"><a class="social-icon background3 text-xs-center color-white" target="_blank" href="#"><i class="ti-mobile"></i></a></li>
+                                <li class="list-inline-item"><a class="social-icon background1 text-xs-center color-white" target="_blank" href="#"><i class="ti-link"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+                    </div>
+                    <!--end entry header-->
+                    <figure class="single-thumnail">
+                        <div class="featured-slider-1 border-radius-5">
+                            <div class="featured-slider-1-items">
+                                <div class="slider-single">
+                                  <%= cl_image_tag @project.cover.key, alt: "alttext" %>
+                                </div>
+                            </div>
+                        </div>
+                    </figure>
+
+                    <div class="entry-main-content mt-30">
+                      <% @sections.each do |section| %>
+                        <% case section.typology
+                           when 0
+                        %>
+                          <%= raw section.rich_text %>
+                        <% when 1 %>
+                          <figure class="single-thumnail">
+                              <div class="featured-slider-1 border-radius-5">
+                                  <div class="featured-slider-1-items">
+                                      <div class="slider-single">
+                                        <% unless section.image.nil? || !section.image.attached? %>
+                                          <%= cl_image_tag section.image.key, alt: "alttext" %>
+                                        <% end %>
+                                      </div>
+                                  </div>
+                              </div>
+                          </figure>
+                        <% when 2 %>
+                        <% case section.video_provider
+                            when 1
+                           %>
+                            <div style="padding:56.25% 0 0 0;position:relative;" class="post_video">
+                              <iframe src="https://player.vimeo.com/video/<%= section.video_url %>?title=0&byline=0&portrait=0" class="video-full-w" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+                              </iframe>
+                            </div>
+                          <% when 2 %>
+                            <div class="post_video yt">
+                              <iframe class="yt_video" width="560" height="315" src="https://www.youtube.com/embed/<%= section.video_url %>" frameborder="0" allowfullscreen>
+                              </iframe>
+                            </div>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+
+                    <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+
+                    <!--related posts-->
+                    <div class="related-posts">
+                        <h3 class="mb-30">Related posts</h3>
+                        <div class="loop-list">
+                            <article class="row mb-30">
+                                <div class="col-md-4">
+                                    <div class="post-thumb position-relative thumb-overlay">
+                                        <div class="img-hover-slide border-radius-5 position-relative" style="background-image: url(http://via.placeholder.com/900x630)">
+                                            <a class="img-link" href="single.html"></a>
+                                            <span class="top-right-icon background8"><i class="mdi mdi-flash-on"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 align-center-vertical">
+                                    <div class="post-content">
+                                        <div class="entry-meta meta-0 font-small mb-15"><a href="category.html"><span class="post-cat background2 color-white">Fashion</span></a></div>
+                                        <h4 class="post-title">
+                                            <a href="single.html">The World Caters to Average People and Mediocre Lifestyles</a>
+                                        </h4>
+                                        <div class="entry-meta meta-1 font-small color-grey mt-15 mb-15">
+                                            <span class="post-on"><i class="ti-marker-alt"></i>25 April 2020</span>
+                                            <span class="time-reading"><i class="ti-timer"></i>10 mins read</span>
+                                            <span class="hit-count"><i class="ti-bolt"></i> 159k Views</span>
+                                        </div>
+                                        <p class="font-medium">These people envy me for having a lifestyle they don’t have, but the truth is, sometimes I envy their lifestyle instead. Struggling to sell one multi-million dollar home currently.</p>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="row mb-30">
+                                <div class="col-md-4">
+                                    <div class="post-thumb position-relative thumb-overlay">
+                                        <div class="img-hover-slide border-radius-5 position-relative" style="background-image: url(http://via.placeholder.com/900x630)">
+                                            <a class="img-link" href="single.html"></a>
+                                            <span class="top-right-icon background5"><i class="mdi mdi-favorite"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 align-center-vertical">
+                                    <div class="post-content">
+                                        <div class="entry-meta meta-0 font-small mb-15"><a href="category.html"><span class="post-cat background3 color-white">Technology</span></a></div>
+                                        <h4 class="post-title">
+                                            <a href="single.html">Why Teamwork Really Makes The Dream Work</a>
+                                        </h4>
+                                        <div class="entry-meta meta-1 font-small color-grey mt-15 mb-15">
+                                            <span class="post-on"><i class="ti-marker-alt"></i>25 April 2020</span>
+                                            <span class="time-reading"><i class="ti-timer"></i>10 mins read</span>
+                                            <span class="hit-count"><i class="ti-bolt"></i> 159k Views</span>
+                                        </div>
+                                        <p class="font-medium">We live in a world where disruption and dynamism reign supreme and businesses must be ready to adapt to the many unpredictable changes that come with this.</p>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="row mb-30">
+                                <div class="col-md-4">
+                                    <div class="post-thumb position-relative thumb-overlay">
+                                        <div class="img-hover-slide border-radius-5 position-relative" style="background-image: url(http://via.placeholder.com/900x630)">
+                                            <a class="img-link" href="single.html"></a>
+                                            <span class="top-right-icon background2"><i class="mdi mdi-audiotrack"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 align-center-vertical">
+                                    <div class="post-content">
+                                        <div class="entry-meta meta-0 font-small mb-15"><a href="category.html"><span class="post-cat background1 color-white">Sport</span></a></div>
+                                        <h4 class="post-title">
+                                            <a href="single.html">9 Things I Love About Shaving My Head During Quarantine</a>
+                                        </h4>
+                                        <div class="entry-meta meta-1 font-small color-grey mt-15 mb-15">
+                                            <span class="post-on"><i class="ti-marker-alt"></i>25 April 2020</span>
+                                            <span class="time-reading"><i class="ti-timer"></i>10 mins read</span>
+                                            <span class="hit-count"><i class="ti-bolt"></i> 159k Views</span>
+                                        </div>
+                                        <p class="font-medium">At the Emmys, broadcast scripted shows created by people of color gained ground relative to those pitched by White show creators, while broadcast scripted shows.</p>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 primary-sidebar sticky-sidebar">
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

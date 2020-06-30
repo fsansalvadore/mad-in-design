@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   #projects controller
   get '/projects'                            => 'projects#index'
-  get '/projects/:slug'                      => 'projects#show'
+  get '/projects/:slug'                      => 'projects#show', as: 'project'
 
   #people controller
   get '/people'                              => 'people#index'

@@ -7,7 +7,7 @@ class CreateProjectContentSections < ActiveRecord::Migration[6.0]
       t.integer :video_provider
       t.string :video_url
       t.integer :position
-      t.boolean :published
+      t.boolean :published, default: true
       t.references :project, null: false, foreign_key: true
 
       t.timestamps

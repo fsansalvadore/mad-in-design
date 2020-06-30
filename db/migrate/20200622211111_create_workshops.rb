@@ -4,6 +4,8 @@ class CreateWorkshops < ActiveRecord::Migration[6.0]
       t.integer   :typology, default: 0
       t.string    :title
       t.text      :subtitle
+      t.date      :start_date
+      t.date      :end_date
       t.string    :cover
       t.string    :big_image
       t.text      :body_copy

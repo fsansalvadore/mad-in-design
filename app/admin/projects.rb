@@ -3,6 +3,10 @@ ActiveAdmin.register Project do
   permit_params :title,
                 :role,
                 :cover,
+                :meta_title,
+                :meta_description,
+                :meta_keywords,
+                :start_date,
                 :description,
                 :published,
                 project_content_sections_attributes: [

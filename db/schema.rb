@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
     t.integer "video_provider"
     t.string "video_url"
     t.integer "position"
-    t.boolean "published"
+    t.boolean "published", default: true
     t.bigint "project_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
     t.string "meta_title"
     t.string "meta_description"
     t.string "meta_keywords"
-    t.datetime "start_date"
+    t.date "start_date"
     t.string "cover"
     t.string "highlight_image"
     t.boolean "published"
@@ -313,6 +313,8 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
     t.integer "typology", default: 0
     t.string "title"
     t.text "subtitle"
+    t.date "start_date"
+    t.date "end_date"
     t.string "cover"
     t.string "big_image"
     t.text "body_copy"
@@ -326,8 +328,6 @@ ActiveRecord::Schema.define(version: 2020_06_27_151943) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
-    t.datetime "start_date"
-    t.datetime "end_date"
     t.string "outcome_1_title"
     t.string "outcome_1_subtitle"
     t.text "outcome_1_content"

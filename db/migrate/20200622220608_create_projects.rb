@@ -5,7 +5,7 @@ class CreateProjects < ActiveRecord::Migration[6.0]
       t.string    :meta_title
       t.string    :meta_description
       t.string    :meta_keywords
-      t.datetime  :start_date
+      t.date      :start_date
       t.string    :cover
       t.string    :highlight_image
       t.boolean   :published

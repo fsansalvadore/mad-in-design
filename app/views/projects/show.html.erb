@@ -1,111 +1,109 @@
 <main class="position-relative">
     <div class="main_content sidebar_right pt-50">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-12 col-sm-12">
-                    <div class="entry-header entry-header-1 mb-30">
-                        <div class="entry-meta meta-0 font-small mb-15"><span class="post-cat background1 color-white">Progetto</span></div>
-                        <h1 class="post-title">
-                          <%= @project.title %>
-                        </h1>
-                        <div class="entry-meta meta-1 font-medium color-grey mt-15 mb-15">
-                            <span class="post-on"><%= l @project.start_date, format: :long, locale: :it %></span>
-                        </div>
-                        <!-- <div class="single-social-share clearfix mt-20">
-                            <ul class="d-inline-block list-inline">
-                                <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center color-white" target="_blank" href="#"><i class="ti-facebook"></i></a></li>
-                                <li class="list-inline-item"><a class="social-icon background3 text-xs-center color-white" target="_blank" href="#"><i class="ti-mobile"></i></a></li>
-                                <li class="list-inline-item"><a class="social-icon background1 text-xs-center color-white" target="_blank" href="#"><i class="ti-link"></i></a></li>
-                            </ul>
-                        </div> -->
-                        <div class="bt-1 border-color-1 mt-30 mb-30"></div>
-                    </div>
-                    <figure class="single-thumnail">
-                        <div class="featured-slider-1 border-radius-5">
-                            <div class="featured-slider-1-items">
-                                <div class="slider-single">
-                                  <%= cl_image_tag @project.cover.key, alt: "alttext" %>
-                                </div>
-                            </div>
-                        </div>
-                    </figure>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-12 col-sm-12">
+            <div class="entry-header entry-header-1 mb-30">
+              <div class="entry-meta meta-0 font-small mb-15"><span class="post-cat background1 color-white">Progetto</span></div>
+              <h1 class="post-title">
+                <%= @project.title %>
+              </h1>
+              <div class="entry-meta meta-1 font-medium color-grey mt-15 mb-15">
+                <span class="post-on"><%= l @project.start_date, format: :long, locale: :it %></span>
+              </div>
+              <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+            </div>
+            <figure class="single-thumnail">
+              <div class="border-radius-5">
+                <div class="featured-slider-1-items">
+                  <div class="slider-single">
+                    <%= cl_image_tag @project.cover.key, alt: "alttext" %>
+                  </div>
+                </div>
+              </div>
+            </figure>
 
-                    <div class="entry-main-content mt-30 mb-50">
-                      <% unless @sections.nil? || @sections.empty? %>
+            <div class="entry-main-content mt-30 mb-50">
+              <% unless @sections.nil? || @sections.empty? %>
 
-                      <% end %>
-                      <% @sections.each do |section| %>
-                        <% case section.typology
-                           when 0
-                        %>
-                          <%= raw section.rich_text %>
-                        <% when 1 %>
-                          <figure class="single-thumnail <%= section.image_width unless section.image_width.nil? || section.image_width.empty? %>">
-                              <div class="featured-slider-1 border-radius-5">
-                                  <div class="featured-slider-1-items">
-                                      <div class="slider-single">
-                                        <% unless section.image.nil? %>
-                                          <%= image_tag cl_image_path(section.image), alt: "alttext" %>
-                                          <%#= cl_image_tag(section.image, alt: "alttext") %>
-                                        <% end %>
-                                      </div>
-                                  </div>
-                              </div>
-                          </figure>
-                        <% when 2 %>
-                        <% case section.video_provider
-                            when 1
-                           %>
-                            <div style="padding:56.25% 0 0 0;position:relative;" class="post_video">
-                              <iframe src="https://player.vimeo.com/video/<%= section.video_url %>?title=0&byline=0&portrait=0" class="video-full-w" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
-                              </iframe>
-                            </div>
-                          <% when 2 %>
-                            <div class="post_video yt">
-                              <iframe class="yt_video" width="560" height="315" src="https://www.youtube.com/embed/<%= section.video_url %>" frameborder="0" allowfullscreen>
-                              </iframe>
-                            </div>
-                          <% end %>
-                        <% end %>
-                      <% end %>
-
-                    <% unless @suggestions.nil? || @suggestions.empty? %>
-                    <div class="bt-1 border-color-1 mt-50 mb-50"></div>
-
-                    <div class="related-posts">
-                        <h3 class="mb-30">Altri Progetti MinD</h3>
-                        <div class="loop-list">
-                            <% @suggestions.each do |project| %>
-                              <article class="row mb-50">
-                                  <div class="col-md-6">
-                                      <div class="post-thumb position-relative thumb-overlay mr-20">
-                                          <div class="img-hover-slide border-radius-5 position-relative" style="background-image: url(<%= cl_image_path(project.cover.key) %>)">
-                                            <%= link_to "", project_path(project), class: "img-link" %>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="col-md-6 align-center-vertical">
-                                      <div class="post-content">
-                                          <div class="entry-meta meta-0 font-small mb-15"><span class="background1 color-white">Progetto</span></div>
-                                          <h4 class="post-title">
-                                              <%= link_to project.title, project_path(project) %>
-                                          </h4>
-                                          <div class="entry-meta meta-1 font-medium color-grey mt-15 mb-15">
-                                            <% unless project.start_date.nil? && project.start_date.empty? %>
-                                              <span class="post-on"><%= l project.start_date, format: :long, locale: :it %></span>
-                                            <% end %>
-                                          </div>
-                                          <a class="readmore-btn font-small text-uppercase font-weight-ultra" href="single.html">Guarda il progetto<i class="ti-arrow-right ml-5 transition-02s"></i></a>
-                                      </div>
-                                  </div>
-                              </article>
+              <% end %>
+              <% @sections.each do |section| %>
+                <% case section.typology
+                   when 0
+                %>
+                  <%= raw section.rich_text %>
+                <% when 1 %>
+                  <figure class="single-thumnail <%= section.image_width unless section.image_width.nil? || section.image_width.empty? %>">
+                    <div class="border-radius-5 mt-30">
+                      <div class="featured-slider-1-items">
+                        <div class="slider-single">
+                          <% unless section.image.nil? %>
+                            <%#= image_tag cl_image_path(section.image), alt: "alttext" %>
+                            <% if section.image.attached? %>
+                              <%= cl_image_tag(section.image.key, alt: "alttext") %>
                             <% end %>
+                          <% end %>
                         </div>
+                      </div>
+                    </div>
+                  </figure>
+                <% when 2 %>
+                <% case section.video_provider
+                    when 1
+                   %>
+                    <div style="padding:56.25% 0 0 0;position:relative;" class="post_video">
+                      <iframe src="https://player.vimeo.com/video/<%= section.video_url %>?title=0&byline=0&portrait=0" class="video-full-w" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+                      </iframe>
+                    </div>
+                  <% when 2 %>
+                    <div class="post_video yt">
+                      <iframe class="yt_video" width="560" height="315" src="https://www.youtube.com/embed/<%= section.video_url %>" frameborder="0" allowfullscreen>
+                      </iframe>
                     </div>
                   <% end %>
-                <div class="col-lg-4 col-md-12 col-sm-12 primary-sidebar sticky-sidebar">
-                </div>
+                <% end %>
+              <% end %>
+
+            <% unless @suggestions.nil? || @suggestions.empty? %>
+            <div class="bt-1 border-color-1 mt-50 mb-50"></div>
+
+            <div class="related-posts">
+              <h3 class="mb-30">Altri Progetti MinD</h3>
+              <div class="loop-list">
+                <% @suggestions.each do |project| %>
+                  <article class="row mb-50">
+                    <div class="col-md-6">
+                      <div class="post-thumb position-relative thumb-overlay mr-20">
+                        <% clImg = cl_image_path(project.cover.key) if project.cover.attached? %>
+                        <div class="img-hover-slide border-radius-5 position-relative" style="background-image: <%= "url(#{clImg})," if project.cover.attached? %> linear-gradient(#fefefe, #eee)">
+                          <%= link_to "", project_path(project), class: "img-link" %>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 align-center-vertical">
+                      <div class="post-content">
+                        <div class="entry-meta meta-0 font-small mb-15"><span class="background1 color-white">Progetto</span></div>
+                        <h4 class="post-title">
+                            <%= link_to project.title, project_path(project) %>
+                        </h4>
+                        <div class="entry-meta meta-1 font-medium color-grey mt-15 mb-15">
+                          <% unless project.start_date.nil? && project.start_date.empty? %>
+                            <span class="post-on"><%= l project.start_date, format: :long, locale: :it %></span>
+                          <% end %>
+                        </div>
+                        <a class="readmore-btn font-small text-uppercase font-weight-ultra" href="single.html">Guarda il progetto<i class="ti-arrow-right ml-5 transition-02s"></i></a>
+                      </div>
+                    </div>
+                  </article>
+                <% end %>
+              </div>
             </div>
+          <% end %>
+          <div class="col-lg-4 col-md-12 col-sm-12 primary-sidebar sticky-sidebar">
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>
 </main>

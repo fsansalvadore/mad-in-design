@@ -3,7 +3,8 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel';
 import "bootstrap";
 import { ActivePage } from './active-page';
 
@@ -13,6 +14,27 @@ const on_change_category = ( el ) => {
   target.trigger( 'change' );
   console.log('change');
 }
+$(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
+      stagePadding: 60,
+      margin:40,
+      autoplay: true,
+      animateIn: true,
+      loop: true,
+      responsiveClass: true,
+      responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        1000:{
+            items:2,
+            dots:true,
+            loop:false
+        }
+       }
+     })
+    });
 
 document.addEventListener('turbolinks:load', () => {
   (function($) {

@@ -144,6 +144,11 @@ form .has_many_container .selectInput {
   }
 }
 
+.inline-hints img {
+  max-width: 600px;
+  max-height: 250px;
+}
+
 form .has_many_container .handle {
   padding: 100px 4px;
   border-radius: 6px;

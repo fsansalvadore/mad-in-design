@@ -28,7 +28,8 @@
                       <article class="row mb-50">
                           <div class="col-md-6">
                               <div class="post-thumb position-relative thumb-overlay mr-20">
-                                  <div class="img-hover-slide border-radius-5 position-relative" style="background-image: url(<%= cl_image_path(project.cover.key) %>)">
+                                  <% clImg = cl_image_path(project.cover.key) if project.cover.attached? %>
+                                  <div class="img-hover-slide border-radius-5 position-relative" style="background-image: <%= "url(#{clImg})," if project.cover.attached? %> linear-gradient(#fefefe, #eee)">
                                     <%= link_to "", project_path(project), class: "img-link" %>
                                   </div>
                               </div>

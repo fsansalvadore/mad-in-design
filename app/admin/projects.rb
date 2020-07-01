@@ -54,7 +54,7 @@ ActiveAdmin.register Project do
       link_to project.title, admin_project_path(project)
     end
     column "copertina" do |project|
-      if project.cover.attached?
+      if project.cover.present?
         image_tag(cl_image_path(project.cover.key), class: "admin_table_thumb")
       end
     end
@@ -77,8 +77,8 @@ ActiveAdmin.register Project do
       row :meta_description
       row :meta_keywords
       row :cover do |i|
-        if project.cover
-          image_tag(cl_image_path(project.cover), class: "image-preview")
+        if project.cover.attached?
+          image_tag(cl_image_path(project.cover.key), class: "image-preview")
         end
       end
       row :published
@@ -96,15 +96,21 @@ ActiveAdmin.register Project do
             f.input :featured, label: "In evidenza", hint: "I progetti in evidenza vengono visualizzati in Home Page"
             f.input :title, label: "Titolo", placeholder: 'Titolo', hint: "Obbligatorio"
             f.input :start_date, as: :date_time_picker, label: "Data"
-            f.input :cover, label: 'Immagine di in evidenza e di anteprima', as: :file, hint: "Peso max: 500Kb. Altezza: min 200px / Max 2000px. Larghezza: min 200px / Max 3000px"
-            if f.object.cover.attached?
-              div class: "form-aligned" do
-                div cl_image_tag(f.object.cover.key)
-                unless f.object.id.nil?
-                  div link_to "Rimuovi immagine", delete_image_admin_staff_path(f.object.cover.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+            f.inputs 'Cover' do
+              f.input :cover,
+              label: 'Immagine di in evidenza e di anteprima',
+              as: :file,
+              hint: "Peso max: 500Kb. Altezza: min 200px / Max 2000px. Larghezza: min 200px / Max 3000px"
+              if f.object.cover.attached?
+                div class: "form-aligned" do
+                  div cl_image_tag(f.object.cover.key)
+                  unless f.object.id.nil?
+                    div link_to "Rimuovi immagine", delete_image_admin_staff_path(f.object.cover.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+                  end
                 end
               end
             end
+
           end
         end
         tab :meta do
@@ -143,12 +149,15 @@ ActiveAdmin.register Project do
           n_f.input :image,
             label: 'Immagine',
             as: :file,
-            :image_preview => true,
+            :hint => n_f.object.image.attached? \
+            ? cl_image_tag(n_f.object.image.key)
+            : content_tag(:span, "Peso max: 500Kb. Altezza: min 200px / Max 2000px. Larghezza: min 200px / Max 3000px"),
             wrapper_html: { class: 'hideInput typ2' }
+          # div "<div>#{cl_image_tag(n_f.object.image.key) if n_f.object.image.attached?}</div>".html_safe
           # if n_f.object.image.attached?
           #   div class: "form-aligned" do
-          #     div cl_image_tag(n_f.object.image.key), wrapper_html: { class: 'hideInput typ2' }
-          #     if f.object.id.nil?
+          #     div cl_image_tag(n_f.object.image.key)
+          #     unless n_f.object.id.nil?
           #       div link_to "Rimuovi immagine", delete_image_admin_staff_path(n_f.object.image.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
           #     end
           #   end

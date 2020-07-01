@@ -21,136 +21,110 @@
         </div>
     </div>
     <div class="pt-50 background-white">
-        <div class="container mb-50">
-            <div class="row">
-                <div class="col-lg-9">
-                    <div class="row d-flex justify-content-between">
-                        <div class="col-lg-3 col-md-3">
-                            <div class="widget-header position-relative mb-30">
-                                <h5 class="widget-title mb-30 text-uppercase colorMind font-weight-ultra">Attività recenti</h5>
-                            </div>
-                        </div>
-                        <div class="col-lg-9 col-md-9">
-                            <nav class="tab-nav style-1 quick-links">
-                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <%= link_to projects_path, class: "nav-item nav-link" do %>
-                                      Guarda tutti i Progetti
-                                      <span class="link-arrow">
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 6H11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M6 1L11 6L6 11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                      </span>
-                                    <% end %>
-                                    <%= link_to workshops_path, class: "nav-item nav-link" do %>
-                                      Guarda tutti i Workshop
-                                      <span class="link-arrow">
-                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 6H11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M6 1L11 6L6 11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                      </span>
-                                    <% end %>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="tab-content" id="nav-tabContent">
-                          <div class="tab-pane fade show active" id="nav-nav-Sport" role="tabpanel" aria-labelledby="nav-Sports">
-                              <div class="row">
-                                  <div class="slider-single col-md-4 mb-30">
-                                      <div class="img-hover-scale border-radius-5">
-                                          <a href="single.html">
-                                              <img class="border-radius-5" src="http://via.placeholder.com/500x500" alt="post-slider">
-                                          </a>
-                                      </div>
-                                      <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
-                                          <a href="single.html">Sony Laptops Are Still Part Of The Sony Family</a>
-                                      </h6>
-                                      <div class="entry-meta meta-1 font-small color-grey mt-10 pr-5 pl-5">
-                                          <span class="post-on">02 Jan</span>
-                                          <span class="hit-count has-dot">23k Views</span>
-                                          <a class="float-right" href="#"><i class="ti-heart"></i></a>
-                                      </div>
-                                  </div>
-                                  <div class="slider-single col-md-4 mb-30">
-                                      <div class="img-hover-scale border-radius-5">
-                                          <a href="single.html">
-                                              <img class="border-radius-5" src="http://via.placeholder.com/500x500" alt="post-slider">
-                                          </a>
-                                      </div>
-                                      <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
-                                          <a href="single.html">Get The Boot A Birds Eye Look Into Mcse Boot Camps</a>
-                                      </h6>
-                                      <div class="entry-meta meta-1 font-small color-grey mt-10 pr-5 pl-5">
-                                          <span class="post-on">03 Jan</span>
-                                          <span class="hit-count has-dot">13k Views</span>
-                                          <a class="float-right" href="#"><i class="ti-heart"></i></a>
-                                      </div>
-                                  </div>
-                                  <div class="slider-single col-md-4 mb-30">
-                                      <div class="img-hover-scale border-radius-5">
-                                          <a href="single.html">
-                                              <img class="border-radius-5" src="http://via.placeholder.com/500x500" alt="post-slider">
-                                          </a>
-                                      </div>
-                                      <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
-                                          <a href="single.html">Overcome The Feeling Of Being Overwhelmed</a>
-                                      </h6>
-                                      <div class="entry-meta meta-1 font-small color-grey mt-10 pr-5 pl-5">
-                                          <span class="post-on">04 Jan</span>
-                                          <span class="hit-count has-dot">33k Views</span>
-                                          <a class="float-right" href="#"><i class="ti-heart"></i></a>
-                                      </div>
-                                  </div>
-                              </div>
+      <div class="container mb-50">
+          <div class="row">
+              <div class="col-lg-9">
+                  <div class="row d-flex justify-content-between">
+                      <div class="col-lg-3 col-md-3">
+                          <div class="widget-header position-relative mb-30">
+                              <h5 class="widget-title mb-30 text-uppercase font-weight-ultra">Attività recenti</h5>
                           </div>
-                        </div>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="widget-header position-relative mt-30">
-                          <h5 class="widget-title mb-30 text-uppercase colorMind font-weight-ultra">Chi siamo</h5>
-                        </div>
-                        <div class="big-card bg-yellow">
-                          <div class="row">
-                            <div class="col-md-5 card-img-bg" style="background-image: url(<%= image_path('mad_in_design-chi_siamo.jpg') %>)"></div>
-                            <div class="col-md-7 card-content-area p-5">
-                              <p>
-                                MinD Mad in Design è un’associazione culturale nata a Torino nel 2019 che opera in risposta a situazioni di disagio ed emarginazione nell’ambito della fragilità mentale.
-                                <br/>
-                                <br/>
-                                Dal 2014 MinD realizza progetti creativi, multidisciplinari e inclusivi che agiscono su due aspetti del design: da un lato il progetto come strumento di trasformazione in chiave migliorativa del contesto, dall’altro il processo creativo come sistema di relazioni che si traducono in pratiche di inclusione sociale e riabilitazione.
-                              </p>
-                              <%= link_to workshops_path, class: "" do %>
-                                Scopri di più
-                                <span class="link-arrow">
-                                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M1 6H11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  <path d="M6 1L11 6L6 11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                  </svg>
-                                </span>
+                      <div class="col-lg-9 col-md-9">
+                          <nav class="tab-nav style-1 quick-links">
+                              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                  <%= link_to projects_path, class: "nav-item nav-link" do %>
+                                    Guarda tutti i Progetti
+                                    <span class="link-arrow">
+                                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M1 6H11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                      <path d="M6 1L11 6L6 11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                      </svg>
+                                    </span>
+                                  <% end %>
+                                  <%= link_to workshops_path, class: "nav-item nav-link" do %>
+                                    Guarda tutti i Workshop
+                                    <span class="link-arrow">
+                                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M1 6H11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                      <path d="M6 1L11 6L6 11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                      </svg>
+                                    </span>
+                                  <% end %>
+                              </div>
+                          </nav>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-nav-Sport" role="tabpanel" aria-labelledby="nav-Sports">
+                          <% unless @projects.empty? %>
+                            <div class="row">
+                              <% @projects.each do |project| %>
+                                <div class="col-md-4 mb-30">
+                                  <div class="img-hover-scale slider-single border-radius-5">
+                                    <% clImg = project.cover.attached? ? "url(#{cl_image_path(project.cover.key)})," : "" %>
+                                    <%= link_to "", project_path(project), class: "border-radius-5 thumb-img", style: "background-image: #{clImg} linear-gradient(#fefefe, #eee)" %>
+                                    <!-- <a class="border-radius-5 thumb-img" href="single.html" style="background-image: <%= "url(#{clImg})," if project.cover.attached? %> linear-gradient(#fefefe, #eee)"> -->
+                                    </a>
+                                  </div>
+                                  <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
+                                    <%= link_to project_path(project) do %>
+                                      <%= project.title %>
+                                    <% end %>
+                                  </h6>
+                                  <div class="entry-meta meta-1 font-small color-grey mt-10 pr-5 pl-5">
+                                    <span class="post-on"><%= l project.start_date, format: :short, locale: :it %></span>
+                                  </div>
+                                </div>
                               <% end %>
                             </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="widget-header position-relative mt-30">
+                        <h5 class="widget-title mb-30 text-uppercase colorMind font-weight-ultra">Chi siamo</h5>
+                      </div>
+                      <div class="big-card bg-yellow">
+                        <div class="row">
+                          <div class="col-md-5 card-img-bg" style="background-image: url(<%= image_path('mad_in_design-about.jpg') %>)"></div>
+                          <div class="col-md-7 card-content-area p-5">
+                            <p>
+                              MinD Mad in Design è un’associazione culturale nata a Torino nel 2019 che opera in risposta a situazioni di disagio ed emarginazione nell’ambito della fragilità mentale.
+                              <br/>
+                              <br/>
+                              Dal 2014 MinD realizza progetti creativi, multidisciplinari e inclusivi che agiscono su due aspetti del design: da un lato il progetto come strumento di trasformazione in chiave migliorativa del contesto, dall’altro il processo creativo come sistema di relazioni che si traducono in pratiche di inclusione sociale e riabilitazione.
+                            </p>
+                            <%= link_to about_path, class: "" do %>
+                              Scopri di più
+                              <span class="link-arrow">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 6H11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 1L11 6L6 11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </span>
+                            <% end %>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                    <%= render partial: "shared/card-people" %>
-                    <%= render partial: "shared/card-contacts" %>
+                  </div>
+                  <div class="row">
+                  <%= render partial: "shared/card-people" %>
+                  <%= render partial: "shared/card-contacts" %>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 primary-sidebar sticky-sidebar">
-                    <div class="widget-area theiaStickySidebar sticky-box row">
-                        <!-- Social Network -->
-                        <div class="sidebar-widget box-round-shadow mb-30 col-lg-12 col-md-6">
-                          <p>Lorem ipsum dolor sit amet, neque paret.</p>
-                          <a href="#" class="btn btn-warning">Sostienici</a>
-                        </div>
+                  <div class="widget-area theiaStickySidebar sticky-box row">
+                    <div class="sidebar-widget box-round-shadow mb-30 col-lg-12 col-md-6">
+                      <p>Lorem ipsum dolor sit amet, neque paret.</p>
+                      <a href="#" class="btn btn-warning">Sostienici</a>
                     </div>
+                  </div>
                 </div>
             </div>
         </div>

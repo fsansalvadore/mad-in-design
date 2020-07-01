@@ -212,7 +212,7 @@ it:
       long: "%A %e %B %Y"
       medium: "%d %B"
       medium2: "%e %B"
-      short: "%d %b"
+      short: "%d %b %Y"
     month_names:
     -
     - Gennaio

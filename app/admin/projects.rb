@@ -116,14 +116,15 @@ ActiveAdmin.register Project do
         end
       f.inputs "Sezioni — Ogni sezione corrisponde a una tipologia di contenuto diverso: Testo / Video / Immagine (Inserisci solo una tipologia per sezione)" do
         f.has_many :project_content_sections, heading: 'Contenuto', allow_destroy: true, sortable: :position, sortable_start: 1 do |n_f|
-          n_f.input :published, label: "Visibilità Sezione", hint: "Togli la spunta 'visibile' se vuoi omettere momentaneamente questa sezione."
+          # n_f.input :published, label: "Visibilità Sezione", hint: "Togli la spunta 'visibile' se vuoi omettere momentaneamente questa sezione."
           n_f.input :typology,
             label: "Tipologia Contenuto",
             as: :select,
             collection: [["Testo", 0], ["Immagine", 1], ["Video", 2]],
             prompt: "Seleziona tipologia di media da inserire",
             hint: "Seleziona tipologia di media da inserire.",
-            input_html: { 'onchange': 'selectChange(this)' }
+            input_html: { 'onchange': 'selectChange(this)' },
+            wrapper_html: { class: 'selectInput' }
 
           n_f.input :rich_text,
             label: "Blocco Testo",
@@ -142,16 +143,16 @@ ActiveAdmin.register Project do
           n_f.input :image,
             label: 'Immagine',
             as: :file,
-            hint: "Peso max: 500Kb. Altezza: min 200px / Max 2000px. Larghezza: min 200px / Max 3000px",
+            :image_preview => true,
             wrapper_html: { class: 'hideInput typ2' }
-            if n_f.object.image.attached?
-              div class: "form-aligned" do
-                div cl_image_tag(n_f.object.image.key), wrapper_html: { class: 'hideInput typ2' }
-                if f.object.id.nil?
-                  div link_to "Rimuovi immagine", delete_image_admin_staff_path(n_f.object.image.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
-                end
-              end
-            end
+          # if n_f.object.image.attached?
+          #   div class: "form-aligned" do
+          #     div cl_image_tag(n_f.object.image.key), wrapper_html: { class: 'hideInput typ2' }
+          #     if f.object.id.nil?
+          #       div link_to "Rimuovi immagine", delete_image_admin_staff_path(n_f.object.image.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
+          #     end
+          #   end
+          # end
           n_f.input :image_width,
             label: "Larghezza Immagine",
             as: :select,

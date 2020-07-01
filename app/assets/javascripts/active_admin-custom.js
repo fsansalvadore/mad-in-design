@@ -1,43 +1,38 @@
 window.addEventListener('load', function() {
-  let selectInput = document.querySelector('.admin_projects .project_content_sections .has_many_fields ol li select');
-  selectInput.addEventListener('click', function(e) {
-    alert("change");
-  });
+  let selectInputs = document.querySelectorAll('.admin_projects .project_content_sections .has_many_fields ol li.selectInput select');
+  selectInputs.forEach(function(sel){
+      checkSelectionValue(sel);
+    });
+  })
 
-})
+function removeShow(e, selector) {
+  e.parentElement.parentElement.querySelectorAll(selector).forEach(function(i) {
+    i.classList.remove("showInput");
+  })
+}
 
+function addShow(e, selector) {
+  e.parentElement.parentElement.querySelectorAll(selector).forEach(function(i) {
+    i.classList.add("showInput");
+  })
+}
+
+function checkSelectionValue(e) {
+  if (e.value == 0) {
+    removeShow(e, ".typ2");
+    removeShow(e, ".typ3");
+    addShow(e, ".typ1");
+  } else if (e.value == 1) {
+    removeShow(e, ".typ1");
+    removeShow(e, ".typ3");
+    addShow(e, ".typ2");
+  } else if (e.value == 2) {
+    removeShow(e, ".typ1");
+    removeShow(e, ".typ2");
+    addShow(e, ".typ3");
+  }
+}
 
 function selectChange(e) {
-  // alert(e.parentElement.parentElement.querySelector(".typ2"));
-  if (e.value == 0) {
-    e.parentElement.parentElement.querySelectorAll(".typ2").forEach(function(i) {
-      i.classList.remove("showInput");
-    })
-    e.parentElement.parentElement.querySelectorAll(".typ3").forEach(function(i) {
-      i.classList.remove("showInput");
-    })
-    e.parentElement.parentElement.querySelectorAll(".typ1").forEach(function(i) {
-      i.classList.add("showInput");
-    })
-  } else if (e.value == 1) {
-    e.parentElement.parentElement.querySelectorAll(".typ1").forEach(function(i) {
-      i.classList.remove("showInput");
-    })
-    e.parentElement.parentElement.querySelectorAll(".typ3").forEach(function(i) {
-      i.classList.remove("showInput");
-    })
-    e.parentElement.parentElement.querySelectorAll(".typ2").forEach(function(i) {
-      i.classList.add("showInput");
-    })
-  } else if (e.value == 2) {
-    e.parentElement.parentElement.querySelectorAll(".typ1").forEach(function(i) {
-      i.classList.remove("showInput");
-    })
-    e.parentElement.parentElement.querySelectorAll(".typ2").forEach(function(i) {
-      i.classList.remove("showInput");
-    })
-    e.parentElement.parentElement.querySelectorAll(".typ3").forEach(function(i) {
-      i.classList.add("showInput");
-    })
-  }
+  checkSelectionValue(e);
 }

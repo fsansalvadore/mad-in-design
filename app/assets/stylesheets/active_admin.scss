@@ -88,3 +88,92 @@
 .showInput {
   display: block !important;
 }
+
+#article fieldset ol > li input[type=text],
+#article fieldset ol > li div.quill-editor {
+  width: calc(100% - 140px);
+}
+
+form fieldset ol > li.has_many_container .has_many_fields ol li {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+form fieldset > ol > li.check_boxes fieldset ol {
+  padding: 0 0 0 100px;
+}
+
+form fieldset > ol > li.boolean label {
+  padding: 0;
+  width: 100%;
+}
+
+form fieldset ol > li {
+  /*padding: 10px 120px 10px 10px;*/
+  padding: 20px 10px;
+}
+
+form fieldset ol > li.has_many_container .has_many_fields {
+  padding: 0 90px 0 0;
+  margin: 20px 10px;
+  overflow: hidden;
+  // border: 1px solid rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+form fieldset ol > li.has_many_container .has_many_fields ol li {
+  box-shadow: inset -4px 0px 10px -10px #000;
+}
+
+form fieldset ol > li.has_many_container .has_many_fields ol li.has_many_delete,
+form fieldset ol > li.has_many_container .has_many_fields ol li.hidden {
+  border: none;
+}
+form fieldset ol > li.has_many_container .has_many_fields ol li:last-of-type {
+  box-shadow: none;
+}
+
+form .has_many_container .selectInput {
+  background-color: #EF785A;
+
+  .select2-container--default .select2-selection--single {
+    border-color: #fff;
+  }
+
+  label, .inline-hints {
+    color: #fff;
+  }
+}
+
+form .has_many_container .handle {
+  padding: 100px 4px;
+  border-radius: 6px;
+  top: 50%;
+  box-shadow: 0 0px 35px rgba(0, 0, 0, 0.2);
+  transform: translateY(-50%);
+  border: 1px solid #a7a7a7 !important;
+  right: 20px;
+  width: auto !important;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(to top, rgba(#FDD510, 1) 0%, rgba(#FDD510, 0.8) 50%, rgba(#FDD510, 1) 100%);
+}
+
+form .has_many_container .handle::before,
+form .has_many_container .handle::after {
+  content: '';
+  position: absolute;
+  height: 5px;
+  width: 5px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  border-left: 1px solid #000;
+  border-top: 1px solid #000;
+}
+form .has_many_container .handle::before {
+  transform: rotate(45deg);
+  top: 40px;
+}
+form .has_many_container .handle::after {
+  transform: rotate(-135deg);
+  bottom: 40px;
+}

@@ -1,15 +1,62 @@
-<footer class="position-relative">
-  <div class="container mb-30">
-    <%= render 'shared/sostenitori' %>
-    <div class="row mt-30">
-      <div class="col-md-6">
-        <h6>© MIND - Mad in Design <%= Time.now.year %></h6>
+<footer class="">
+  <!-- Footer Start-->
+  <div class="fix pt-50">
+      <div class="container">
+        <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+        <%= render 'shared/sostenitori' %>
+        <div class="bt-1 border-color-1"></div>
+          <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-12 col-md-5">
+                <div class="pb-30 pt-30">
+                  <nav class="footer-sitemap">
+                    <ul class="font-medium d-flex justify-content-between">
+                        <li class=""><%= link_to "Home", home_path %></li>
+                        <li class=""><%= link_to "About", about_path %></li>
+                        <li class=""><%= link_to "People", people_path %></li>
+                        <li class=""><%= link_to "Workshop", workshops_path %></li>
+                        <li class=""><%= link_to "Progetti", projects_path %></li>
+                        <li class=""><%= link_to "Contatti", contatti_path %></li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="col-12 col-md-4"></div>
+              <div class="col-12 col-md-3">
+                    <div class="single-social-share clearfix pb-30 pt-30">
+                        <ul class="d-inline-block list-inline d-flex justify-content-around">
+                            <li class="list-inline-item"><a class="social-icon facebook-icon text-xs-center color-white" target="_blank" href="#"><i class="ti-facebook"></i></a></li>
+                            <li class="list-inline-item"><a class="social-icon twitter-icon text-xs-center color-white" target="_blank" href="#"><i class="ti-twitter-alt"></i></a></li>
+                            <li class="list-inline-item"><a class="social-icon pinterest-icon text-xs-center color-white" target="_blank" href="#"><i class="ti-pinterest"></i></a></li>
+                            <li class="list-inline-item"><a class="social-icon instagram-icon text-xs-center color-white" target="_blank" href="#"><i class="ti-instagram"></i></a></li>
+                        </ul>
+                    </div>
+              </div>
+          </div>
       </div>
-      <div class="col-md-6 text-right">
-        <ul>
-          <li><%= link_to "Privacy & Cookies", privacy_cookie_policy_path %></li>
-        </ul>
-      </div>
-    </div>
   </div>
+  <!-- footer-bottom aera -->
+  <div class="footer-bottom-area">
+      <div class="container">
+      <div class="bt-1 border-color-1 mb-30"></div>
+          <div class="pb-30">
+              <div class="row d-flex align-items-center justify-content-between">
+                  <div class="col-lg-6">
+                      <div class="footer-copy-right">
+                          <p class="font-medium">© MIND - Mad in Design <%= Time.now.year %></p>
+                      </div>
+                  </div>
+                  <div class="col-lg-6">
+                      <div class="footer-menu float-lg-right mt-lg-0 mt-3">
+                          <ul class="font-medium">
+                              <li><%= link_to "Privacy & Cookies", privacy_cookie_policy_path %></li>
+                              <li><%= link_to "Design Credits", "https://www.saglietti.it/", target: "_blank" %></li>
+                              <li><%= link_to "Website Credits", "https://www.fsansalvadore.com/", target: "_blank" %></li>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Footer End-->
 </footer>

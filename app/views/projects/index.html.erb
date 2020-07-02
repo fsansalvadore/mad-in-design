@@ -41,7 +41,7 @@
                                       <%= link_to project.title, project_path(project) %>
                                   </h4>
                                   <div class="entry-meta meta-1 font-medium color-grey mt-15 mb-15">
-                                    <% unless project.start_date.nil? && project.start_date.empty? %>
+                                    <% unless project.start_date.nil? %>
                                       <span class="post-on"><%= l project.start_date, format: :long, locale: :it %></span>
                                     <% end %>
                                   </div>

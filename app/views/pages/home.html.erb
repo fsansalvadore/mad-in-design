@@ -75,7 +75,9 @@
                                     <% end %>
                                   </h6>
                                   <div class="entry-meta meta-1 font-small color-grey mt-10 pr-5 pl-5">
-                                    <span class="post-on"><%= l project.start_date, format: :short, locale: :it %></span>
+                                    <% unless project.start_date.nil? %>
+                                      <span class="post-on"><%= l project.start_date, format: :short, locale: :it %></span>
+                                    <% end %>
                                   </div>
                                 </div>
                               <% end %>

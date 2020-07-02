@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.where(published: true).order(start_date: :desc)
     @years = []
-    @projects.filter {|project| @years << project.start_date.year}
+    @projects.filter {|project| @years << project.start_date.year unless project.start_date.nil? }
     @years.uniq!
 
     if params[:y].present?

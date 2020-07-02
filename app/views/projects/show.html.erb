@@ -9,7 +9,10 @@
                 <%= @project.title %>
               </h1>
               <div class="entry-meta meta-1 font-medium color-grey mt-15 mb-15">
-                <span class="post-on"><%= l @project.start_date, format: :long, locale: :it %></span>
+                <% unless @project.start_date.nil? %>
+                  <span class="post-on"><%= l @project.start_date, format: :long, locale: :it %></span>
+
+                <% end %>
               </div>
               <div class="bt-1 border-color-1 mt-30 mb-30"></div>
             </div>
@@ -17,7 +20,9 @@
               <div class="border-radius-5">
                 <div class="featured-slider-1-items">
                   <div class="slider-single">
-                    <%= cl_image_tag @project.cover.key, alt: "alttext" %>
+                    <% if  @project.cover.attached? %>
+                      <%= cl_image_tag @project.cover.key, alt: "alttext" %>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -87,7 +92,7 @@
                             <%= link_to project.title, project_path(project) %>
                         </h4>
                         <div class="entry-meta meta-1 font-medium color-grey mt-15 mb-15">
-                          <% unless project.start_date.nil? && project.start_date.empty? %>
+                          <% unless project.start_date.nil? %>
                             <span class="post-on"><%= l project.start_date, format: :long, locale: :it %></span>
                           <% end %>
                         </div>

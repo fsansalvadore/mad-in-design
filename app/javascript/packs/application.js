@@ -8,13 +8,24 @@ import 'owl.carousel';
 import "bootstrap";
 import { ActivePage } from './active-page';
 
-const on_change_category = ( el ) => {
-  var target = el.closest( 'fieldset' ).find( '.pub' );
-  target.prop( 'checked', ( el.val() == 'cat2' ) );
-  target.trigger( 'change' );
-  console.log('change');
-}
-$(document).ready(function(){
+
+$(document).on('turbolinks:load', function() {
+  // window.onload = function () {
+
+    var mySwiper = new Swiper ('.swiper-container', {
+        spaceBetween: 30,
+        grabCursor: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          dynamicBullets: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }
+    });
+  // };
     $('.owl-carousel').owlCarousel({
       stagePadding: 60,
       margin:40,
@@ -34,9 +45,8 @@ $(document).ready(function(){
         }
        }
      })
-    });
+  ActivePage();
 
-document.addEventListener('turbolinks:load', () => {
   (function($) {
     'use strict';
 
@@ -49,9 +59,8 @@ document.addEventListener('turbolinks:load', () => {
     });
 
 
-    ActivePage();
 
-    $(document).ready(function() {
+    // $(document).ready(function() {
 
     // var scrollProgress = function() {
     var docHeight = $(document).height(),
@@ -104,9 +113,11 @@ document.addEventListener('turbolinks:load', () => {
         });
     // };
 
-    });
+    // });
 
 })(jQuery);
 });
+
+
 
 import "controllers"

@@ -176,6 +176,9 @@ it:
       workshop:
         one: "Workshop"
         other: "Workshop"
+      workshop_outcome:
+        one: "Esito Workshop"
+        other: "Esiti Workshop"
   date:
     abbr_day_names:
     - dom

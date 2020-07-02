@@ -149,8 +149,23 @@ form .has_many_container .selectInput {
   max-height: 250px;
 }
 
+.has_many_container.workshop_outcomes .inline-hints {
+  margin-left: 200px;
+}
+
+.nested-image-preview {
+  width: 400px;
+  height: 200px;
+  margin-left: 190px;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
 form .has_many_container .handle {
-  padding: 100px 4px;
+  padding: 60px 4px;
   border-radius: 6px;
   top: 50%;
   box-shadow: 0 0px 35px rgba(0, 0, 0, 0.2);
@@ -176,9 +191,9 @@ form .has_many_container .handle::after {
 }
 form .has_many_container .handle::before {
   transform: rotate(45deg);
-  top: 40px;
+  top: 20px;
 }
 form .has_many_container .handle::after {
   transform: rotate(-135deg);
-  bottom: 40px;
+  bottom: 20px;
 }

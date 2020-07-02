@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_30_112134) do
+ActiveRecord::Schema.define(version: 2020_07_02_102838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -268,6 +268,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_112134) do
     t.bigint "workshop_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
     t.index ["workshop_id"], name: "index_workshop_carousel_images_on_workshop_id"
   end
 
@@ -294,6 +295,8 @@ ActiveRecord::Schema.define(version: 2020_06_30_112134) do
     t.string "image_4"
     t.string "image_5"
     t.string "outcome_images"
+    t.string "project_leader"
+    t.string "team"
     t.index ["workshop_id"], name: "index_workshop_outcomes_on_workshop_id"
   end
 
@@ -313,7 +316,7 @@ ActiveRecord::Schema.define(version: 2020_06_30_112134) do
   create_table "workshops", force: :cascade do |t|
     t.integer "typology", default: 0
     t.string "title"
-    t.text "subtitle"
+    t.string "subtitle"
     t.date "start_date"
     t.date "end_date"
     t.string "cover"

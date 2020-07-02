@@ -27,71 +27,30 @@
         <div class="col-12 col-lg-7 col-sm-12 mb-30">
           <!--loop-list-->
           <div class="loop-list loop-list-1">
-            <article class="row mb-50">
-              <div class="col-md-12">
-                <div class="post-thumb position-relative thumb-overlay mr-20">
-                  <div class="img-hover-slide border-radius-5 position-relative" style='background-image: linear-gradient(to top, #EF785A 20%, #EF785A99 100%), url(<%= image_path "mad_in_design-about.jpg"%>);'>
-                    <h3>Workshop 2020</h3>
-                    <a class="img-link" href="#"></a>
+            <% @workshops.each do |workshop| %>
+              <%
+              w_year = workshop.start_date.year.to_s
+              w_slug = workshop.slug
+               %>
+              <article class="row mb-50">
+                <div class="col-md-12">
+                  <div class="post-thumb position-relative thumb-overlay mr-20">
+                    <% clImg = cl_image_path(workshop.cover.key, :gravity=>"faces") if workshop.cover.attached? %>
+                    <div class="img-hover-slide border-radius-5 position-relative" style='background-image: linear-gradient(to top, #EF785A 20%, #EF785A99 100%) <%= ", url(#{clImg})" if workshop.cover.attached? %>;'>
+                      <h3>Workshop <%= w_year %></h3>
+                      <%= link_to "", workshop_path(w_year, w_slug), class: "img-link" %>
+                    </div>
+                    <ul class="social-share">
+                      <li>
+                        <%= link_to workshop_path(w_year, w_slug), class: "backroundMind" do %>
+                          <i class="ti-arrow-right"></i>
+                        <% end %>
+                      </li>
+                    </ul>
                   </div>
-                  <ul class="social-share">
-                    <li><a href="#" class="backroundMind"><i class="ti-arrow-right"></i></a></li>
-                  </ul>
                 </div>
-              </div>
-            </article>
-            <article class="row mb-50">
-              <div class="col-md-12">
-                <div class="post-thumb position-relative thumb-overlay mr-20">
-                  <div class="img-hover-slide border-radius-5 position-relative" style='background-image: linear-gradient(to top, #84BBD8 20%, #84BBD899 100%), url(<%= image_path "mad_in_design-about.jpg"%>);'>
-                    <h3>Workshop 2019</h3>
-                    <a class="img-link" href="#"></a>
-                  </div>
-                  <ul class="social-share">
-                    <li><a href="#" class="backroundMind"><i class="ti-arrow-right"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-            <article class="row mb-50">
-              <div class="col-md-12">
-                <div class="post-thumb position-relative thumb-overlay mr-20">
-                  <div class="img-hover-slide border-radius-5 position-relative" style='background-image: linear-gradient(to top, #FDD510 20%, #FDD51099 100%), url(<%= image_path "mad_in_design-about.jpg"%>);'>
-                    <h3>Workshop 2018</h3>
-                    <a class="img-link" href="#"></a>
-                  </div>
-                  <ul class="social-share">
-                    <li><a href="#" class="backroundMind"><i class="ti-arrow-right"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-            <article class="row mb-50">
-              <div class="col-md-12">
-                <div class="post-thumb position-relative thumb-overlay mr-20">
-                  <div class="img-hover-slide border-radius-5 position-relative" style='background-image: linear-gradient(to top, #1EDD88 20%, #1EDD8899 100%), url(<%= image_path "mad_in_design-about.jpg"%>);'>
-                    <h3>Workshop 2017</h3>
-                    <a class="img-link" href="#"></a>
-                  </div>
-                  <ul class="social-share">
-                    <li><a href="#" class="backroundMind"><i class="ti-arrow-right"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-            <article class="row mb-50">
-              <div class="col-md-12">
-                <div class="post-thumb position-relative thumb-overlay mr-20">
-                  <div class="img-hover-slide border-radius-5 position-relative" style='background-image: linear-gradient(to top, #EF785A 20%, #EF785A99 100%), url(<%= image_path "mad_in_design-about.jpg"%>);'>
-                    <h3>Workshop 2016</h3>
-                    <a class="img-link" href="#"></a>
-                  </div>
-                  <ul class="social-share">
-                    <li><a href="#" class="backroundMind"><i class="ti-arrow-right"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </article>
+              </article>
+            <% end %>
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ ActiveAdmin.register ProjectLeader do
       link_to "#{project_leader.name}", admin_project_leader_path(project_leader)
     end
     column "Foto" do |project_leader|
-      if collaborator.photo.attached?
+      if project_leader.photo.attached?
         image_tag(cl_image_path(project_leader.photo.key), class: "admin_table_thumb")
       end
     end

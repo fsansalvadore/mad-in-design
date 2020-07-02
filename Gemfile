@@ -59,6 +59,8 @@ gem 'jquery-slick-rails', '~> 1.9'
 gem 'popper_js', '~> 1.14.5'
 gem 'lightbox2-rails', '~> 2.8', '>= 2.8.2.1'
 
+gem 'geocoder', '~> 1.6', '>= 1.6.3'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

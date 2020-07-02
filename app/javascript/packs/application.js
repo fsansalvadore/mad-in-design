@@ -36,11 +36,11 @@ $(document).on('turbolinks:load', function() {
       responsive:{
         0:{
             items:1,
-            nav:true
+            nav:false
         },
         1000:{
             items:2,
-            dots:true,
+            dots:false,
             loop:false
         }
        }

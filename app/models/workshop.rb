@@ -1,5 +1,6 @@
 class Workshop < ApplicationRecord
   validates :title, presence: true
+  validates :start_date, presence: true
   has_many :workshop_carousel_images,                             dependent: :destroy
   has_many :workshop_outcomes,                                    dependent: :destroy
   # has_many :workshop_outcome_images, through: :workshop_outcomes, dependent: :destroy

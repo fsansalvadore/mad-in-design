@@ -263,3 +263,25 @@ footer .footer-sitemap {
     margin-right: 15px;
   }
 }
+
+.cc-btn {
+  border-radius: 6px;
+}
+
+.cc-window.cc-banner {
+  padding: 1em 1.8em;
+  width: calc(100% - 20px);
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.cc-link {
+  color: #fff !important;
+}
+
+.cc-banner.cc-bottom {
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background-color: #0E5 !important;
+}

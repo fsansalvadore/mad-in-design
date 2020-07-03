@@ -4,8 +4,8 @@ const cookies = () => {
   window.cookieconsent.initialise({
     "palette": {
       "popup": {
-        "background": "#ffffff",
-        "text": "#000000"
+        "background": "#EF785A",
+        "text": "#fff"
       },
       "button": {
         "background": "#FDD510",

@@ -8,22 +8,12 @@ import 'owl.carousel';
 import "bootstrap";
 import { ActivePage } from './active-page';
 import { cookies } from './cookies';
+import { SwiperSnippet } from './swiper';
+import { MobileMenuToggle } from './mobile-menu-toggle';
 
 $(document).on('turbolinks:load', function() {
 
-  var mySwiper = new Swiper ('.swiper-container', {
-    spaceBetween: 30,
-    grabCursor: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-      dynamicBullets: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    }
-  });
+  SwiperSnippet();
 
   $('.owl-carousel').owlCarousel({
     stagePadding: 60,
@@ -69,17 +59,7 @@ $(document).on('turbolinks:load', function() {
     });
 
     // Menu toggle
-    $('#mobile_menu_toggle').on('click', function() {
-      $('#mobile_menu').toggleClass("menu-open");
-      $(this).toggleClass("menu-anim");
-    });
-
-    $('.dark-mark').on('click', function() {
-      $('body').removeClass("canvas-opened");
-    });
-    $('.off-canvas-close').on('click', function() {
-      $('body').removeClass("canvas-opened");
-    });
+    MobileMenuToggle();
 
 })(jQuery);
 });

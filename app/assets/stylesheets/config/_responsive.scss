@@ -12,6 +12,7 @@
   .main-search-form-cover{padding:10px 100px 50px 100px;}
   p.suggested{margin-left:50px;}
   #mobile_menu_toggle {display: none;}
+  .w-show .jumbotron .col-12.col-lg-6.mt-20 {margin-top: 0 !important;}
 }
 
 /* Tablet desktop :768px. */
@@ -45,10 +46,57 @@
   .page-404{text-align:center;}
   .entry-header-1 h1{max-width:100%}
   .single-header-2 .entry-header-1{padding:50px;}
-  .sostenitori .s-grid.x3 {grid-template-columns: 1fr 1fr !important;}
+  .img-grid.x3 {grid-template-columns: 1fr 1fr !important;}
   .header-style-2 .header-bottom {height: 70px !important;}
   .logo-img {max-height: 35px !important;}
   .page {margin-top: 70px !important;}
+  .people nav {
+    margin-bottom: 0 !important;
+
+    &.tab-nav .nav-tabs.d-flex {
+      flex-direction: column;
+    }
+  }
+  .graphical_elements {
+    div {
+      transform: scale(0.6);
+    }
+  }
+  .tab-nav.style-1 .nav-link {
+    padding: 6px 13px;
+    margin: 10px 3px !important;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+  }
+  .recent-activity-title.mb-30 {
+    margin-bottom: 15px !important;
+    h5 {
+      margin-bottom: 0 !important;
+    }
+  }
+  nav.tab-nav {
+    padding: 4px 0 !important;
+    font-size: 9px !important;
+    float: none !important;
+    letter-spacing: -0.01rem !important;
+  }
+  .footer-sitemap-container {
+    &.pb-30 {
+      padding-bottom: 0 !important;
+    }
+  }
+  .footer-sitemap ul {
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 0;
+
+    li {
+      padding: 10px 0;
+    }
+  }
 }
 
 /* Large Mobile :480px. */

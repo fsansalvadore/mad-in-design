@@ -120,7 +120,7 @@ ActiveAdmin.register Workshop do
       row :meta_description
       row :meta_keywords
       row :cover do |i|
-        if workshop.cover
+        if workshop.cover.attached?
           image_tag(cl_image_path(workshop.cover.key), class: "image-preview")
         end
       end

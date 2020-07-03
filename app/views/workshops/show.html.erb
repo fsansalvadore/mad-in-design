@@ -30,7 +30,9 @@
                 <div class="border-radius-5">
                   <div class="featured-slider-1-items">
                     <div class="slider-single">
-                      <%= cl_image_tag @workshop.cover.key, alt: "alttext" %>
+                      <% if @workshop.cover.attached? %>
+                        <%= cl_image_tag @workshop.cover.key, alt: "alttext" %>
+                      <% end %>
                     </div>
                   </div>
                 </div>

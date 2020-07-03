@@ -1,3 +1,8 @@
+<% content_for :meta_title, "#{@project.meta_title unless !@project.meta_title || @project.meta_title.empty?} " %>
+<% content_for :meta_description, "#{@project.meta_description unless !@project.meta_description || @project.meta_description.empty?}" %>
+<% content_for :meta_keywords, "#{@project.meta_keywords unless !@project.meta_keywords || @project.meta_keywords.empty?} " %>
+<% content_for :meta_image, cl_image_path(@project.cover.key) if @project.cover.attached? %>
+
 <main class="position-relative p-show">
     <div class="main_content sidebar_right pt-50">
       <div class="container">

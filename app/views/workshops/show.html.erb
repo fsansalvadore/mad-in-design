@@ -1,3 +1,8 @@
+<% content_for :meta_title, "#{@workshop.meta_title unless !@workshop.meta_title || @workshop.meta_title.empty?} " %>
+<% content_for :meta_description, "#{@workshop.meta_description unless !@workshop.meta_description || @workshop.meta_description.empty?}" %>
+<% content_for :meta_keywords, "#{@workshop.meta_keywords unless !@workshop.meta_keywords || @workshop.meta_keywords.empty?} " %>
+<% content_for :meta_image, cl_image_path(@workshop.cover.key) if @workshop.cover.attached? %>
+
 <main class="position-relative w-show">
     <div class="main_content sidebar_right pt-50">
       <div class="container">

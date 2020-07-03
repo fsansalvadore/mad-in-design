@@ -14,27 +14,6 @@ import { MobileMenuToggle } from './mobile-menu-toggle';
 $(document).on('turbolinks:load', function() {
 
   SwiperSnippet();
-
-  $('.owl-carousel').owlCarousel({
-    stagePadding: 60,
-    margin:40,
-    autoplay: true,
-    animateIn: true,
-    loop: true,
-    responsiveClass: true,
-    responsive:{
-      0:{
-          items:1,
-          nav:false
-      },
-      1000:{
-          items:2,
-          dots:false,
-          loop:false
-      }
-     }
-   })
-
   cookies();
   ActivePage();
 

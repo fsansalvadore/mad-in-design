@@ -25,6 +25,11 @@ Rails.application.routes.draw do
   #people controller
   get '/people'                              => 'people#index'
 
+  #contacts controller
+  get    'contatti',      to: 'contacts#index'
+  post   'contatti',      to: 'contacts#create'
+  get    'contatti/new',  to: 'contacts#new'
+
   #pages controller
   get '/about'                               => 'pages#about'
   get '/contatti'                            => 'pages#contacts'

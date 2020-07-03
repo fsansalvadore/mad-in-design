@@ -15,36 +15,7 @@
             <div class="col-12 col-lg-1"></div>
             <div class="col-12 col-lg-7 mb-50">
                 <h1 class="mb-30">Lascia un messaggio</h1>
-                <form class="form-contact comment_form" action="#" id="commentForm">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input class="form-control" name="name" id="name" type="text" placeholder="Nome *" required>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input class="form-control" name="email" id="email" type="email" placeholder="Email *" required>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <input class="form-control" name="website" id="website" type="text" placeholder="Telefono">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Messaggio *" required></textarea>
-                            </div>
-                        </div>
-                        <div class="col-12 font-small">
-                          <p>* Campi obbligatori</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="button button-contactForm background1">Invia messaggio</button>
-                    </div>
-                </form>
+                <%= render "shared/contact-form" %>
             </div>
         </div>
         <div class="bt-1 border-color-1 mt-30 mb-30"></div>

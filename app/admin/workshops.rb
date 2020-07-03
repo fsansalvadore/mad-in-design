@@ -186,7 +186,7 @@ ActiveAdmin.register Workshop do
           n_f.input :sottotitolo,     label: "Sottotitolo"
           n_f.input :project_leader,  label: "Project Leader"
           n_f.input :team,            label: "Team"
-          n_f.input :content,         label: "Testo"
+          n_f.input :content,         label: "Testo", as: :quill_editor
           n_f.input :image_1,
                 label: 'Immagine 1',
                 as: :file,

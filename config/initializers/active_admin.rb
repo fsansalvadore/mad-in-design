@@ -250,6 +250,7 @@ ActiveAdmin.setup do |config|
     admin.build_menu do |menu|
       menu.add label: 'Pagine Sito', priority: 2
       menu.add label: 'People', priority: 6
+      menu.add label: 'Workshop', priority: 5
     end
   end
 

@@ -19,8 +19,10 @@ html, body, .page {
 }
 
 .jumbotron p,
-.jumbotron p * {
-  color: #152035;
+.jumbotron p *,
+.entry-main-content p,
+.entry-main-content p * {
+  color: #152035 !important;
 }
 
 .home-banner {

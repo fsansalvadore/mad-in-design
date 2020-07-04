@@ -13,6 +13,16 @@ html, body, .page {
   transition: marginTop 0.2s ease;
 }
 
+.entry-main-content p a {
+  color: #152035 !important;
+  text-decoration: underline;
+}
+
+.jumbotron p,
+.jumbotron p * {
+  color: #152035;
+}
+
 .home-banner {
   position: relative;
   min-height: 390px;

@@ -1,7 +1,7 @@
-require("@rails/ujs").start()
-require("turbolinks").start()
-require("@rails/activestorage").start()
-require("channels")
+require("@rails/ujs").start();
+require("turbolinks").start();
+require("@rails/activestorage").start();
+require("channels");
 
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';

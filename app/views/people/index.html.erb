@@ -165,8 +165,9 @@
                       </h6>
                       <div class="entry-meta font-small color-grey my-3 pr-5 pl-5">
                         <% if collaborator.link && !collaborator.link.empty? %>
-                          <a href="<%= collaborator.link %>" target="_blank" class="readmore-btn font-small text-uppercase font-weight-ultra">Vai al sito<i class="ti-arrow-right ml-5"></i>
-                          </a>
+                          <%= link_to url_for(collaborator.link), target: "_blank", class: "readmore-btn font-small text-uppercase font-weight-ultra" do %>
+                            Vai al sito<i class="ti-arrow-right ml-5"></i>
+                          <% end %>
                         <% end %>
                       </div>
                       <div class="font-description color-black mt-10 pr-5 pl-5 people-description">

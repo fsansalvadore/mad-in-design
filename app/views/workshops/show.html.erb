@@ -9,16 +9,19 @@
       <div class="row">
         <div class="col-12 col-lg-6">
           <div class="entry-header entry-header-1 mb-30">
-            <div class="entry-meta meta-0 font-small mb-15"><span class="post-cat background1 color-white">Workshop</span></div>
+            <div class="entry-meta meta-0 font-small mb-15"><span class="post-cat background1 color-white">Workshop <%= @workshop.start_date.year %></span></div>
+            <div class="breadcrumb mb-10">
+              <%= link_to "Home", root_path, rel: "nofollow"  %>
+              <span></span>
+              <%= link_to "Workshops", workshops_path %>
+              <span></span>
+            </div>
             <h1 class="post-title">
               <%= @workshop.title %>
             </h1>
             <% unless @workshop.subtitle.nil? || @workshop.subtitle.empty? %>
               <p class="mt-10 font-large"><%= @workshop.subtitle %></p>
             <% end %>
-            <div class="entry-meta meta-1 font-medium color-grey mt-15 mb-15">
-              <span class="post-on">Anno: <%= @workshop.start_date.year %></span>
-            </div>
             <div class="mt-50 mb-50">
               <div class="row">
                 <div class="col-12">

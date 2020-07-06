@@ -24,6 +24,23 @@
         </div>
         <div class="col-12 col-lg-7 col-sm-12 mb-30">
           <div class="loop-list loop-list-1">
+            <article class="row mb-15">
+                <div class="col-md-12">
+                  <div class="post-thumb position-relative thumb-overlay mr-20">
+                    <div class="img-hover-slide border-radius-5 position-relative" style='background-image: linear-gradient(to top, #EF785A 20%, #EF785A99 100%);'>
+                      <h3>Workshop 2020</h3>
+                      <%= link_to "", workshops_2020_t_prendersi_cura_path, class: "img-link" %>
+                    </div>
+                    <ul class="social-share">
+                      <li>
+                        <%= link_to workshops_2020_t_prendersi_cura_path, class: "backroundMind" do %>
+                          <i class="ti-arrow-right"></i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </article>
             <% @workshops.each do |workshop| %>
               <%
               w_year = workshop.start_date.year.to_s

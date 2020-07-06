@@ -179,12 +179,12 @@ ActiveAdmin.register Workshop do
           end
         end
       # Esiti
-      panel 'Squadre' do
-        f.has_many :workshop_teams, heading: 'Aggiungi Squadre', allow_destroy: true, sortable: :position, sortable_start: 1 do |t_f|
-          t_f.input :title,            label: "Nome Squadra", hint: 'Obbligatorio (Può essere "Team 1", "Team 2", ecc)'
-          t_f.input :project_leader,  label: "Leader Squadra", hint: 'Obbligatorio (Può essere "Team 1", "Team 2", ecc)'
-        end
-      end
+      # panel 'Squadre' do
+      #   f.has_many :workshop_teams, heading: 'Aggiungi Squadre', allow_destroy: true, sortable: :position, sortable_start: 1 do |t_f|
+      #     t_f.input :title,            label: "Nome Squadra", hint: 'Obbligatorio (Può essere "Team 1", "Team 2", ecc)'
+      #     t_f.input :project_leader,  label: "Leader Squadra", hint: 'Obbligatorio (Può essere "Team 1", "Team 2", ecc)'
+      #   end
+      # end
       panel 'Esiti' do
         f.has_many :workshop_outcomes, heading: 'Aggiungi Esiti', allow_destroy: true, sortable: :position, sortable_start: 1 do |n_f|
           n_f.input :visible,         label: "Visibile"

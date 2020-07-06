@@ -12,12 +12,15 @@ Rails.application.routes.draw do
   end
   get 'home' => 'pages#home'
   #workshops controller
-  get '/workshops'                                              => 'workshops#index'
-  # get '/workshops/:year/s/:slug'                                => 'workshops#special_workshop_index'
-  # get '/workshops/:year/s/:slug/teams/:team'                    => 'workshops#special_workshop_team'
-  # get '/workshops/:year/s/:slug/teams/:team/giornate/:giornata' => 'workshops#special_workshop_giornata'
-  get '/workshops/2020/s/prendersi-cura'                        => 'workshops#prendersi_cura'
-  get '/workshops/:year/n/:slug'                                => 'workshops#show', as: 'workshop'
+  get '/workshops'                                                => 'workshops#index'
+  # get '/workshops/:year/t/:slug'                                => 'workshops#special_workshop_index'
+  # get '/workshops/:year/t/:slug/teams/:team'                    => 'workshops#special_workshop_team'
+  # get '/workshops/:year/t/:slug/teams/:team/giornate/:giornata' => 'workshops#special_workshop_giornata'
+  get '/workshops/2020/t/prendersi-cura'                          => 'workshops#prendersi_cura'
+  get '/workshops/2020/t/prendersi-cura/team-1'                   => 'workshops#team_1'
+  get '/workshops/2020/t/prendersi-cura/team-1-b'                 => 'workshops#team_1_b'
+  get '/workshops/2020/t/prendersi-cura/team-1/giornate/1'        => 'workshops#team_1_giornata_1'
+  get '/workshops/:year/n/:slug'                                  => 'workshops#show', as: 'workshop'
 
   #projects controller
   get '/projects'                            => 'projects#index'

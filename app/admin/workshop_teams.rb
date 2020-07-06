@@ -1,5 +1,6 @@
 ActiveAdmin.register WorkshopTeam do
-  menu parent: 'Workshop', label: 'Squadre', priority: 2
+  # menu parent: 'Workshop', label: 'Squadre', priority: 2
+  menu false
   # belongs_to :workshop
   permit_params :title,
                 :project_leader,

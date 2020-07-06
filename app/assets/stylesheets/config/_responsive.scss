@@ -52,11 +52,11 @@
   .page {margin-top: 70px !important;}
   .people nav {
     margin-bottom: 0 !important;
-
     &.tab-nav .nav-tabs.d-flex {
       flex-direction: column;
     }
   }
+  .about .swiper-container {height: 230px !important;}
   .graphical_elements {
     div {
       transform: scale(0.6);

@@ -1,6 +1,5 @@
 <main class="position-relative workshop">
   <div class="main_content pt-50">
-  <!--archive header-->
   <div class="page-header text-center">
       <div class="container">
           <h2><span class="colorMind">Workshop</span></h2>
@@ -12,11 +11,10 @@
           <div class="bt-1 border-color-1 mt-30 mb-50"></div>
       </div>
   </div>
-  <!--main content-->
-  <div class="main_content sidebar_right pb-50">
+  <div class="main_content sidebar_right">
     <div class="container">
       <div class="row">
-        <div class="col-12 col-lg-5 mb-30">
+        <div class="col-12 col-lg-5">
           <p>MinD Mad in Design è un’associazione culturale nata a Torino nel 2019 che opera in risposta a situazioni di disagio ed emarginazione nell’ambito della fragilità mentale proponendo progetti creativi, multidisciplinari e inclusivi nell’ambito delle discipline creative.<br/>
             <br/>
             Dal 2014 MinD realizza progetti che agiscono su due aspetti del design: da un lato il progetto come strumento di trasformazione in chiave migliorativa del contesto, dall’altro il processo creativo come sistema di relazioni che si traducono in pratiche di inclusione sociale e riabilitazione. Attraverso la partecipazione diretta di studenti e persone seguite dai servizi di salute mentale, MinD è il luogo dove sperimentare e verificare i risultati anche clinici di una cultura del design intesa come processo creativo.<br/>
@@ -25,14 +23,13 @@
           </p>
         </div>
         <div class="col-12 col-lg-7 col-sm-12 mb-30">
-          <!--loop-list-->
           <div class="loop-list loop-list-1">
             <% @workshops.each do |workshop| %>
               <%
               w_year = workshop.start_date.year.to_s
               w_slug = workshop.slug
                %>
-              <article class="row mb-50">
+              <article class="row mb-15">
                 <div class="col-md-12">
                   <div class="post-thumb position-relative thumb-overlay mr-20">
                     <% clImg = cl_image_path(workshop.cover.key, :gravity=>"faces") if workshop.cover.attached? %>

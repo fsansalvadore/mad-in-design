@@ -49,8 +49,9 @@
   &.c5 {
     width: 63px;
     height: 63px;
-    right: -3%;
+    right: 1%;
     bottom: -25%;
+    z-index: 0;
 
     border: 2px solid #EF785A;
     box-sizing: border-box;

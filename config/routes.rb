@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root to: 'pages#temporary'
+  root to: 'pages#home'
 
   namespace :admin do
     resources :workshops do
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  get 'home' => 'pages#home'
+  # get 'home' => 'pages#home'
   #workshops controller
   get '/workshops'                                                => 'workshops#index'
   # get '/workshops/:year/t/:slug'                                => 'workshops#special_workshop_index'

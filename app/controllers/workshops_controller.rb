@@ -1,5 +1,5 @@
 class WorkshopsController < ApplicationController
-  before_action :authenticate_admin_user!, only: [:index, :show, :prendersi_cura, :team]
+  # before_action :authenticate_admin_user!, only: [:index, :show, :prendersi_cura, :team]
   before_action :set_workshop, only: [:show]
 
   def index

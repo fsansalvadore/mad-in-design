@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_101357) do
+ActiveRecord::Schema.define(version: 2020_07_07_152252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -261,6 +261,12 @@ ActiveRecord::Schema.define(version: 2020_07_07_101357) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.integer "position"
+    t.string "image_1"
+    t.string "image_2"
+    t.string "image_3"
+    t.string "image_4"
+    t.string "image_5"
+    t.text "content"
     t.index ["slug"], name: "index_team_outcomes_on_slug", unique: true
     t.index ["workshop_team_id"], name: "index_team_outcomes_on_workshop_team_id"
   end
@@ -320,6 +326,7 @@ ActiveRecord::Schema.define(version: 2020_07_07_101357) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "position"
     t.string "slug"
+    t.text "description"
     t.index ["slug"], name: "index_workshop_teams_on_slug", unique: true
     t.index ["workshop_id"], name: "index_workshop_teams_on_workshop_id"
   end

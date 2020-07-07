@@ -1,0 +1,77 @@
+<main class="position-relative w-show">
+  <div class="main_content sidebar_right pt-50 pb-30 special_workshop_heading">
+    <%= render 'shared/graphical-elements' %>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="entry-header entry-header-1 mb-30">
+            <div class="entry-meta meta-0 font-small mb-15"><span class="post-cat background1 color-white">Workshop 2020</span></div>
+            <div class="breadcrumb">
+              <%= link_to "Home", root_path, rel: "nofollow"  %>
+              <span></span>
+              <%= link_to "Workshops", workshops_path %>
+              <span></span>
+            </div>
+            <h1 class="post-title">
+              <%= @workshop.title %>
+            </h1>
+            <p class="mt-10 font-large"><%= @workshop.subtitle unless @workshop.subtitle.nil? %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main_content">
+    <div class="container">
+      <div class="row mt-50">
+        <div class="col-12 col-lg-6">
+          <div class="entry-header entry-header-1 mb-30">
+            <%= raw @workshop.body_copy unless @workshop.body_copy.nil? %>
+          </div>
+        </div>
+        <div class="col-12 col-lg-1"></div>
+
+        <div class="col-12 col-lg-5 primary-sidebar sticky-sidebar">
+            <figure class="single-thumnail">
+              <div class="border-radius-5">
+                <div class="featured-slider-1-items">
+                  <div class="slider-single">
+                    <% if @workshop.cover.attached? %>
+                      <%= cl_image_tag @workshop.cover.key, alt: "alttext" %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </figure>
+        </div>
+      </div>
+      <div class="entry-main-content mt-50">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h4>Le Squadre</h4>
+            <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 teams-grid">
+            <% @teams.each do |team| %>
+              <%= link_to team_workshop_team_path(@workshop.start_date.year.to_s, @workshop.slug, team.title), class: "" do %>
+                <div class="team-btn text-center border-radius-5 d-flex align-items-center justify-content-center backroundMind">
+                  <h6><%= team.title %></h6>
+                </div>
+                <div class="w-100 text-center">
+                  <p class="pt-10 team-project-leader">
+                    <strong class="font-small">Project Leader</strong>
+                    <br>
+                    <%= team.project_leader unless team.project_leader.nil? %>
+                  </p>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>

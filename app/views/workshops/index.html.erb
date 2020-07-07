@@ -30,6 +30,11 @@
               <%
               w_year = workshop.start_date.year.to_s
               w_slug = workshop.slug
+              if workshop.typology == 0
+                w_path = workshop_path(w_year, w_slug)
+              else
+                w_path = team_workshop_path(w_year, w_slug)
+              end
                %>
               <article class="row mb-15">
                 <div class="col-md-12">
@@ -37,11 +42,11 @@
                     <% clImg = cl_image_path(workshop.cover.key, :gravity=>"faces") if workshop.cover.attached? %>
                     <div class="img-hover-slide border-radius-5 position-relative" style='background-image: linear-gradient(to top, #EF785A 20%, #EF785A99 100%) <%= ", url(#{clImg})" if workshop.cover.attached? %>;'>
                       <h3>Workshop <%= w_year %></h3>
-                      <%= link_to "", workshop_path(w_year, w_slug), class: "img-link" %>
+                      <%= link_to "", w_path, class: "img-link" %>
                     </div>
                     <ul class="social-share">
                       <li>
-                        <%= link_to workshop_path(w_year, w_slug), class: "backroundMind" do %>
+                        <%= link_to w_path, class: "backroundMind" do %>
                           <i class="ti-arrow-right"></i>
                         <% end %>
                       </li>

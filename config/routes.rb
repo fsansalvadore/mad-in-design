@@ -13,13 +13,13 @@ Rails.application.routes.draw do
   # get 'home' => 'pages#home'
   #workshops controller
   get '/workshops'                                                => 'workshops#index'
-  # get '/workshops/:year/t/:slug'                                => 'workshops#special_workshop_index'
-  # get '/workshops/:year/t/:slug/teams/:team'                    => 'workshops#special_workshop_team'
-  # get '/workshops/:year/t/:slug/teams/:team/giornate/:giornata' => 'workshops#special_workshop_giornata'
-  get '/workshops/2020/t/prendersi-cura'                          => 'workshops#prendersi_cura'
-  get '/workshops/2020/t/prendersi-cura/team-1'                   => 'workshops#team_1'
-  get '/workshops/2020/t/prendersi-cura/team-1-b'                 => 'workshops#team_1_b'
-  get '/workshops/2020/t/prendersi-cura/team-1/giornate/1'        => 'workshops#team_1_giornata_1'
+  get '/workshops/:year/t/:slug'                                  => 'workshops#show', as: 'team_workshop'
+  get '/workshops/:year/t/:slug/teams/:title'                      => 'workshops#team_workshop_team', as: 'team_workshop_team'
+  # get '/workshops/:year/t/:slug/teams/:title/giornate/:giornata'   => 'workshops#team_workshop_giornata', as: 'team_workshop_day'
+  # get '/workshops/2020/t/prendersi-cura'                          => 'workshops#prendersi_cura'
+  # get '/workshops/2020/t/prendersi-cura/team-1'                   => 'workshops#team_1'
+  # get '/workshops/2020/t/prendersi-cura/team-1-b'                 => 'workshops#team_1_b'
+  # get '/workshops/2020/t/prendersi-cura/team-1/giornate/1'        => 'workshops#team_1_giornata_1'
   get '/workshops/:year/n/:slug'                                  => 'workshops#show', as: 'workshop'
 
   #projects controller

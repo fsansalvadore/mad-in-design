@@ -142,7 +142,15 @@ ActiveAdmin.register Workshop do
       tabs do
         tab :workshop do
           f.inputs 'Informazioni del Workshop' do
-            # f.input :typology,    label: 'Tipologia Workshop', as: :select, collection: [["Normale (Default)", 0], ["Squadre", 1]], prompt: "Seleziona tipologia di workshop", hint: "I workshop di tipo 'Normale' mostrano soltanto gli esiti. I workshop 'Squadre' contengono sia squadre sia gli esiti delle giornate."
+            f.input :typology,
+                      label: 'Tipologia Workshop',
+                      as: :select,
+                      collection: [["Normale (Default)", 0], ["Con Squadre", 1]],
+                      prompt: "Seleziona tipologia di workshop",
+                      hint: "I workshop di tipo 'Normale' mostrano soltanto gli esiti. I workshop 'Squadre' contengono sia squadre sia gli esiti delle giornate.",
+                      input_html: { 'onchange': 'workshopSelect(this)' },
+                      wrapper_html: { class: 'selectInput' }
+
             f.input :published,   label: 'Pubblicato'
             f.input :cover, as: :file
             if f.object.cover.attached?
@@ -179,13 +187,13 @@ ActiveAdmin.register Workshop do
           end
         end
       # Esiti
-      # panel 'Squadre' do
-      #   f.has_many :workshop_teams, heading: 'Aggiungi Squadre', allow_destroy: true, sortable: :position, sortable_start: 1 do |t_f|
-      #     t_f.input :title,            label: "Nome Squadra", hint: 'Obbligatorio (Può essere "Team 1", "Team 2", ecc)'
-      #     t_f.input :project_leader,  label: "Leader Squadra", hint: 'Obbligatorio (Può essere "Team 1", "Team 2", ecc)'
-      #   end
-      # end
-      panel 'Esiti' do
+      panel 'Squadre - Vengono visualizzate se la "Tipologia" del workshop è impostata su "Squadre"' do
+        f.has_many :workshop_teams, heading: 'Aggiungi Squadre', allow_destroy: true, sortable: :position, sortable_start: 1 do |t_f|
+          t_f.input :title,            label: "Nome Squadra", hint: 'Obbligatorio (Può essere "Team 1", "Team 2", ecc)'
+          t_f.input :project_leader,  label: "Leader Squadra", hint: 'Obbligatorio (Può essere "Team 1", "Team 2", ecc)'
+        end
+      end
+      panel 'Esiti - Vengono visualizzati se la "Tipologia" del workshop è impostata su normale' do
         f.has_many :workshop_outcomes, heading: 'Aggiungi Esiti', allow_destroy: true, sortable: :position, sortable_start: 1 do |n_f|
           n_f.input :visible,         label: "Visibile"
           n_f.input :title,           label: "Titolo", hint: 'Obbligatorio'

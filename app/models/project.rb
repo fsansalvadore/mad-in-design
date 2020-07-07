@@ -14,7 +14,5 @@ class Project < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  # mount_uploader :cover, CoverUploader
-
   has_one_attached :cover
 end

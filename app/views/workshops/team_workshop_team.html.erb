@@ -1,0 +1,133 @@
+<main class="position-relative w-show">
+  <div class="main_content special_workshop_heading sidebar_right pt-50 pb-50">
+    <div class="page-header page-header-style-1 text-center">
+      <div class="container">
+        <h2><span class="color"><%= @team.title %></span></h2>
+        <div class="breadcrumb">
+          <%= link_to "Home", root_path, rel: "nofollow"  %>
+          <span></span>
+          <%= link_to "Workshops", workshops_path %>
+          <span></span>
+          <%= link_to @workshop.title, team_workshop_path(@workshop.start_date.year.to_s, @workshop.slug) %>
+          <span></span>
+          <%= @team.title %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main_content sidebar_right pt-50">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="row">
+            <div class="col-12">
+              <%= raw @team.description unless @team.description.nil? %>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-1"></div>
+
+        <div class="col-12 col-lg-5 primary-sidebar sticky-sidebar">
+          <figure class="single-thumnail">
+            <div class="border-radius-5">
+              <div class="featured-slider-1-items">
+                <div class="slider-single">
+                  <% if @team.image.attached? %>
+                    <%= cl_image_tag @team.image.key, alt: "alttext" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </figure>
+        </div>
+      </div>
+      <div class="entry-main-content mt-50">
+      <!-- <div class="bt-1 border-color-1 mt-30 mb-30"></div> -->
+        <% @outcomes.each do |outcome| %>
+          <div class="row">
+            <div class="col-12">
+              <h2><%= outcome.title %></h2>
+            </div>
+          </div>
+          <div class="jumbotron">
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                  <div class="row">
+                    <div class="col-12 font-medium">
+                      <%= raw outcome.content unless outcome.content.nil? %>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-12 col-lg-6 mt-20">
+                <!-- Swiper -->
+                <div class="swiper-container border-radius-5">
+                  <div class="swiper-wrapper">
+                      <% if outcome.image_1.attached? %>
+                        <div class="swiper-slide">
+                          <%= cl_image_tag outcome.image_1.key, alt: "alttext" %>
+                        </div>
+                      <% end %>
+                      <% if outcome.image_2.attached? %>
+                        <div class="swiper-slide">
+                          <%= cl_image_tag outcome.image_2.key, alt: "alttext" %>
+                        </div>
+                      <% end %>
+                      <% if outcome.image_3.attached? %>
+                        <div class="swiper-slide">
+                          <%= cl_image_tag outcome.image_3.key, alt: "alttext" %>
+                        </div>
+                      <% end %>
+                      <% if outcome.image_4.attached? %>
+                        <div class="swiper-slide">
+                          <%= cl_image_tag outcome.image_4.key, alt: "alttext" %>
+                        </div>
+                      <% end %>
+                      <% if outcome.image_5.attached? %>
+                        <div class="swiper-slide">
+                          <%= cl_image_tag outcome.image_5.key, alt: "alttext" %>
+                        </div>
+                      <% end %>
+                  </div>
+
+                  <div class="swiper-button-next swiper-button-black"></div>
+                  <div class="swiper-button-prev swiper-button-black"></div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+        <div class="entry-main-content mt-50">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h4>Le Squadre</h4>
+            <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 teams-grid">
+            <% @teams.each do |team| %>
+              <%= link_to team_workshop_team_path(@workshop.start_date.year.to_s, @workshop.slug, team.title), class: "" do %>
+                <div class="team-btn text-center border-radius-5 d-flex align-items-center justify-content-center backroundMind">
+                  <h6><%= team.title %></h6>
+                </div>
+                <div class="w-100 text-center">
+                  <p class="pt-10 team-project-leader">
+                    <strong class="font-small">Project Leader</strong>
+                    <br>
+                    <%= team.project_leader unless team.project_leader.nil? %>
+                  </p>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>

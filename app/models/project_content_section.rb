@@ -9,5 +9,4 @@ class ProjectContentSection < ApplicationRecord
                       message: "deve essere alta meno di 2000px e larga meno di 3000px" }
 
   has_one_attached :image
-  # mount_uploader :image, ImageUploader
 end

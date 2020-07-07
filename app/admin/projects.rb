@@ -153,15 +153,6 @@ ActiveAdmin.register Project do
             ? cl_image_tag(n_f.object.image.key)
             : content_tag(:span, "Peso max: 500Kb. Altezza: min 200px / Max 2000px. Larghezza: min 200px / Max 3000px"),
             wrapper_html: { class: 'hideInput typ2' }
-          # div "<div>#{cl_image_tag(n_f.object.image.key) if n_f.object.image.attached?}</div>".html_safe
-          # if n_f.object.image.attached?
-          #   div class: "form-aligned" do
-          #     div cl_image_tag(n_f.object.image.key)
-          #     unless n_f.object.id.nil?
-          #       div link_to "Rimuovi immagine", delete_image_admin_staff_path(n_f.object.image.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
-          #     end
-          #   end
-          # end
           n_f.input :image_width,
             label: "Larghezza Immagine",
             as: :select,

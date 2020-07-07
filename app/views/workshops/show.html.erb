@@ -26,7 +26,7 @@
             <div class="mt-50 mb-50">
               <div class="row">
                 <div class="col-12">
-                  <p><%= raw @workshop.body_copy %></p>
+                  <p><%= raw @workshop.body_copy unless @workshop.body_copy.nil? %></p>
                 </div>
               </div>
             </div>

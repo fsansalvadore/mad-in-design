@@ -9,8 +9,6 @@ class Committee < ApplicationRecord
                       message: "deve essere alta meno di 2000px e larga meno di 3000px" }
 
   has_one_attached :photo
-  # validate :photo_format
-  # mount_uploader :photo, PhotoUploader
 
   acts_as_list
 end

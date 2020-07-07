@@ -28,3 +28,11 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
 }
+
+.entry-main-content p.team-project-leader {
+  strong {
+    margin-bottom: -10px;
+    display: block;
+  }
+  line-height: 110%;
+}

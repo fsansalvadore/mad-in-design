@@ -30,13 +30,12 @@ Rails.application.routes.draw do
   get '/people'                              => 'people#index'
 
   #contacts controller
-  get    'contatti',      to: 'contacts#index'
-  post   'contatti',      to: 'contacts#create'
-  get    'contatti/new',  to: 'contacts#new'
+  get    '/contacts',      to: 'contacts#index'
+  post   '/contacts',      to: 'contacts#create'
+  # get    '/contacts/new',  to: 'contacts#new'
 
   #pages controller
   get '/about'                               => 'pages#about'
-  get '/contatti'                            => 'pages#contacts'
   get '/privacy-cookie-policy'               => 'pages#privacy'
 
   # Error pages

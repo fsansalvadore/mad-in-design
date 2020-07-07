@@ -110,7 +110,7 @@
                         <%= leader.name.strip unless leader.name.empty? || leader.name.nil? %>
                       </h6>
                       <div class="entry-meta font-small color-grey mt-10 pr-5 pl-5 people-role">
-                        <span class="post-on"><%= leader.role.strip unless leader.role.nil? || leader.role.empty? %></span>
+                        <span class="post-on"><%= leader.year unless leader.year.nil? %></span>
                       </div>
                       <div class="font-description color-black mt-10 pr-5 pl-5 people-description">
                         <%= raw leader.description unless leader.description.empty? || leader.description.nil? %>

@@ -24,7 +24,9 @@
               <% unless @team.project_leader.nil? %>
                 <p><strong>Project Leader:</strong> <%= @team.project_leader %></p>
               <% end %>
-              <%= raw @team.description unless @team.description.nil? %>
+              <% unless @team.description.nil? %>
+                <%= raw @team.description unless @team.description.nil? %>
+              <% end %>
             </div>
           </div>
         </div>

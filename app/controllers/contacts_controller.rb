@@ -26,7 +26,7 @@ class ContactsController < ApplicationController
     if @contact.deliver
       flash[:success] = 'Messaggio inviato con successo'
       flash.now[:error] = nil
-      redirect_to contacts_path
+      redirect_to contacts_confirmation_path
     else
       flash.now[:error] = 'Impossibile inviare il messaggio al momento.'
       render :index
@@ -43,6 +43,9 @@ class ContactsController < ApplicationController
     #     format.js   { flash.now[:error] = @message = "Non è possibile inviare il messaggio al momento." }
     #   end
     # end
+  end
+
+  def thank_you
   end
 
   private

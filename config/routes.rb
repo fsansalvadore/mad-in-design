@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   #contacts controller
   get  '/contacts',      to: 'contacts#index'
   post '/contacts',      to: 'contacts#create'
+  get  '/contacts/confirmation',      to: 'contacts#thank_you'
 
   #pages controller
   get '/about'                               => 'pages#about'

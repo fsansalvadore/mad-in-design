@@ -1,4 +1,8 @@
 <%= form_for @contact, url: contacts_path, class: "form-contact comment_form", id: "commentForm" do |f| %>
+<div class="notice-alert row">
+  <p class="col-12 form-alert m-top-30 notice"><%= notice %></p>
+  <p class="col-12 form-alert m-top-30 alert"><%= alert %></p>
+</div>
 <% if @contact.errors.any? %>
   <div id="error_explanation">
     <h3><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>

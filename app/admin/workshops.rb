@@ -15,7 +15,8 @@ ActiveAdmin.register Workshop do
                 workshop_carousel_images_attributes: [
                   :id,
                   :image,
-                  :position
+                  :position,
+                  :_destroy
                 ],
                 workshop_outcomes_attributes: [
                   :id,
@@ -31,7 +32,8 @@ ActiveAdmin.register Workshop do
                   :image_3,
                   :image_4,
                   :image_5,
-                  :outcome_images
+                  :outcome_images,
+                  :_destroy
                 ],
                 workshop_outcome_images_attributes: [
                   :id,
@@ -42,7 +44,8 @@ ActiveAdmin.register Workshop do
                   :title,
                   :project_leader,
                   :image,
-                  :position
+                  :position,
+                  :_destroy
                 ],
                 team_outcomes_attributes: [
                   :id,

@@ -1,4 +1,5 @@
 class WorkshopTeam < ApplicationRecord
+  validates :title, presence: true
   belongs_to  :workshop
   has_many    :team_outcomes, dependent: :destroy
   accepts_nested_attributes_for :team_outcomes,  allow_destroy: true

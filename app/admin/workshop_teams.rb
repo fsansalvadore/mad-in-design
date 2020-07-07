@@ -24,7 +24,8 @@ ActiveAdmin.register WorkshopTeam do
                   :meta_title,
                   :meta_description,
                   :meta_keywords,
-                  :position
+                  :position,
+                  :_destroy
                 ]
 
   actions :all, :except => [:new]

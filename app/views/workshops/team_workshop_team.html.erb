@@ -21,6 +21,9 @@
         <div class="col-12 col-lg-6">
           <div class="row">
             <div class="col-12">
+              <% unless @team.project_leader.nil? %>
+                <p><strong>Project Leader:</strong> <%= @team.project_leader %></p>
+              <% end %>
               <%= raw @team.description unless @team.description.nil? %>
             </div>
           </div>
@@ -43,60 +46,62 @@
       </div>
       <div class="entry-main-content mt-50">
       <!-- <div class="bt-1 border-color-1 mt-30 mb-30"></div> -->
-        <% @outcomes.each do |outcome| %>
-          <div class="row">
-            <div class="col-12">
-              <h2><%= outcome.title %></h2>
-            </div>
-          </div>
-          <div class="jumbotron">
+        <% unless !@outcomes || @outcomes.empty? %>
+          <% @outcomes.each do |outcome| %>
             <div class="row">
-              <div class="col-12 col-lg-6">
-                  <div class="row">
-                    <div class="col-12 font-medium">
-                      <%= raw outcome.content unless outcome.content.nil? %>
-                    </div>
-                  </div>
+              <div class="col-12">
+                <h2><%= outcome.title %></h2>
               </div>
-              <div class="col-12 col-lg-6 mt-20">
-                <!-- Swiper -->
-                <div class="swiper-container border-radius-5">
-                  <div class="swiper-wrapper">
-                      <% if outcome.image_1.attached? %>
-                        <div class="swiper-slide">
-                          <%= cl_image_tag outcome.image_1.key, alt: "alttext" %>
-                        </div>
-                      <% end %>
-                      <% if outcome.image_2.attached? %>
-                        <div class="swiper-slide">
-                          <%= cl_image_tag outcome.image_2.key, alt: "alttext" %>
-                        </div>
-                      <% end %>
-                      <% if outcome.image_3.attached? %>
-                        <div class="swiper-slide">
-                          <%= cl_image_tag outcome.image_3.key, alt: "alttext" %>
-                        </div>
-                      <% end %>
-                      <% if outcome.image_4.attached? %>
-                        <div class="swiper-slide">
-                          <%= cl_image_tag outcome.image_4.key, alt: "alttext" %>
-                        </div>
-                      <% end %>
-                      <% if outcome.image_5.attached? %>
-                        <div class="swiper-slide">
-                          <%= cl_image_tag outcome.image_5.key, alt: "alttext" %>
-                        </div>
-                      <% end %>
-                  </div>
+            </div>
+            <div class="jumbotron">
+              <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="row">
+                      <div class="col-12 font-medium">
+                        <%= raw outcome.content unless outcome.content.nil? %>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 mt-20">
+                  <!-- Swiper -->
+                  <div class="swiper-container border-radius-5">
+                    <div class="swiper-wrapper">
+                        <% if outcome.image_1.attached? %>
+                          <div class="swiper-slide">
+                            <%= cl_image_tag outcome.image_1.key, alt: "alttext" %>
+                          </div>
+                        <% end %>
+                        <% if outcome.image_2.attached? %>
+                          <div class="swiper-slide">
+                            <%= cl_image_tag outcome.image_2.key, alt: "alttext" %>
+                          </div>
+                        <% end %>
+                        <% if outcome.image_3.attached? %>
+                          <div class="swiper-slide">
+                            <%= cl_image_tag outcome.image_3.key, alt: "alttext" %>
+                          </div>
+                        <% end %>
+                        <% if outcome.image_4.attached? %>
+                          <div class="swiper-slide">
+                            <%= cl_image_tag outcome.image_4.key, alt: "alttext" %>
+                          </div>
+                        <% end %>
+                        <% if outcome.image_5.attached? %>
+                          <div class="swiper-slide">
+                            <%= cl_image_tag outcome.image_5.key, alt: "alttext" %>
+                          </div>
+                        <% end %>
+                    </div>
 
-                  <div class="swiper-button-next swiper-button-black"></div>
-                  <div class="swiper-button-prev swiper-button-black"></div>
-                  <!-- Add Pagination -->
-                  <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next swiper-button-black"></div>
+                    <div class="swiper-button-prev swiper-button-black"></div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
         <div class="entry-main-content mt-50">
@@ -108,18 +113,20 @@
         </div>
         <div class="row">
           <div class="col-12 teams-grid">
-            <% @teams.each do |team| %>
-              <%= link_to team_workshop_team_path(@workshop.start_date.year.to_s, @workshop.slug, team.title), class: "" do %>
-                <div class="team-btn text-center border-radius-5 d-flex align-items-center justify-content-center backroundMind">
-                  <h6><%= team.title %></h6>
-                </div>
-                <div class="w-100 text-center">
-                  <p class="pt-10 team-project-leader">
-                    <strong class="font-small">Project Leader</strong>
-                    <br>
-                    <%= team.project_leader unless team.project_leader.nil? %>
-                  </p>
-                </div>
+            <% unless @teams.empty? %>
+              <% @teams.each do |team| %>
+                <%= link_to team_workshop_team_path(@workshop.start_date.year.to_s, @workshop.slug, team.title), class: "" do %>
+                  <div class="team-btn text-center border-radius-5 d-flex align-items-center justify-content-center backroundMind">
+                    <h6><%= team.title %></h6>
+                  </div>
+                  <div class="w-100 text-center">
+                    <p class="pt-10 team-project-leader">
+                      <strong class="font-small">Project Leader</strong>
+                      <br>
+                      <%= team.project_leader unless team.project_leader.nil? %>
+                    </p>
+                  </div>
+                <% end %>
               <% end %>
             <% end %>
           </div>

@@ -14,6 +14,13 @@ class WorkshopsController < ApplicationController
   def prendersi_cura
   end
 
+  def team_1_giornata_1
+
+  end
+
+  def team_1_b
+  end
+
   def team
   end
 

@@ -1,5 +1,5 @@
 ActiveAdmin.register Workshop do
-  menu priority: 5
+  menu parent: 'Workshop', label: 'Workshop', priority: 1
   permit_params :typology,
                 :title,
                 :subtitle,
@@ -179,6 +179,12 @@ ActiveAdmin.register Workshop do
           end
         end
       # Esiti
+      # panel 'Squadre' do
+      #   f.has_many :workshop_teams, heading: 'Aggiungi Squadre', allow_destroy: true, sortable: :position, sortable_start: 1 do |t_f|
+      #     t_f.input :title,            label: "Nome Squadra", hint: 'Obbligatorio (Può essere "Team 1", "Team 2", ecc)'
+      #     t_f.input :project_leader,  label: "Leader Squadra", hint: 'Obbligatorio (Può essere "Team 1", "Team 2", ecc)'
+      #   end
+      # end
       panel 'Esiti' do
         f.has_many :workshop_outcomes, heading: 'Aggiungi Esiti', allow_destroy: true, sortable: :position, sortable_start: 1 do |n_f|
           n_f.input :visible,         label: "Visibile"
@@ -186,7 +192,7 @@ ActiveAdmin.register Workshop do
           n_f.input :sottotitolo,     label: "Sottotitolo"
           n_f.input :project_leader,  label: "Project Leader"
           n_f.input :team,            label: "Team"
-          n_f.input :content,         label: "Testo"
+          n_f.input :content,         label: "Testo", as: :quill_editor
           n_f.input :image_1,
                 label: 'Immagine 1',
                 as: :file,

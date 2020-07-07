@@ -4,133 +4,137 @@
 <% content_for :meta_image, cl_image_path(@workshop.cover.key) if @workshop.cover.attached? %>
 
 <main class="position-relative w-show">
-    <div class="main_content sidebar_right pt-50">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-lg-6">
-            <div class="entry-header entry-header-1 mb-30">
-              <div class="entry-meta meta-0 font-small mb-15"><span class="post-cat background1 color-white">Workshop</span></div>
-              <h1 class="post-title">
-                <%= @workshop.title %>
-              </h1>
-              <% unless @workshop.subtitle.nil? || @workshop.subtitle.empty? %>
-                <p class="mt-10 font-large"><%= @workshop.subtitle %></p>
-              <% end %>
-              <div class="entry-meta meta-1 font-medium color-grey mt-15 mb-15">
-                <span class="post-on">Anno: <%= @workshop.start_date.year %></span>
-              </div>
-              <div class="mt-50 mb-50">
-                <div class="row">
-                  <div class="col-12">
-                    <p><%= raw @workshop.body_copy %></p>
-                  </div>
-                </div>
-              </div>
+  <div class="main_content sidebar_right pt-50">
+    <%= render 'shared/graphical-elements' %>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="entry-header entry-header-1 mb-30">
+            <div class="entry-meta meta-0 font-small mb-15"><span class="post-cat background1 color-white">Workshop <%= @workshop.start_date.year %></span></div>
+            <div class="breadcrumb mb-10">
+              <%= link_to "Home", root_path, rel: "nofollow"  %>
+              <span></span>
+              <%= link_to "Workshops", workshops_path %>
+              <span></span>
             </div>
-          </div>
-          <div class="col-12 col-lg-1"></div>
-
-          <div class="col-12 col-lg-5 primary-sidebar sticky-sidebar">
-              <figure class="single-thumnail mt-50">
-                <div class="border-radius-5">
-                  <div class="featured-slider-1-items">
-                    <div class="slider-single">
-                      <% if @workshop.cover.attached? %>
-                        <%= cl_image_tag @workshop.cover.key, alt: "alttext" %>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-              </figure>
-          </div>
-        </div>
-        <div class="entry-main-content mt-50 mb-50">
-          <div class="row">
-            <div class="col-12 text-center">
-              <h4>Esiti del workshop</h4>
-              <div class="bt-1 border-color-1 mt-30 mb-30"></div>
-            </div>
-          </div>
-          <% unless @outcomes.nil? || @outcomes.empty? %>
-
-          <% end %>
-          <!-- Outcome loop -->
-          <% @outcomes.each_with_index do |outcome, i| %>
-            <div class="row">
-              <div class="col-12">
-                <h2><%= outcome.title %></h2>
-              </div>
-            </div>
-            <div class="jumbotron">
+            <h1 class="post-title">
+              <%= @workshop.title %>
+            </h1>
+            <% unless @workshop.subtitle.nil? || @workshop.subtitle.empty? %>
+              <p class="mt-10 font-large"><%= @workshop.subtitle %></p>
+            <% end %>
+            <div class="mt-50 mb-50">
               <div class="row">
-                <div class="col-12 col-lg-6">
-                  <div class="row">
-                    <div class="col-12 col-md-4">
-                      <p><strong>Project Leader:</strong></p>
-                    </div>
-                    <div class="col-12 col-md-8">
-                      <p><%= outcome.project_leader %></p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 col-md-4">
-                      <p><strong>Team:</strong></p>
-                    </div>
-                    <div class="col-12 col-md-8">
-                      <p><%= outcome.team %></p>
-                    </div>
-                  </div>
-                  <% unless outcome.content.nil? || outcome.content.empty? %>
-                    <div class="bt-1 border-color-1 mt-30 mb-30"></div>
-                    <div class="row">
-                      <div class="col-12 font-medium">
-                        <%= raw outcome.content %>
-                      </div>
-                    </div>
-                  <% end %>
-                </div>
-                <div class="col-12 col-lg-6 mt-20">
-                  <!-- Swiper -->
-                  <div class="swiper-container border-radius-5">
-                    <div class="swiper-wrapper">
-                      <% if outcome.image_1.attached? %>
-                        <div class="swiper-slide">
-                          <%= cl_image_tag outcome.image_1.key, alt: "alttext" %>
-                        </div>
-                      <% end %>
-                      <% if outcome.image_2.attached? %>
-                        <div class="swiper-slide">
-                          <%= cl_image_tag outcome.image_2.key, alt: "alttext" %>
-                        </div>
-                      <% end %>
-                      <% if outcome.image_3.attached? %>
-                        <div class="swiper-slide">
-                          <%= cl_image_tag outcome.image_3.key, alt: "alttext" %>
-                        </div>
-                      <% end %>
-                      <% if outcome.image_4.attached? %>
-                        <div class="swiper-slide">
-                          <%= cl_image_tag outcome.image_4.key, alt: "alttext" %>
-                        </div>
-                      <% end %>
-                      <% if outcome.image_5.attached? %>
-                        <div class="swiper-slide">
-                          <%= cl_image_tag outcome.image_5.key, alt: "alttext" %>
-                        </div>
-                      <% end %>
-                    </div>
-
-                    <div class="swiper-button-next swiper-button-black"></div>
-                    <div class="swiper-button-prev swiper-button-black"></div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination"></div>
-                  </div>
+                <div class="col-12">
+                  <p><%= raw @workshop.body_copy %></p>
                 </div>
               </div>
             </div>
-          <% end %>
-          <!-- End outcome loop -->
+          </div>
         </div>
+        <div class="col-12 col-lg-1"></div>
+
+        <div class="col-12 col-lg-5 primary-sidebar sticky-sidebar">
+            <figure class="single-thumnail">
+              <div class="border-radius-5">
+                <div class="featured-slider-1-items">
+                  <div class="slider-single">
+                    <% if @workshop.cover.attached? %>
+                      <%= cl_image_tag @workshop.cover.key, alt: "alttext" %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </figure>
+        </div>
+      </div>
+      <div class="entry-main-content mt-50">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h4>Esiti del workshop</h4>
+            <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+          </div>
+        </div>
+        <% unless @outcomes.nil? || @outcomes.empty? %>
+
+        <% end %>
+        <!-- Outcome loop -->
+        <% @outcomes.each_with_index do |outcome, i| %>
+          <div class="row">
+            <div class="col-12">
+              <h2><%= outcome.title %></h2>
+            </div>
+          </div>
+          <div class="jumbotron">
+            <div class="row">
+              <div class="col-12 col-lg-6">
+                <div class="row">
+                  <div class="col-12 col-md-4">
+                    <p><strong>Project Leader:</strong></p>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <p><%= outcome.project_leader %></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 col-md-4">
+                    <p><strong>Team:</strong></p>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    <p><%= outcome.team %></p>
+                  </div>
+                </div>
+                <% unless outcome.content.nil? || outcome.content.empty? %>
+                  <div class="bt-1 border-color-1 mt-30 mb-30"></div>
+                  <div class="row">
+                    <div class="col-12 font-medium">
+                      <%= raw outcome.content %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <div class="col-12 col-lg-6 mt-20">
+                <!-- Swiper -->
+                <div class="swiper-container border-radius-5">
+                  <div class="swiper-wrapper">
+                    <% if outcome.image_1.attached? %>
+                      <div class="swiper-slide">
+                        <%= cl_image_tag outcome.image_1.key, alt: "alttext" %>
+                      </div>
+                    <% end %>
+                    <% if outcome.image_2.attached? %>
+                      <div class="swiper-slide">
+                        <%= cl_image_tag outcome.image_2.key, alt: "alttext" %>
+                      </div>
+                    <% end %>
+                    <% if outcome.image_3.attached? %>
+                      <div class="swiper-slide">
+                        <%= cl_image_tag outcome.image_3.key, alt: "alttext" %>
+                      </div>
+                    <% end %>
+                    <% if outcome.image_4.attached? %>
+                      <div class="swiper-slide">
+                        <%= cl_image_tag outcome.image_4.key, alt: "alttext" %>
+                      </div>
+                    <% end %>
+                    <% if outcome.image_5.attached? %>
+                      <div class="swiper-slide">
+                        <%= cl_image_tag outcome.image_5.key, alt: "alttext" %>
+                      </div>
+                    <% end %>
+                  </div>
+
+                  <div class="swiper-button-next swiper-button-black"></div>
+                  <div class="swiper-button-prev swiper-button-black"></div>
+                  <!-- Add Pagination -->
+                  <div class="swiper-pagination"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <!-- End outcome loop -->
+      </div>
     </div>
   </div>
 </div>

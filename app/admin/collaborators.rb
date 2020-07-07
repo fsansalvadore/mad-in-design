@@ -18,7 +18,7 @@ ActiveAdmin.register Collaborator do
       link_to "#{collaborator.name}", admin_collaborator_path(collaborator)
     end
     column "Foto" do |collaborator|
-      unless collaborator.photo.attached?
+      if collaborator.photo.attached?
         image_tag(cl_image_path(collaborator.photo.key), class: "admin_table_thumb")
       end
     end

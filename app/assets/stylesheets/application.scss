@@ -1,5 +1,4 @@
 // Graphical variables
-@import "config/responsive";
 @import "config/fonts";
 @import "config/themify-icons";
 @import "config/colors";
@@ -18,3 +17,4 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "config/responsive";

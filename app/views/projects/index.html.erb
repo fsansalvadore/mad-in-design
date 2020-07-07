@@ -1,86 +1,87 @@
 <main class="position-relative workshop">
   <div class="main_content pt-50">
-  <div class="page-header page-header-style-1 text-center">
-      <div class="container">
-          <h2><span class="colorMind">Progetti</span></h2>
-          <div class="breadcrumb">
-            <%= link_to "Home", root_path, rel: "nofollow" %>
-              <span></span>
-              Progetti
-          </div>
-          <div class="bt-1 border-color-1 mt-30 mb-50"></div>
-      </div>
-  </div>
-  <div class="main_content sidebar_right pb-50">
-      <div class="container">
-          <div class="row">
-            <div class="col-lg-4 col-md-12 mb-30">
-              <h2 class="pb-15">Incontri, Talks, laboratori e molto altro</h2>
-              <p>Dal 2014 MinD sperimenta diverse modalità di progettazione partecipata e inclusiva. Opera in risposta a situazioni di disagio nell’ambito della residenzialità psichiatrica proponendo un metodo di lavoro che agisce su due aspetti del design: da un lato il progetto come strumento di trasformazione in chiave migliorativa del contesto, dall’altro il processo creativo come sistema di relazioni che si traducono in pratiche di inclusione sociale.<br/>
-                <br/>
-                Nel corso degli anni l'attività di MinD prosegue anche successivamente il workshop di cinque giorni che si tiene nel mese di Marzo, coinvolgendo in altri contesti e occasioni studenti, professionisti e persone seguite dai servizi di salute mentale.
-              </p>
+    <%= render 'shared/graphical-elements' %>
+    <div class="page-header page-header-style-1 text-center">
+        <div class="container">
+            <h2><span class="colorMind">Progetti</span></h2>
+            <div class="breadcrumb">
+              <%= link_to "Home", root_path, rel: "nofollow" %>
+                <span></span>
+                Progetti
             </div>
-              <div class="col-lg-6 col-md-9 col-sm-12 mb-30">
-                <div class="loop-list loop-list-1">
-                  <% unless @projects.nil? || @projects.empty? %>
-                    <% @projects.each do |project| %>
-                      <article class="row mb-50">
-                          <div class="col-md-6">
-                              <div class="post-thumb position-relative thumb-overlay mr-20">
-                                  <% clImg = cl_image_path(project.cover.key) if project.cover.attached? %>
-                                  <div class="img-hover-slide border-radius-5 position-relative" style="background-image: <%= "url(#{clImg})," if project.cover.attached? %> linear-gradient(#fefefe, #eee)">
-                                    <%= link_to "", project_path(project), class: "img-link" %>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="col-md-6 align-center-vertical">
-                              <div class="post-content">
-                                  <div class="entry-meta meta-0 font-small mb-15"><span class="background1 color-white">Progetto</span></div>
-                                  <h4 class="post-title">
-                                      <%= link_to project.title, project_path(project) %>
-                                  </h4>
-                                  <div class="entry-meta meta-1 font-medium color-grey mt-15 mb-15">
-                                    <% unless project.start_date.nil? %>
-                                      <span class="post-on"><%= l project.start_date, format: :long, locale: :it %></span>
-                                    <% end %>
-                                  </div>
-                                  <a class="readmore-btn font-small text-uppercase font-weight-ultra" href="single.html">Guarda il progetto<i class="ti-arrow-right ml-5 transition-02s"></i></a>
-                              </div>
-                          </div>
-                      </article>
-                    <% end %>
-                  <% end %>
-                </div>
+            <div class="bt-1 border-color-1 mt-30 mb-50"></div>
+        </div>
+    </div>
+    <div class="main_content sidebar_right pb-50">
+        <div class="container">
+            <div class="row">
+              <div class="col-lg-4 col-md-12 mb-30">
+                <h2 class="pb-15">Incontri, Talks, laboratori e molto altro</h2>
+                <p>Dal 2014 MinD sperimenta diverse modalità di progettazione partecipata e inclusiva. Opera in risposta a situazioni di disagio nell’ambito della residenzialità psichiatrica proponendo un metodo di lavoro che agisce su due aspetti del design: da un lato il progetto come strumento di trasformazione in chiave migliorativa del contesto, dall’altro il processo creativo come sistema di relazioni che si traducono in pratiche di inclusione sociale.<br/>
+                  <br/>
+                  Nel corso degli anni l'attività di MinD prosegue anche successivamente il workshop di cinque giorni che si tiene nel mese di Marzo, coinvolgendo in altri contesti e occasioni studenti, professionisti e persone seguite dai servizi di salute mentale.
+                </p>
               </div>
-              <div class="col-lg-2 col-md-3 col-sm-12 primary-sidebar sticky-sidebar">
-                  <div class="widget-area">
-                    <div class="sidebar-widget widget_categories mb-50">
-                      <div class="widget-header position-relative mb-20 pb-10">
-                        <h5 class="widget-title mb-10">Anni</h5>
-                        <div class="bt-1 border-color-1"></div>
-                      </div>
-                      <div class="post-block-list post-module-1 post-module-5">
-                        <ul>
-                          <li class="cat-item cat-item-2">
-                              <a href="/projects?y=all" class="<%= @yearSelect == 'all' ? 'selected' : '' %> <%= params.has_key?(:y) ? '' : 'selected' %>">
-                                Tutti
-                              </a>
-                            </li>
-                          <% @years.each do |year| %>
+                <div class="col-lg-6 col-md-9 col-sm-12 mb-30">
+                  <div class="loop-list loop-list-1">
+                    <% unless @projects.nil? || @projects.empty? %>
+                      <% @projects.each do |project| %>
+                        <article class="row mb-50">
+                            <div class="col-md-6">
+                                <div class="post-thumb position-relative thumb-overlay mr-20">
+                                    <% clImg = cl_image_path(project.cover.key) if project.cover.attached? %>
+                                    <div class="img-hover-slide border-radius-5 position-relative" style="background-image: <%= "url(#{clImg})," if project.cover.attached? %> linear-gradient(#fefefe, #eee)">
+                                      <%= link_to "", project_path(project), class: "img-link" %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 align-center-vertical">
+                                <div class="post-content">
+                                    <div class="entry-meta meta-0 font-small mb-15"><span class="background1 color-white">Progetto</span></div>
+                                    <h4 class="post-title">
+                                        <%= link_to project.title, project_path(project) %>
+                                    </h4>
+                                    <div class="entry-meta meta-1 font-medium color-grey mt-15 mb-15">
+                                      <% unless project.start_date.nil? %>
+                                        <span class="post-on"><%= l project.start_date, format: :long, locale: :it %></span>
+                                      <% end %>
+                                    </div>
+                                    <a class="readmore-btn font-small text-uppercase font-weight-ultra" href="single.html">Guarda il progetto<i class="ti-arrow-right ml-5 transition-02s"></i></a>
+                                </div>
+                            </div>
+                        </article>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-12 primary-sidebar sticky-sidebar">
+                    <div class="widget-area">
+                      <div class="sidebar-widget widget_categories mb-50">
+                        <div class="widget-header position-relative mb-20 pb-10">
+                          <h5 class="widget-title mb-10">Anni</h5>
+                          <div class="bt-1 border-color-1"></div>
+                        </div>
+                        <div class="post-block-list post-module-1 post-module-5">
+                          <ul>
                             <li class="cat-item cat-item-2">
-                              <a href="/projects?y=<%= year %>" class="<%= @yearSelect.to_i == year.to_i ? 'selected' : '' %>">
-                                <%= year %>
-                              </a>
-                            </li>
-                          <% end %>
-                        </ul>
+                                <a href="/projects?y=all" class="<%= @yearSelect == 'all' ? 'selected' : '' %> <%= params.has_key?(:y) ? '' : 'selected' %>">
+                                  Tutti
+                                </a>
+                              </li>
+                            <% @years.each do |year| %>
+                              <li class="cat-item cat-item-2">
+                                <a href="/projects?y=<%= year %>" class="<%= @yearSelect.to_i == year.to_i ? 'selected' : '' %>">
+                                  <%= year %>
+                                </a>
+                              </li>
+                            <% end %>
+                          </ul>
+                        </div>
                       </div>
                     </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
-</div>
 </main>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_02_102838) do
+ActiveRecord::Schema.define(version: 2020_07_04_180655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -332,60 +332,6 @@ ActiveRecord::Schema.define(version: 2020_07_02_102838) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
-    t.string "outcome_1_title"
-    t.string "outcome_1_subtitle"
-    t.text "outcome_1_content"
-    t.boolean "outcome_1_display"
-    t.string "outcome_1_img_1"
-    t.string "outcome_1_img_2"
-    t.string "outcome_1_img_3"
-    t.string "outcome_1_img_4"
-    t.string "outcome_1_img_5"
-    t.string "outcome_2_title"
-    t.string "outcome_2_subtitle"
-    t.text "outcome_2_content"
-    t.boolean "outcome_2_display"
-    t.string "outcome_2_img_1"
-    t.string "outcome_2_img_2"
-    t.string "outcome_2_img_3"
-    t.string "outcome_2_img_4"
-    t.string "outcome_2_img_5"
-    t.string "outcome_3_title"
-    t.string "outcome_3_subtitle"
-    t.text "outcome_3_content"
-    t.boolean "outcome_3_display"
-    t.string "outcome_3_img_1"
-    t.string "outcome_3_img_2"
-    t.string "outcome_3_img_3"
-    t.string "outcome_3_img_4"
-    t.string "outcome_3_img_5"
-    t.string "outcome_4_title"
-    t.string "outcome_4_subtitle"
-    t.text "outcome_4_content"
-    t.boolean "outcome_4_display"
-    t.string "outcome_4_img_1"
-    t.string "outcome_4_img_2"
-    t.string "outcome_4_img_3"
-    t.string "outcome_4_img_4"
-    t.string "outcome_4_img_5"
-    t.string "outcome_5_title"
-    t.string "outcome_5_subtitle"
-    t.text "outcome_5_content"
-    t.boolean "outcome_5_display"
-    t.string "outcome_5_img_1"
-    t.string "outcome_5_img_2"
-    t.string "outcome_5_img_3"
-    t.string "outcome_5_img_4"
-    t.string "outcome_5_img_5"
-    t.string "outcome_6_title"
-    t.string "outcome_6_subtitle"
-    t.text "outcome_6_content"
-    t.boolean "outcome_6_display"
-    t.string "outcome_6_img_1"
-    t.string "outcome_6_img_2"
-    t.string "outcome_6_img_3"
-    t.string "outcome_6_img_4"
-    t.string "outcome_6_img_5"
     t.index ["slug"], name: "index_workshops_on_slug", unique: true
   end
 

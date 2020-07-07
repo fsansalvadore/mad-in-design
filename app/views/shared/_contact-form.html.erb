@@ -1,42 +1,7 @@
-<!-- <form class="form-contact comment_form" action="#" id="commentForm">
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group">
-                <input class="form-control" name="name" id="name" type="text" placeholder="Nome *" required>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <input class="form-control" name="email" id="email" type="email" placeholder="Email *" required>
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <input class="form-control" name="website" id="website" type="text" placeholder="Telefono">
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9" placeholder="Messaggio *" required></textarea>
-            </div>
-        </div>
-        <div class="form-checkbox-terms col-12 mb-10">
-          <input type="checkbox" required name="terms"> <span>Dichiaro di aver letto e accettato l'<%= link_to "informativa sulla privacy", privacy_cookie_policy_path %>. *</span></br>
-        </div>
-        <div class="col-12 font-small">
-          <p>* Campi obbligatori</p>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <button type="submit" class="button button-contactForm background1">Invia messaggio</button>
-    </div>
-</form> -->
 <%= form_for @contact, url: contacts_path, class: "form-contact comment_form", id: "commentForm" do |f| %>
 <% if @contact.errors.any? %>
   <div id="error_explanation">
     <h3><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
-
     <ul>
     <% @contact.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>

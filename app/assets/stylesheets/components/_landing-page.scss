@@ -3,21 +3,41 @@
   .home-banner.landing {
     height: 60vh;
   }
+}
 
+.home .graphical_elements {
+  z-index: 0;
+}
+
+.home .graphical_elements div.c2,
+.home .graphical_elements div.c3 {
+  border-color: #fff;
+}
+
+.home .graphical_elements div.c1 {
+  top: 56%;
+  left: 68%;
+}
+
+.home .graphical_elements div.c5 {
+  right: 1%;
+  bottom: -25%;
 }
 
 .graphical_elements div {
   border-radius: 50%;
+  z-index: -1;
   position: absolute;
 
   &.c1 {
-    width: 148px;
-    height: 148px;
-    top: 55%;
-    left: 65%;
+    width: 149px;
+    height: 149px;
+    top: 70%;
+    left: 5%;
 
     border: 2px dashed #FDD510;
     box-sizing: border-box;
+    animation: c1_anim 50s linear both infinite;
   }
   &.c2 {
     width: 100px;
@@ -25,8 +45,9 @@
     right: 2%;
     top: 15%;
 
-    border: 2px solid #FFFFFF;
+    border: 2px solid #FDD510;
     box-sizing: border-box;
+    animation: c2_anim 7s cubic-bezier(.44,0,.6,1) alternate both infinite;
   }
   &.c3 {
     width: 78px;
@@ -34,8 +55,9 @@
     left: 2%;
     top: 12%;
 
-    border: 2px solid #FFFFFF;
+    border: 2px solid #FDD510;
     box-sizing: border-box;
+    animation: c3_anim 9.5s cubic-bezier(.44,0,.6,1) alternate both infinite;
   }
   &.c4 {
     width: 100px;
@@ -45,15 +67,57 @@
 
     border: 2px solid #84BBD8;
     box-sizing: border-box;
+    animation: c4_anim 7s cubic-bezier(.44,0,.6,1) alternate both infinite;
   }
   &.c5 {
     width: 63px;
     height: 63px;
     right: 1%;
-    bottom: -25%;
-    z-index: 0;
+    bottom: -25px;
 
     border: 2px solid #EF785A;
     box-sizing: border-box;
+    animation: c5_anim 5s cubic-bezier(.44,0,.6,1) alternate both infinite;
+  }
+}
+
+@keyframes c1_anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes c2_anim {
+  0% {
+    transform: translate3d(0, 70px, 0);
+  }
+  100% {
+    transform: translate3d(-100px, 0, 0);
+  }
+}
+@keyframes c3_anim {
+  0% {
+    transform: translate3d(-20px, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 80px, 0);
+  }
+}
+@keyframes c4_anim {
+  0% {
+    transform: translate3d(70px, 0px, 0);
+  }
+  100% {
+    transform: translate3d(0, 20px, 0);
+  }
+}
+@keyframes c5_anim {
+  0% {
+    transform: translate3d(0, -60px, 0);
+  }
+  100% {
+    transform: translate3d(-20px, 0, 0);
   }
 }

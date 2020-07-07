@@ -1,7 +1,6 @@
 ActiveAdmin.register WorkshopTeam do
   menu parent: 'Workshop', label: 'Squadre', priority: 2
-  # menu false
-  # belongs_to :workshop
+
   permit_params :title,
                 :project_leader,
                 :image,
@@ -28,11 +27,11 @@ ActiveAdmin.register WorkshopTeam do
                   :_destroy
                 ]
 
-  actions :all, :except => [:new]
+  controller do
+    defaults :finder => :find_by_slug
+  end
 
-  # controller do
-  #   defaults :finder => :find_by_slug
-  # end
+  actions :all, :except => [:new]
 
   index do
     selectable_column
@@ -97,7 +96,6 @@ ActiveAdmin.register WorkshopTeam do
                 ? "<div class='nested-image-preview'>#{cl_image_tag(n_f.object.image_5.key)}<p>#{link_to "Rimuovi", delete_image_admin_workshop_path(n_f.object.image_5.id),method: :delete,class: "delete-btn", data: { confirm: 'Are you sure?' }} #{n_f.object.image_5.filename} </p></div>".html_safe
                 : content_tag(:span, "Peso max: 600Kb. Altezza: min 200px / Max 2000px. Larghezza: min 200px / Max 3000px")
         end
-      # end
     end
     f.actions
   end

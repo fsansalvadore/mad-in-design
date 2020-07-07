@@ -30,9 +30,8 @@ Rails.application.routes.draw do
   get '/people'                              => 'people#index'
 
   #contacts controller
-  get    '/contacts',      to: 'contacts#index'
-  post   '/contacts',      to: 'contacts#create'
-  # get    '/contacts/new',  to: 'contacts#new'
+  get  '/contacts',      to: 'contacts#index'
+  post '/contacts',      to: 'contacts#create'
 
   #pages controller
   get '/about'                               => 'pages#about'

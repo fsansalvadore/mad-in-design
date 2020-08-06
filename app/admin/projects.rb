@@ -140,11 +140,11 @@ ActiveAdmin.register Project do
           n_f.input :video_provider,
             label: "Sorgente Video",
             as: :select,
-            collection: [["Nessuno", 0], ["Vimeo", 1], ["YouTube", 2]],
+            collection: [["Nessuno", 0], ["Vimeo", 1], ["YouTube", 2], ["Facebook", 3]],
             prompt: "Seleziona sorgente video",
             hint: "Indica se il video proviene da YouTube o da Vimeo.",
             wrapper_html: { class: 'hideInput typ3' }
-          n_f.input :video_url, label: "Codice video", hint: "Inserire soltanto il codice identificativo dell'url. Esempio: https://vimeo.com/123456789 -> 123456789 | https://www.youtube.com/watch?v=123456789 -> 123456789",
+          n_f.input :video_url, label: "Codice video", hint: "Inserire soltanto il codice identificativo dell'url. Esempio: https://vimeo.com/123456789 -> 123456789 | https://www.youtube.com/watch?v=123456789 -> 123456789 | https://www.facebook.com/HearMeMinD/videos/2993502504031445/?v=2993502504031445 -> 2993502504031445/?v=2993502504031445",
             wrapper_html: { class: 'hideInput typ3' }
           n_f.input :image,
             label: 'Immagine',

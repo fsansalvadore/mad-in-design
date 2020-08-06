@@ -46,8 +46,37 @@
                     <div class="col-12">
                       <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-nav-Sport" role="tabpanel" aria-labelledby="nav-Sports">
-                          <% unless @projects.empty? %>
+                          <% unless @projects.empty? && @workshop.nil? %>
                             <div class="row">
+                            <% unless @workshop.nil? %>
+                              <div class="col-md-4 mb-30">
+                                <div class="img-hover-scale slider-single border-radius-5">
+                                  <% 
+                                    wClImg = @workshop.cover.attached? ? "url(#{cl_image_path(@workshop.cover.key)})," : ""
+                                    w_year = @workshop.start_date.year.to_s
+                                    w_slug = @workshop.slug
+                                    if @workshop.typology == 0
+                                      w_path = workshop_path(w_year, w_slug)
+                                    else
+                                      w_path = team_workshop_path(w_year, w_slug)
+                                    end
+                                  %>
+                                  <%= link_to "", w_path, class: "border-radius-5 thumb-img", style: "background-image: #{wClImg} linear-gradient(#fefefe, #eee)" %>
+                                  </a>
+                                </div>
+                                <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
+                                  <%= link_to w_path do %>
+                                    <%= @workshop.title %>
+                                  <% end %>
+                                </h6>
+                                <div class="entry-meta meta-1 font-small color-grey mt-10 pr-5 pl-5">
+                                  <% unless @workshop.start_date.nil? %>
+                                    <span class="post-on"><%= l @workshop.start_date, format: :short, locale: :it %></span>
+                                  <% end %>
+                                </div>
+                              </div>
+                            <% end %>
+                            <% unless @projects.empty?%>
                               <% @projects.each do |project| %>
                                 <div class="col-md-4 mb-30">
                                   <div class="img-hover-scale slider-single border-radius-5">
@@ -68,6 +97,7 @@
                                   </div>
                                 </div>
                               <% end %>
+                            <% end %>
                             </div>
                           <% end %>
                         </div>

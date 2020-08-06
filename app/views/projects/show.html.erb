@@ -71,6 +71,13 @@
                       <iframe class="yt_video" width="560" height="315" src="https://www.youtube.com/embed/<%= section.video_url %>" frameborder="0" allowfullscreen>
                       </iframe>
                     </div>
+                  <% when 3 %>
+                    <div  
+                      class="fb-video" 
+                      data-href="https://www.facebook.com/facebook/videos/<%= section.video_url %>/" 
+                      data-width="900" 
+                      data-allowfullscreen="true">
+                    </div>
                   <% end %>
                 <% end %>
               <% end %>
@@ -119,4 +126,23 @@
   </div>
 </div>
 </main>
+<script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '{your-app-id}',
+        xfbml      : true,
+        version    : 'v3.2'
+      });
+    
+      // Get Embedded Video Player API Instance
+      var my_video_player;
+      FB.Event.subscribe('xfbml.ready', function(msg) {
+        if (msg.type === 'video') {
+          my_video_player = msg.instance;
+        }
+      });
+    };
+  </script>
+  <div id="fb-root"></div>
+  <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
 

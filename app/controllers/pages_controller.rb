@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
   # before_action :authenticate_admin_user!, except: [:temporary]
   def home
-    @projects = Project.where(published: true).order(start_date: :desc).limit(3)
+    @workshop = Workshop.where(published: true).order(start_date: :desc).first
+    @projects = Project.where(published: true).order(start_date: :desc).limit(2)
   end
 
   def about

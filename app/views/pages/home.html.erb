@@ -50,7 +50,7 @@
                             <div class="row">
                             <% unless @workshop.nil? %>
                               <div class="col-md-4 mb-30">
-                                <div class="img-hover-scale slider-single border-radius-5">
+                                <div class="img-hover-scale shadow-sm slider-single border-radius-5">
                                   <% 
                                     wClImg = @workshop.cover.attached? ? "url(#{cl_image_path(@workshop.cover.key)})," : ""
                                     w_year = @workshop.start_date.year.to_s
@@ -79,7 +79,7 @@
                             <% unless @projects.empty?%>
                               <% @projects.each do |project| %>
                                 <div class="col-md-4 mb-30">
-                                  <div class="img-hover-scale slider-single border-radius-5">
+                                  <div class="img-hover-scale shadow-sm slider-single border-radius-5">
                                     <% clImg = project.cover.attached? ? "url(#{cl_image_path(project.cover.key)})," : "" %>
                                     <%= link_to "", project_path(project), class: "border-radius-5 thumb-img", style: "background-image: #{clImg} linear-gradient(#fefefe, #eee)" %>
                                     <!-- <a class="border-radius-5 thumb-img" href="single.html" style="background-image: <%= "url(#{clImg})," if project.cover.attached? %> linear-gradient(#fefefe, #eee)"> -->

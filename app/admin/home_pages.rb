@@ -8,6 +8,7 @@ ActiveAdmin.register HomePage do
                 :main_title_one,
                 :main_title_two,
                 :subtitle,
+                :graphics_visibility,
                 :sticky_box_visibility,
                 :sticky_box_text,
                 :sticky_box_link_url,

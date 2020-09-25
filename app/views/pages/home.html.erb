@@ -1,11 +1,11 @@
 <main class="position-relative home">
     <div class="home-banner" style="background-image: linear-gradient(180deg, rgba(239, 120, 90, 0) 0%, #EF785A 100%), url(<%= image_path 'youssef-naddam-iJ2IG8ckCpA-unsplash_color.jpg'%>)">
       <div class="banner-text">
-        <h4 class="title-label">MinD - Mad in Design</h4>
-        <h1>Design, Psichiatria e inclusione.</h1>
-        <p class="subtitle">MinD sperimenta metodi di lavoro, approcci e soluzioni per un’idea di abitare socialmente inclusivo.</p>
+        <h4 class="title-label"><%= @home.main_title_one %></h4>
+        <h1><%= @home.main_title_two %></h1>
+        <p class="subtitle"><%= @home.subtitle %></p>
       </div>
-      <%= render 'shared/graphical-elements' %>
+      <%= render 'shared/graphical-elements' if @home.graphics_visibility %>
     </div>
     <div class="pt-50 background-white">
       <div class="container">
@@ -107,20 +107,16 @@
                   <div class="row">
                     <div class="col-12">
                       <div class="widget-header position-relative mt-30">
-                        <h5 class="widget-title mb-30 text-uppercase colorMind font-weight-ultra">Chi siamo</h5>
+                        <h5 class="widget-title mb-30 text-uppercase colorMind font-weight-ultra"><%= @home.box_1_label %></h5>
                       </div>
                       <div class="big-card bg-yellow">
                         <div class="row">
-                          <div class="col-md-5 card-img-bg" style="background-image: url(<%= image_path('mad_in_design-about.jpg') %>)"></div>
+                        <% box1ImgUrl = @home.box_1_image.attached? ? "url(#{cl_image_path(@home.box_1_image.key)})," : "" %>
+                          <div class="col-md-5 card-img-bg" style="background-image: <%= box1ImgUrl %> linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0))"></div>
                           <div class="col-md-7 card-content-area p-5">
-                            <p>
-                              MinD Mad in Design è un’associazione culturale nata a Torino nel 2019 che opera in risposta a situazioni di disagio ed emarginazione nell’ambito della fragilità mentale.
-                              <br/>
-                              <br/>
-                              Dal 2014 MinD realizza progetti creativi, multidisciplinari e inclusivi che agiscono su due aspetti del design: da un lato il progetto come strumento di trasformazione in chiave migliorativa del contesto, dall’altro il processo creativo come sistema di relazioni che si traducono in pratiche di inclusione sociale e riabilitazione.
-                            </p>
-                            <%= link_to about_path, class: "" do %>
-                              Scopri di più
+                              <%= raw @home.box_1_text %>
+                            <%= link_to @home.box_1_url, class: "" do %>
+                              <%= @home.box_1_cta %>
                               <span class="link-arrow">
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 6H11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -134,8 +130,8 @@
                     </div>
                   </div>
                   <div class="row">
-                  <%= render partial: "shared/card-people" %>
-                  <%= render partial: "shared/card-contacts" %>
+                  <%= render partial: "shared/card-people", locals: {home: @home}  %>
+                  <%= render partial: "shared/card-contacts", locals: {home: @home} %>
                 </div>
                 <div class="col-lg-3 col-md-12 col-sm-12 primary-sidebar sticky-sidebar">
                   <!-- <div class="widget-area theiaStickySidebar sticky-box row">

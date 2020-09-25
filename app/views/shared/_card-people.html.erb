@@ -1,16 +1,14 @@
 <div class="col-sm-6 mt-30">
   <div class="widget-header position-relative">
-    <h5 class="widget-title mb-30 text-uppercase color1 font-weight-ultra">People</h5>
+    <h5 class="widget-title mb-30 text-uppercase color1 font-weight-ultra"><%= home.box_2_label %></h5>
   </div>
   <div class="big-card bg-orange my-1">
     <div class="row">
       <div class="col-12">
         <div class="card-content-area p-3">
-          <p>
-            Mad In Design è un mondo fatto di persone, prima di tutto.
-          </p>
-          <%= link_to people_path do %>
-            Scopri di più
+          <%= raw home.box_2_text unless home.box_2_text.empty? %>
+          <%= link_to home.box_2_url do %>
+            <%= home.box_2_cta unless home.box_2_cta.empty? %>
             <span class="link-arrow">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 6H11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

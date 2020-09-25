@@ -1,5 +1,6 @@
 <main class="position-relative home">
-    <div class="home-banner" style="background-image: linear-gradient(180deg, rgba(239, 120, 90, 0) 0%, #EF785A 100%), url(<%= image_path 'youssef-naddam-iJ2IG8ckCpA-unsplash_color.jpg'%>)">
+  <% banner_cover = @home.banner_image.attached? ? ",url(#{cl_image_path(@home.banner_image.key)})" : "" %>
+    <div class="home-banner" style="background-image: linear-gradient(180deg, rgba(239, 120, 90, 0) 0%, #EF785A 100%) <%= banner_cover %>, linear-gradient(180deg, #EF785A 0%, #EF785A 100%)">
       <div class="banner-text">
         <h4 class="title-label"><%= @home.main_title_one %></h4>
         <h1><%= @home.main_title_two %></h1>

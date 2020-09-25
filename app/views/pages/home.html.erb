@@ -5,13 +5,16 @@
         <h4 class="title-label"><%= @home.main_title_one %></h4>
         <h1><%= @home.main_title_two %></h1>
         <p class="subtitle"><%= @home.subtitle %></p>
+        <% if @home.banner_cta_visibility %>
+          <%= link_to @home.banner_cta_text, @home.banner_cta_link, class: "btn banner-cta" %>
+        <% end %>
       </div>
       <%= render 'shared/graphical-elements' if @home.graphics_visibility %>
     </div>
     <div class="pt-50 background-white">
       <div class="container">
           <div class="row">
-              <div class="col-lg-12">
+              <div class="<%= @home.sticky_box_visibility ? "col-lg-9" : "col-lg-12" %> col-md-12">
                   <div class="row d-flex justify-content-between">
                       <div class="col-lg-3 col-md-3">
                           <div class="widget-header recent-activity-title position-relative mb-30">
@@ -134,14 +137,16 @@
                   <%= render partial: "shared/card-people", locals: {home: @home}  %>
                   <%= render partial: "shared/card-contacts", locals: {home: @home} %>
                 </div>
-                <div class="col-lg-3 col-md-12 col-sm-12 primary-sidebar sticky-sidebar">
-                  <!-- <div class="widget-area theiaStickySidebar sticky-box row">
-                    <div class="sidebar-widget box-round-shadow mb-30 col-lg-12 col-md-6">
-                      <p>Lorem ipsum dolor sit amet, neque paret.</p>
-                      <a href="#" class="btn btn-warning">Sostienici</a>
+                <% if @home.sticky_box_visibility %>
+                  <div class="col-lg-3 col-md-12 col-sm-12 primary-sidebar sticky-sidebar">
+                    <div class="widget-area theiaStickySidebar sticky-box row">
+                      <div class="sidebar-widget box-round-shadow mb-30 col-lg-12 col-md-6">
+                        <%= raw @home.sticky_box_text %>
+                        <%= link_to @home.sticky_box_cta_text, @home.sticky_box_link_url, class: "btn btn-warning", target: "_blank" %>
+                      </div>
                     </div>
-                  </div> -->
-                </div>
+                  </div>
+                <% end %>
             </div>
         </div>
     </div>

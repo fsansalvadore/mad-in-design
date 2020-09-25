@@ -61,7 +61,15 @@ html, body, .page {
 
     .subtitle {
       margin-top: 20px;
-      max-width: 500px;
+      max-width: 800px;
+    }
+
+    .banner-cta {
+      margin-top: 10px;
+      padding: 12px 30px;
+      color: #000;
+      background: #fff;
+      border-radius: 6px;
     }
   }
 }
@@ -112,6 +120,7 @@ span.link-arrow {
   position: sticky;
   top: 160px;
   background-color: #fff;
+  line-height: 140%;
 }
 
 .box-round-shadow {

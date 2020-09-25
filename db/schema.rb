@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_25_144117) do
+ActiveRecord::Schema.define(version: 2020_09_25_163336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,6 +148,9 @@ ActiveRecord::Schema.define(version: 2020_09_25_144117) do
     t.text "box_3_text"
     t.string "box_3_url"
     t.string "box_3_cta"
+    t.boolean "banner_cta_visibility"
+    t.string "banner_cta_link"
+    t.string "banner_cta_text"
   end
 
   create_table "partners", force: :cascade do |t|

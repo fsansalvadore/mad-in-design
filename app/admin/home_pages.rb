@@ -8,6 +8,9 @@ ActiveAdmin.register HomePage do
                 :main_title_one,
                 :main_title_two,
                 :subtitle,
+                :banner_cta_visibility,
+                :banner_cta_link,
+                :banner_cta_text,
                 :graphics_visibility,
                 :sticky_box_visibility,
                 :sticky_box_text,
@@ -47,11 +50,19 @@ ActiveAdmin.register HomePage do
       row :main_title_one
       row :main_title_two
       row :subtitle
+      row :banner_cta_visibility
+      row :banner_cta_link
+      row :banner_cta_text
       row :banner_image do |i|
         if home_page.banner_image.attached?
           image_tag(cl_image_path(home_page.banner_image.key), class: "image-preview")
         end
       end
+    end
+    attributes_table :title => "Sticky Box" do
+      row :sticky_box_visibility, label: 'Visibilità'
+      row :sticky_box_text, label: 'Testo'
+      row :sticky_box_link_url,   label: 'Url di atterraggio'
     end
     attributes_table :title => "Box 1" do
       row :box_1_label, label: 'Titolo'
@@ -88,6 +99,9 @@ ActiveAdmin.register HomePage do
         f.input :main_title_one, label: "Titolo 1", placeholder: 'Titolo 1'
         f.input :main_title_two, label: "Titolo 2", placeholder: 'Titolo 2'
         f.input :subtitle, label: "Sottotitolo", placeholder: 'Sottotitolo'
+        f.input :banner_cta_visibility, label: "Visibilità del Tasto"
+        f.input :banner_cta_text, label: "Testo del tasto", placeholder: 'Testo Call to Action'
+        f.input :banner_cta_link, label: "Link", placeholder: 'Inserisci un link di atterraggio (compreso di http:// o https://)', hint: "Il link deve essere completo di http:// o https://"
         f.input :graphics_visibility, label: "Presenza cerchi animati"
         f.inputs 'Cover' do
           f.input :banner_image,
@@ -103,6 +117,12 @@ ActiveAdmin.register HomePage do
             end
           end
         end
+      end
+      f.inputs 'Sticky Box' do
+        f.input :sticky_box_visibility, label: "Visibilità Box"
+        f.input :sticky_box_text, label: "Testo", placeholder: 'Testo', as: :quill_editor
+        f.input :sticky_box_cta_text, label: "Testo del tasto", placeholder: 'Testo Call to Action'
+        f.input :sticky_box_link_url, label: "Link", placeholder: 'Link url'
       end
       f.inputs 'Box 1' do
         f.input :box_1_label, label: "Titolo", placeholder: 'Titolo'

@@ -33,12 +33,14 @@ html, body, .page {
   position: relative;
   min-height: 390px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-position: center;
   background-size: cover;
 
   .banner-text {
+    padding: 60px 0;
     max-width: 1200px;
     text-align: center;
     display: flex;
@@ -62,6 +64,10 @@ html, body, .page {
       max-width: 500px;
     }
   }
+}
+
+.higlight_banner-container {
+  
 }
 
 .thumb-img {
@@ -315,4 +321,8 @@ form .hidden {
 .confirmation-message-container {
   min-height: 150px;
   max-width: 600px;
+}
+
+.form-checkbox-terms a {
+  text-decoration: underline;
 }

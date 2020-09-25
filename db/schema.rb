@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_07_152252) do
+ActiveRecord::Schema.define(version: 2020_09_25_144117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,20 @@ ActiveRecord::Schema.define(version: 2020_07_07_152252) do
     t.string "contacts_box_cta"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "graphics_visibility"
+    t.string "box_1_label"
+    t.text "box_1_text"
+    t.string "box_1_url"
+    t.string "box_1_cta"
+    t.string "box_1_image"
+    t.string "box_2_label"
+    t.text "box_2_text"
+    t.string "box_2_url"
+    t.string "box_2_cta"
+    t.string "box_3_label"
+    t.text "box_3_text"
+    t.string "box_3_url"
+    t.string "box_3_cta"
   end
 
   create_table "partners", force: :cascade do |t|

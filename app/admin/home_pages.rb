@@ -26,6 +26,15 @@ ActiveAdmin.register HomePage do
                 :box_3_url,
                 :box_3_cta
 
+  controller do
+    def index
+      redirect_to admin_home_page_path(HomePage.all.first)
+    end
+  end
+
+  config.comments = false
+  actions :all, :except => [:destroy]
+
 
   show title: "Home Page" do
     attributes_table :title => "Meta Data" do

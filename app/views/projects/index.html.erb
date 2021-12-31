@@ -27,7 +27,7 @@
               <% unless @projects.nil? || @projects.empty? %>
                 <% @projects.each do |project| %>
                   <div class="col-md-6 post-thumb position-relative mb-30">
-                    <div class="thumb-overlay img-hover-slide border-radius-5 position-relative" style="background-image: <%= "url(#{cl_image_path(project.cover.key) if project.cover.attached?})" if project.cover.attached? %>">
+                    <div class="thumb-overlay shadow img-hover-slide border-radius-5 position-relative" style="background-image: <%= "url(#{cl_image_path(project.cover.key) if project.cover.attached?})" if project.cover.attached? %>">
                       <%= link_to "", project_path(project), class: "img-link" %>
                       <div class="post-content-overlay">
                         <div class="entry-meta meta-0 font-medium mb-20">

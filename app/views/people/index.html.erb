@@ -115,19 +115,26 @@
               </div>
             </div>
           </div>
-          <!-- Tab Partner e Istituzioni -->
-          <div class="tab-pane fade" id="nav-partners" role="tabpanel" aria-labelledby="nav-profile-tab">
-            <div class="block-tab-item post-module-1">
-              <div class="row">
+          <!-- Tab Partner -->
+          <div class="tab-pane fade widget_categories" id="nav-partners" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="">
+              <ul>
                 <% unless @partners.empty? || @partners.nil? %>
                   <% @partners.each do |partner| %>
-                    <div class="slider-single grid_img_box d-flex justify-content-center align-items-center col-6 col-lg-3 col-md-4 mb-20">
-                      <% altTxt = partner.name.nil? ? nil : partner.name %>
-                      <%= cl_image_tag partner.logo.key, alt: "#{altTxt}" %>
-                    </div>
+                    <li class="cat-item w-full d-flex justify-content-between">
+                      <%= link_to partner.link, target: '_blank' do %>
+                      <span><%= partner.name %></span>
+                        <span class="link-arrow">
+                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 6H11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M6 1L11 6L6 11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </span>
+                      <% end %>
+                    </li>
                   <% end %>
                 <% end %>
-              </div>
+              </ul>
             </div>
           </div>
           <!-- Tab Hanno lavorato con noi -->

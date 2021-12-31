@@ -121,15 +121,21 @@
               <ul>
                 <% unless @partners.empty? || @partners.nil? %>
                   <% @partners.each do |partner| %>
-                    <li class="cat-item w-full d-flex justify-content-between">
-                      <%= link_to partner.link, target: '_blank' do %>
-                      <span><%= partner.name %></span>
-                        <span class="link-arrow">
-                          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M1 6H11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          <path d="M6 1L11 6L6 11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
-                        </span>
+                    <li class="cat-item w-100">
+                      <% if partner.link.present? %>
+                        <%= link_to partner.link, target: '_blank', class: 'm-0 py-1 w-100 d-flex justify-content-between' do %>
+                          <span><%= partner.name %></span>
+                          <span class="link-arrow">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 6H11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 1L11 6L6 11" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </span>
+                        <% end %>
+                      <% else %>
+                        <div class="w-100 m-0 py-1 d-flex justify-content-between">
+                          <span><%= partner.name %></span>
+                        </div>
                       <% end %>
                     </li>
                   <% end %>
@@ -143,12 +149,20 @@
               <ul class="">
                 <% unless @collaborators.empty? || @collaborators.nil? %>
                   <% @collaborators.each do |collaborator| %>
-                    <li class="cat-item w-full d-flex justify-content-between entry-meta font-small color-grey">
-                      <%= link_to url_for(collaborator.link), target: "_blank", class: "w-100 d-flex justify-content-between text-uppercase font-weight-ultra" do %>
-                        <h6 class="post-title text-limit-2-row d-inline">
-                          <%= collaborator.name unless collaborator.name.empty? || collaborator.name.nil? %>
-                        </h6>
-                        <span>Scopri <i class="ti-arrow-right ml-5"></i></span>
+                    <li class="cat-item w-full d-flex justify-content-between entry-meta font-small">
+                      <% if collaborator.link.present? %>
+                        <%= link_to url_for(collaborator.link), target: "_blank", class: "w-100 d-flex pt-2 justify-content-between text-uppercase font-weight-ultra" do %>
+                          <h6 class="post-title text-limit-2-row m-0 py-1 d-inline">
+                            <%= collaborator.name unless collaborator.name.empty? || collaborator.name.nil? %>
+                          </h6>
+                          <span>Scopri <i class="ti-arrow-right ml-5"></i></span>
+                        <% end %>
+                      <% else %>
+                        <div class="w-100 d-flex py-2 justify-content-between text-uppercase font-weight-ultra">
+                          <h6 class="post-title text-limit-2-row m-0 py-1 d-inline">
+                            <%= collaborator.name unless collaborator.name.empty? || collaborator.name.nil? %>
+                          </h6>
+                        </div>
                       <% end %>
                     </li>
                   <% end %>

@@ -1,5 +1,5 @@
 class Partner < ApplicationRecord
-  validates :name, :link, presence: true
+  validates :name, presence: true
   validates :logo, size: {
                       less_than: 200.kilobytes,
                       message: "deve pesare meno di 200 KB" },

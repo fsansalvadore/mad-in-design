@@ -24,10 +24,7 @@
                         <a class="nav-item nav-link" id="nav-leaders-tab" data-toggle="tab" href="#nav-leaders" role="tab" aria-controls="nav-leaders" aria-selected="false">Project Leaders</a>
                       <% end %>
                       <% unless @partners.empty? || @partners.nil? %>
-                        <a class="nav-item nav-link" id="nav-partners-tab" data-toggle="tab" href="#nav-partners" role="tab" aria-controls="nav-partners" aria-selected="false">Partner e Istituzioni</a>
-                      <% end %>
-                      <% unless @sponsors.empty? || @sponsors.nil? %>
-                        <a class="nav-item nav-link" id="nav-sponsors-tab" data-toggle="tab" href="#nav-sponsors" role="tab" aria-controls="nav-sponsors" aria-selected="false">Sponsor Tecnici</a>
+                        <a class="nav-item nav-link" id="nav-partners-tab" data-toggle="tab" href="#nav-partners" role="tab" aria-controls="nav-partners" aria-selected="false">Partner</a>
                       <% end %>
                       <% unless @collaborators.empty? || @collaborators.nil? %>
                         <a class="nav-item nav-link" id="nav-collaborators-tab" data-toggle="tab" href="#nav-collaborators" role="tab" aria-controls="nav-collaborators" aria-selected="false">Hanno lavorato con noi</a>
@@ -77,7 +74,7 @@
               <div class="row">
                 <% unless @committee.empty? || @committee.nil? %>
                   <% @committee.each do |member| %>
-                    <div class="slider-single col-md-4 mb-30">
+                    <div class="slider-single col-md-3 mb-30">
                       <% clImg = cl_image_path(member.photo.key) if member.photo.attached? %>
                       <div class="border-radius-5 people-img" style="background-image: <%= "url(#{clImg})," if member.photo.attached? %> linear-gradient(#fefefe, #eee)">
                       </div>
@@ -86,9 +83,6 @@
                       </h6>
                       <div class="entry-meta font-small color-grey mt-10 pr-5 pl-5 people-role">
                         <span class="post-on"><%= member.role.strip unless member.role.nil? || member.role.empty? %></span>
-                      </div>
-                      <div class="font-description color-black mt-10 pr-5 pl-5 people-description">
-                        <%= raw member.description unless member.description.empty? || member.description.nil? %>
                       </div>
                     </div>
                   <% end %>
@@ -130,21 +124,6 @@
                     <div class="slider-single grid_img_box d-flex justify-content-center align-items-center col-6 col-lg-3 col-md-4 mb-20">
                       <% altTxt = partner.name.nil? ? nil : partner.name %>
                       <%= cl_image_tag partner.logo.key, alt: "#{altTxt}" %>
-                    </div>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-          <!-- Tab Sponsor Tecnici -->
-          <div class="tab-pane fade" id="nav-sponsors" role="tabpanel" aria-labelledby="nav-profile-tab">
-            <div class="block-tab-item post-module-1">
-              <div class="row">
-                <% unless @sponsors.empty? || @sponsors.nil? %>
-                  <% @sponsors.each do |sponsor| %>
-                    <div class="slider-single grid_img_box d-flex justify-content-center align-items-center col-6 col-lg-3 col-md-4 mb-20">
-                      <% altTxt = sponsor.alt_text.nil? ? nil : sponsor.alt_text %>
-                      <%= cl_image_tag sponsor.logo.key, alt: "#{altTxt}" %>
                     </div>
                   <% end %>
                 <% end %>

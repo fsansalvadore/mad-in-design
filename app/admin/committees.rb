@@ -36,7 +36,7 @@ ActiveAdmin.register Committee do
       end
       row :name,                label: 'Nome'
       row :role,                label: 'Ruolo'
-      row (:description) {|committee| raw(committee.description)}
+      # row (:description) {|committee| raw(committee.description)}
     end
   end
 
@@ -56,12 +56,12 @@ ActiveAdmin.register Committee do
       if f.object.photo.attached?
         div class: "form-aligned" do
           div cl_image_tag(f.object.photo.key)
-          if f.object.id.nil?
+          unless f.object.id.nil?
             div link_to "Rimuovi immagine", delete_image_admin_staff_path(f.object.photo.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
           end
         end
       end
-      f.input :description,         label: 'Descrizione', as: :quill_editor
+      # f.input :description, label: 'Descrizione', as: :quill_editor
     end
     f.actions
   end

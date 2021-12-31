@@ -1,5 +1,5 @@
 ActiveAdmin.register TecnicalSponsor do
-  menu parent: 'People', label: 'Tecnical Sponsor', priority: 5
+  # menu parent: 'People', label: 'Tecnical Sponsor', priority: 5
 
   permit_params :alt_text,
                 :logo,

@@ -138,32 +138,22 @@
             </div>
           </div>
           <!-- Tab Hanno lavorato con noi -->
-          <div class="tab-pane fade" id="nav-collaborators" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <div class="tab-pane fade widget_categories" id="nav-collaborators" role="tabpanel" aria-labelledby="nav-profile-tab">
             <div class="block-tab-item post-module-1">
-              <div class="row">
+              <ul class="">
                 <% unless @collaborators.empty? || @collaborators.nil? %>
                   <% @collaborators.each do |collaborator| %>
-                    <div class="slider-single col-lg-3 col-md-6 mb-30">
-                      <% clImg = cl_image_path(collaborator.photo.key) if collaborator.photo.attached? %>
-                      <div class="border-radius-5 people-img" style="background-image: <%= "url(#{clImg})," if collaborator.photo.attached? %> linear-gradient(#fefefe, #eee)">
-                      </div>
-                      <h6 class="post-title pr-5 pl-5 mb-10 mt-15 text-limit-2-row">
-                        <%= collaborator.name unless collaborator.name.empty? || collaborator.name.nil? %>
-                      </h6>
-                      <div class="entry-meta font-small color-grey my-3 pr-5 pl-5">
-                        <% if collaborator.link && !collaborator.link.empty? %>
-                          <%= link_to url_for(collaborator.link), target: "_blank", class: "readmore-btn font-small text-uppercase font-weight-ultra" do %>
-                            Vai al sito<i class="ti-arrow-right ml-5"></i>
-                          <% end %>
-                        <% end %>
-                      </div>
-                      <div class="font-description color-black mt-10 pr-5 pl-5 people-description">
-                        <%= raw collaborator.description unless collaborator.description.empty? || collaborator.description.nil? %>
-                      </div>
-                    </div>
+                    <li class="cat-item w-full d-flex justify-content-between entry-meta font-small color-grey">
+                      <%= link_to url_for(collaborator.link), target: "_blank", class: "w-100 d-flex justify-content-between text-uppercase font-weight-ultra" do %>
+                        <h6 class="post-title text-limit-2-row d-inline">
+                          <%= collaborator.name unless collaborator.name.empty? || collaborator.name.nil? %>
+                        </h6>
+                        <span>Scopri <i class="ti-arrow-right ml-5"></i></span>
+                      <% end %>
+                    </li>
                   <% end %>
                 <% end %>
-              </div>
+              </ul>
             </div>
           </div>
         </div>

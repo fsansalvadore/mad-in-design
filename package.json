@@ -18,7 +18,14 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "2.5.1",
     "webpack-dev-server": "^4.7.2",
     "yarn-upgrade-all": "^0.5.4"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
   }
 }

@@ -1,0 +1,10 @@
+{
+  "plugins": ["prettier"],
+  "rules": {
+    "function-paren-newline": "off",
+    "arrow-parens": "off",
+    "implicit-arrow-linebreak": "off",
+    "prettier/prettier": "error"
+  },
+  "extends": ["plugin:prettier/recommended"]
+}

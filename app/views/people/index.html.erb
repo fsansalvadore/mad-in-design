@@ -151,15 +151,15 @@
                   <% @collaborators.each do |collaborator| %>
                     <li class="cat-item w-full d-flex justify-content-between entry-meta font-small">
                       <% if collaborator.link.present? %>
-                        <%= link_to url_for(collaborator.link), target: "_blank", class: "w-100 d-flex pt-2 justify-content-between text-uppercase font-weight-ultra" do %>
-                          <h6 class="post-title text-limit-2-row m-0 py-1 d-inline">
+                        <%= link_to url_for(collaborator.link), target: "_blank", class: "w-100 d-flex py-1 justify-content-between text-uppercase font-weight-ultra" do %>
+                          <h6 class="post-title text-limit-2-row m-0 d-inline">
                             <%= collaborator.name unless collaborator.name.empty? || collaborator.name.nil? %>
                           </h6>
                           <span>Scopri <i class="ti-arrow-right ml-5"></i></span>
                         <% end %>
                       <% else %>
-                        <div class="w-100 d-flex py-2 justify-content-between text-uppercase font-weight-ultra">
-                          <h6 class="post-title text-limit-2-row m-0 py-1 d-inline">
+                        <div class="w-100 d-flex py-2 justify-content-between text-uppercase py-1 font-weight-ultra">
+                          <h6 class="post-title text-limit-2-row m-0 d-inline">
                             <%= collaborator.name unless collaborator.name.empty? || collaborator.name.nil? %>
                           </h6>
                         </div>

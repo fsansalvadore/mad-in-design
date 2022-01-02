@@ -1,6 +1,7 @@
 ActiveAdmin.register Project do
   menu priority: 4, label: "Progetti"
   permit_params :title,
+                :intro,
                 :role,
                 :cover,
                 :meta_title,
@@ -96,6 +97,7 @@ ActiveAdmin.register Project do
             f.input :published, label: "Pubblicato"
             f.input :featured, label: "In evidenza", hint: "I progetti in evidenza vengono visualizzati in Home Page"
             f.input :title, label: "Titolo", placeholder: 'Titolo', hint: "Obbligatorio"
+            f.input :intro, label: "Intro", placeholder: 'Introduzione', hint: "Compare nell'anteprima"
             f.input :start_date, as: :date_time_picker, label: "Data"
             f.inputs 'Cover' do
               f.input :cover,

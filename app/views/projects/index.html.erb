@@ -38,6 +38,11 @@
                         <h6 class="post-title color-white font-large">
                           <%= project.title %>
                         </h6>
+                        <% unless project.intro.nil? %>
+                          <p class="color-white text-light mt-10">
+                            <%= project.intro %>
+                          </p>
+                        <% end %>
                       </div>
                     </div>
                   </div>

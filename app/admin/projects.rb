@@ -17,7 +17,8 @@ ActiveAdmin.register Project do
                   :video_url,
                   :position,
                   :published,
-                  :image
+                  :image,
+                  :image_width
                 ]
 
   controller do
@@ -156,7 +157,7 @@ ActiveAdmin.register Project do
           n_f.input :image_width,
             label: "Larghezza Immagine",
             as: :select,
-            collection: [["33% - 1/3", "one_third"],["50% - 1/2", "half"],["66% - 2/3", "two_thirds"], ["75% - 3/4", "three_fourths"], ["100%", "full"]],
+            collection: [["25% - 1/4", "one_fourth"], ["33% - 1/3", "one_third"],["50% - 1/2", "half"],["66% - 2/3", "two_thirds"], ["75% - 3/4", "three_fourths"], ["100%", "full"]],
             prompt: "Seleziona layout", hint: "Di default le immagini vengono visualizzate al 100% della larghezza.",
             wrapper_html: { class: 'hideInput typ2' }
         end

@@ -37,9 +37,25 @@
             <div class="border-radius-5">
               <div class="featured-slider-1-items">
                 <div class="slider-single">
-                  <% if @team.image.attached? %>
-                    <%= cl_image_tag @team.image.key, alt: "alttext" %>
-                  <% end %>
+                  <!-- Swiper -->
+                  <div class="swiper-container border-radius-5">
+                    <div class="swiper-wrapper">
+                      <% unless @team.attachments.nil? %>
+                        <% @team.attachments.each_with_index do |attachment, i| %>
+                          <% if attachment.image.attached? %>
+                            <div class="swiper-slide">
+                              <%= cl_image_tag attachment.image.key, alt: "#{@team.title}, immagine #{i + 1}" %>
+                            </div>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                    </div>
+
+                    <div class="swiper-button-next swiper-button-black"></div>
+                    <div class="swiper-button-prev swiper-button-black"></div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                  </div>
                 </div>
               </div>
             </div>

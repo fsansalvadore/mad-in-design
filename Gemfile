@@ -14,9 +14,9 @@ gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.4', '>= 5.4.3'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5.2', '>= 5.2.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
+# gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+
+gem 'bundler', '~> 2.1', '>= 2.1.4'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -45,10 +47,10 @@ gem 'activeadmin_dynamic_fields', '~> 0.2.6'
 gem 'inherited_resources', '~> 1.13', '>= 1.13.1'
 gem 'carrierwave', '~> 2.2', '>= 2.2.2'
 gem 'cloudinary', '~> 1.15'
-gem 'rails-i18n', '~> 6.0'
+gem 'rails-i18n', '~> 7.0', '>= 7.0.3'
 gem 'active_storage_validations', '~> 0.8.9'
 gem 'mini_magick', '~> 4.10', '>= 4.10.1'
-gem 'mail_form', '~> 1.8'
+gem 'mail_form', '~> 1.9'
 gem 'sendgrid-ruby', '~> 6.2', '>= 6.2.1'
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 gem 'rack-rewrite', '~> 1.5.0'

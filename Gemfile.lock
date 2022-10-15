@@ -1,27 +1,3 @@
-GIT
-  remote: https://github.com/activeadmin/activeadmin.git
-  revision: eee358f655c90b1ddaae34121ebb3aef0e12cf13
-  specs:
-    activeadmin (2.9.0)
-      arbre (~> 1.2, >= 1.2.1)
-      formtastic (>= 3.1, < 5.0)
-      formtastic_i18n (~> 0.4)
-      inherited_resources (~> 1.7)
-      jquery-rails (~> 4.2)
-      kaminari (~> 1.0, >= 1.2.1)
-      railties (>= 5.2, < 6.2)
-      ransack (~> 2.1, >= 2.1.1)
-
-GIT
-  remote: https://github.com/activeadmin/inherited_resources.git
-  revision: a0a350245a2ec76c040f8751707c1d98792534dd
-  specs:
-    inherited_resources (1.13.0)
-      actionpack (>= 5.2, < 7.1)
-      has_scope (~> 0.6)
-      railties (>= 5.2, < 7.1)
-      responders (>= 2, < 4)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -64,6 +40,15 @@ GEM
     active_material (1.5.2)
     active_storage_validations (0.8.9)
       rails (>= 5.2.0)
+    activeadmin (2.12.0)
+      arbre (~> 1.2, >= 1.2.1)
+      formtastic (>= 3.1, < 5.0)
+      formtastic_i18n (~> 0.4)
+      inherited_resources (~> 1.7)
+      jquery-rails (~> 4.2)
+      kaminari (~> 1.0, >= 1.2.1)
+      railties (>= 6.0, < 7.1)
+      ransack (>= 2.1.1, < 4)
     activeadmin_addons (1.9.0)
       active_material
       railties
@@ -73,7 +58,7 @@ GEM
       xdan-datetimepicker-rails (~> 2.5.1)
     activeadmin_dynamic_fields (0.2.8)
       activeadmin (~> 2.0)
-    activeadmin_quill_editor (0.2.14)
+    activeadmin_quill_editor (1.0.0)
       activeadmin (~> 2.0)
     activeadmin_sortable_table (1.3.0)
       activeadmin (>= 1.0.0.pre1)
@@ -101,8 +86,8 @@ GEM
       activerecord (>= 4.2)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    arbre (1.4.0)
-      activesupport (>= 3.0.0, < 6.2)
+    arbre (1.5.0)
+      activesupport (>= 3.0.0, < 7.1)
       ruby2_keywords (>= 0.0.2, < 1.0)
     arctic_admin (3.3.0)
       activeadmin (>= 1.1.0, < 3.0)
@@ -163,7 +148,7 @@ GEM
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
     formtastic_i18n (0.7.0)
-    friendly_id (5.2.5)
+    friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     geocoder (1.7.0)
     globalid (1.0.0)
@@ -179,6 +164,11 @@ GEM
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
+    inherited_resources (1.13.1)
+      actionpack (>= 5.2, < 7.1)
+      has_scope (~> 0.6)
+      railties (>= 5.2, < 7.1)
+      responders (>= 2, < 4)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -225,6 +215,14 @@ GEM
     minitest (5.15.0)
     modernizr-rails (2.7.1)
     msgpack (1.4.2)
+    net-imap (0.3.1)
+      net-protocol
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.1.3)
+      timeout
+    net-smtp (0.3.2)
+      net-protocol
     netrc (0.11.0)
     nio4r (2.5.8)
     nokogiri (1.12.5)
@@ -242,11 +240,11 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (4.0.6)
-    puma (4.3.10)
+    puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
-    rack-proxy (0.7.0)
+    rack-proxy (0.7.4)
       rack
     rack-rewrite (1.5.1)
     rack-test (1.1.0)
@@ -281,9 +279,9 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
     rake (13.0.6)
-    ransack (2.5.0)
-      activerecord (>= 5.2.4)
-      activesupport (>= 5.2.4)
+    ransack (3.1.0)
+      activerecord (>= 6.0.4)
+      activesupport (>= 6.0.4)
       i18n
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
@@ -318,6 +316,7 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
+    semantic_range (3.0.0)
     sendgrid-ruby (6.6.0)
       ruby_http_client (~> 3.4)
     simple_form (5.1.0)
@@ -338,9 +337,10 @@ GEM
     sticky-rails (1.0.3)
     swiper-rails (1.0.4)
       rails (>= 3.1)
-    thor (1.1.0)
+    thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    timeout (0.3.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -361,10 +361,11 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (~> 4.0)
-    webpacker (4.3.0)
-      activesupport (>= 4.2)
+    webpacker (5.4.3)
+      activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
-      railties (>= 4.2)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -379,27 +380,28 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionview (~> 6.0, >= 6.0.4.4)
   active_storage_validations (~> 0.8.9)
-  activeadmin!
+  activeadmin (~> 2.11, >= 2.11.2)
   activeadmin_addons (~> 1.7, >= 1.7.1)
   activeadmin_dynamic_fields (~> 0.2.6)
-  activeadmin_quill_editor (~> 0.2.0)
+  activeadmin_quill_editor (~> 1.0)
   activeadmin_sortable_table (~> 1.3)
-  acts_as_list (~> 1.0, >= 1.0.1)
+  acts_as_list (~> 1.0, >= 1.0.4)
   arctic_admin (~> 3.2)
   autoprefixer-rails
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
-  carrierwave (~> 2.1)
+  carrierwave (~> 2.2, >= 2.2.2)
   cloudinary (~> 1.15)
   devise (~> 4.2)
   dotenv-rails
   font-awesome-rails (~> 4.7, >= 4.7.0.5)
   font-awesome-sass (~> 5.13)
-  friendly_id (~> 5.2.4)
+  friendly_id (~> 5.4, >= 5.4.2)
   geocoder (~> 1.6, >= 1.6.3)
-  inherited_resources!
+  inherited_resources (~> 1.13, >= 1.13.1)
   jbuilder (~> 2.7)
   jquery-slick-rails (~> 1.9)
   lightbox2-rails (~> 2.8, >= 2.8.2.1)
@@ -407,11 +409,14 @@ DEPENDENCIES
   mail_form (~> 1.8)
   mini_magick (~> 4.10, >= 4.10.1)
   modernizr-rails (~> 2.7, >= 2.7.1)
+  net-imap
+  net-pop
+  net-smtp
   pg (~> 1.3, >= 1.3.5)
   popper_js (~> 1.14.5)
   pry-byebug
   pry-rails
-  puma (~> 4.1)
+  puma (~> 5.6, >= 5.6.4)
   rack-rewrite (~> 1.5.0)
   rails (~> 6.0.3, >= 6.0.3.2)
   rails-i18n (~> 6.0)
@@ -423,12 +428,12 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sticky-rails (~> 1.0, >= 1.0.3)
   swiper-rails (~> 1.0, >= 1.0.4)
-  thor
+  thor (~> 1.2, >= 1.2.1)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)
   webdrivers
-  webpacker (~> 4.0)
+  webpacker (~> 5.4, >= 5.4.3)
 
 RUBY VERSION
    ruby 2.7.0p0

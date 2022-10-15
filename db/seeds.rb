@@ -6,3 +6,4 @@ AdminUser.create!(email: 'info@madindesign.com', password: 'madindesign', passwo
 AdminUser.create!(email: 'admin@madindesign.com', password: 'madindesign', password_confirmation: 'madindesign')
 AdminUser.create!(email: 'content@madindesign.com', password: 'madindesign', password_confirmation: 'madindesign')
 puts 'Finished creating users'
+puts '======================='

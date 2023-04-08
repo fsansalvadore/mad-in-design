@@ -103,11 +103,11 @@ ActiveAdmin.register Project do
               f.input :cover,
               label: 'Immagine di in evidenza e di anteprima',
               as: :file,
-              hint: "Peso max: 500Kb. Altezza: min 200px / Max 2000px. Larghezza: min 200px / Max 3000px"
+              hint: "Peso max: 1MB. Altezza: min 200px / Max 2000px. Larghezza: min 200px / Max 3000px"
               if f.object.cover.attached?
                 div class: "form-aligned" do
                   div cl_image_tag(f.object.cover.key)
-                  unless f.object.id.nil?
+                  unless f.object.id.nil? || f.object.cover.nil? || f.object.cover.id.nil?
                     div link_to "Rimuovi immagine", delete_image_admin_staff_path(f.object.cover.id),method: :delete,class: "delete-btn", data: { confirm: "Confermi di voler cancellare l'immagine?" }
                   end
                 end

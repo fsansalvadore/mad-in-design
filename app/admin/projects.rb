@@ -154,7 +154,7 @@ ActiveAdmin.register Project do
             as: :file,
             :hint => n_f.object.image.attached? \
             ? cl_image_tag(n_f.object.image.key)
-            : content_tag(:span, "Peso max: 500Kb. Altezza: min 200px / Max 2000px. Larghezza: min 200px / Max 3000px"),
+            : content_tag(:span, "Peso max: 1.5MB. Altezza: min 200px / Max 2000px. Larghezza: min 200px / Max 3000px"),
             wrapper_html: { class: 'hideInput typ2' }
           n_f.input :image_width,
             label: "Larghezza Immagine",

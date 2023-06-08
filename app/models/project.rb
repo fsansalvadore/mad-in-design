@@ -6,7 +6,7 @@ class Project < ApplicationRecord
                     dimension: {
                       width: { max: 4000 },
                       height: { max: 3000 },
-                      message: "deve essere alta meno di 3000px e larga meno di 4000px" }
+                      message: "deve avere un'altezza massima di 3000px e larghezza massima di 4000px" }
 
   has_many :project_content_sections, dependent: :destroy
   accepts_nested_attributes_for :project_content_sections,  allow_destroy: true

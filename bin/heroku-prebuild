@@ -1,45 +1,14 @@
 #!/usr/bin/env bash
+# bin/heroku-prebuild
+# Script that runs before Heroku builds the app
 
-# Set Node.js to use legacy OpenSSL provider for Node.js v22+
-export NODE_OPTIONS="--openssl-legacy-provider"
+set -e
 
-echo "Running heroku-prebuild script"
-echo "Node version: $(node --version)"
-echo "NPM version: $(npm --version)"
-echo "Yarn version: $(yarn --version)"
-echo "NODE_OPTIONS: $NODE_OPTIONS"
+# Run the sassc platform configuration
+ruby ./sassc-platform.rb
 
-echo "Installing webpack and webpack-cli globally"
-npm install -g webpack webpack-cli
+# Set environment variables for sassc
+export SASSC_LIBRARY_PATH="."
+export MAKE="make --jobs 4"
 
-# Create symbolic links to ensure node_modules is found by the asset pipeline
-mkdir -p vendor/assets/stylesheets
-mkdir -p vendor/assets/javascripts
-cd vendor/assets/stylesheets
-ln -sf ../../../../node_modules node_modules
-cd -
-cd vendor/assets/javascripts
-ln -sf ../../../../node_modules node_modules
-cd -
-
-# Create a bootstrap.js file that just imports Bootstrap from node_modules
-mkdir -p app/assets/javascripts
-cat > app/assets/javascripts/bootstrap.js << 'EOL'
-// This file ensures bootstrap is available to the asset pipeline
-// The actual Bootstrap is loaded through Webpacker
-EOL
-
-# Create webpack bin directory to ensure it's in PATH
-mkdir -p node_modules/.bin
-cd node_modules/.bin
-if [ ! -f webpack ]; then
-  echo "Creating webpack executable wrapper"
-  cat > webpack << 'EOL'
-#!/usr/bin/env node
-require('../../node_modules/webpack/bin/webpack.js');
-EOL
-  chmod +x webpack
-fi
-cd -
-
-echo "Prebuild script complete" 
+echo "Heroku pre-build completed successfully!" 

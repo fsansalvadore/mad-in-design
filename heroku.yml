@@ -1,6 +1,6 @@
-build:
-  config:
-    RAILS_ENV: production
+setup:
+  addons:
+    - plan: heroku-postgresql
   buildpacks:
     - heroku/nodejs
     - heroku/ruby

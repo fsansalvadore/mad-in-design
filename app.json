@@ -1,30 +1,34 @@
 {
-  "name": "mad_in_design",
-  "stack": "heroku-22",
+  "name": "mad-in-design",
   "description": "Mad in Design website",
-  "buildpacks": [
-    {
-      "url": "heroku/nodejs"
-    },
-    {
-      "url": "heroku/ruby"
-    }
-  ],
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  },
   "env": {
-    "NODE_ENV": {
-      "value": "production"
+    "LANG": {
+      "required": true
+    },
+    "RACK_ENV": {
+      "required": true
     },
     "RAILS_ENV": {
-      "value": "production"
+      "required": true
     },
-    "NODE_VERSION": {
-      "value": "20.12.0"
+    "RAILS_LOG_TO_STDOUT": {
+      "required": true
     },
-    "NPM_CONFIG_PRODUCTION": {
-      "value": "false"
+    "RAILS_SERVE_STATIC_FILES": {
+      "required": true
+    },
+    "SECRET_KEY_BASE": {
+      "required": true
     }
   },
-  "scripts": {
-    "postdeploy": "echo 'App deployed successfully!'"
-  }
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "buildpacks": [{ "url": "heroku/nodejs" }, { "url": "heroku/ruby" }],
+  "addons": ["heroku-postgresql"]
 }

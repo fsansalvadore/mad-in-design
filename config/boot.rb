@@ -1,5 +1,8 @@
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../Gemfile', __dir__)
 
+# Explicitly require the logger library before anything else
+require 'logger'
+
 # Load logger constants before anything else
 require_relative '../lib/logger_constants'
 

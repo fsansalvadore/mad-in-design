@@ -1,0 +1,6 @@
+build:
+  languages:
+    - nodejs
+    - ruby
+  config:
+    YARN_PRODUCTION: true

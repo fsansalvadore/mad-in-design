@@ -34,6 +34,8 @@
     "yarn": "1.22.x"
   },
   "scripts": {
-    "heroku-postbuild": "RAILS_ENV=production NODE_ENV=production rails assets:precompile"
+    "heroku-prebuild": "./bin/heroku-prebuild",
+    "heroku-postbuild": "RAILS_ENV=production NODE_ENV=production rails assets:precompile",
+    "postinstall": "echo 'Node.js version:' && node --version"
   }
 }

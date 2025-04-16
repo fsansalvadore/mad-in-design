@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+echo "Running heroku-prebuild script"
+echo "Node version: $(node --version)"
+echo "NPM version: $(npm --version)"
+echo "Yarn version: $(yarn --version)"
+
+# Create a symbolic link to ensure node_modules is found in the asset pipeline
+mkdir -p vendor/assets/stylesheets
+cd vendor/assets/stylesheets
+ln -sf ../../../../node_modules node_modules
+cd -
+
+echo "Prebuild script complete" 

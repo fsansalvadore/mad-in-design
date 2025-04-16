@@ -12,7 +12,7 @@ APP_NAME=$1
 echo "Setting Node.js version for $APP_NAME..."
 
 # Set the Node.js version explicitly
-heroku config:set NODE_VERSION=16.20.0 -a $APP_NAME
+heroku config:set NODE_VERSION=20.12.0 -a $APP_NAME
 
-echo "Node.js version has been set to 16.20.0"
+echo "Node.js version has been set to 20.12.0"
 echo "To confirm, run: heroku config -a $APP_NAME | grep NODE_VERSION" 

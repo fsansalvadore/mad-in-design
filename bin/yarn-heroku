@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+echo "Running yarn with --ignore-engines flag"
+YARN_IGNORE_ENGINES=true yarn "$@" --ignore-engines 

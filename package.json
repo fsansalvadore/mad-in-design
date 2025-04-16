@@ -31,13 +31,13 @@
     "trailingComma": "all"
   },
   "engines": {
-    "node": "20.12.0",
+    "node": "^20.12.0 || ^22.11.0",
     "npm": "8.x",
     "yarn": "1.22.22"
   },
   "scripts": {
     "heroku-prebuild": "./bin/heroku-prebuild",
-    "heroku-postbuild": "YARN_IGNORE_ENGINES=true yarn install --production=false && RAILS_ENV=production NODE_ENV=production bin/rails webpacker:compile",
+    "heroku-postbuild": "./bin/yarn-heroku install --production=false && RAILS_ENV=production NODE_ENV=production bin/rails webpacker:compile",
     "postinstall": "echo 'Node.js version:' && node --version",
     "webpack": "webpack"
   }

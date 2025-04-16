@@ -29,7 +29,8 @@
     "trailingComma": "all"
   },
   "engines": {
-    "node": "16.x",
-    "npm": "8.x"
+    "node": "16.20.0",
+    "npm": "8.x",
+    "yarn": "1.22.x"
   }
 }

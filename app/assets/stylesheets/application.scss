@@ -47,7 +47,7 @@ $mobile: 479px;
 @import 'config/bootstrap_variables';
 
 // External libraries
-@import '../../../node_modules/bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 @import 'lightbox';

@@ -3,4 +3,6 @@ build:
     - nodejs
     - ruby
   config:
-    YARN_PRODUCTION: true
+    YARN_PRODUCTION: false
+    NODE_VERSION: 16.20.0
+    NODE_OPTIONS: --max_old_space_size=2560

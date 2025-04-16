@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+echo "Checking webpack installation..."
+
+# Check if webpack is installed globally
+if command -v webpack >/dev/null 2>&1; then
+  echo "✅ webpack found in PATH"
+  echo "webpack version: $(webpack --version)"
+else
+  echo "❌ webpack not found in global PATH"
+fi
+
+# Check if webpack is installed in node_modules
+if [ -f "node_modules/webpack/bin/webpack.js" ]; then
+  echo "✅ webpack found in node_modules"
+  echo "webpack version: $(node node_modules/webpack/bin/webpack.js --version)"
+else
+  echo "❌ webpack not found in node_modules"
+fi
+
+# Check if webpack-cli is installed
+if [ -f "node_modules/webpack-cli/bin/cli.js" ]; then
+  echo "✅ webpack-cli found in node_modules"
+  echo "webpack-cli version: $(node node_modules/webpack-cli/bin/cli.js --version)"
+else
+  echo "❌ webpack-cli not found in node_modules"
+fi
+
+# Check symlink in node_modules/.bin
+if [ -f "node_modules/.bin/webpack" ]; then
+  echo "✅ webpack symlink found in node_modules/.bin"
+else
+  echo "❌ webpack symlink not found in node_modules/.bin"
+fi
+
+echo "Check complete" 

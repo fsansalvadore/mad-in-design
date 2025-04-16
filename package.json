@@ -14,7 +14,9 @@
     "popper.js": "^1.16.1",
     "sass": "^1.86.3",
     "stimulus": "^1.1.1",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
   },
   "version": "0.1.0",
   "devDependencies": {
@@ -35,7 +37,7 @@
   },
   "scripts": {
     "heroku-prebuild": "./bin/heroku-prebuild",
-    "heroku-postbuild": "RAILS_ENV=production NODE_ENV=production rails assets:precompile",
+    "heroku-postbuild": "yarn install --production=false && RAILS_ENV=production NODE_ENV=production bin/rails webpacker:compile",
     "postinstall": "echo 'Node.js version:' && node --version"
   }
 }

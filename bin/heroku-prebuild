@@ -5,6 +5,9 @@ echo "Node version: $(node --version)"
 echo "NPM version: $(npm --version)"
 echo "Yarn version: $(yarn --version)"
 
+echo "Installing webpack and webpack-cli globally"
+npm install -g webpack webpack-cli
+
 # Create symbolic links to ensure node_modules is found by the asset pipeline
 mkdir -p vendor/assets/stylesheets
 mkdir -p vendor/assets/javascripts
@@ -21,5 +24,18 @@ cat > app/assets/javascripts/bootstrap.js << 'EOL'
 // This file ensures bootstrap is available to the asset pipeline
 // The actual Bootstrap is loaded through Webpacker
 EOL
+
+# Create webpack bin directory to ensure it's in PATH
+mkdir -p node_modules/.bin
+cd node_modules/.bin
+if [ ! -f webpack ]; then
+  echo "Creating webpack executable wrapper"
+  cat > webpack << 'EOL'
+#!/usr/bin/env node
+require('../../node_modules/webpack/bin/webpack.js');
+EOL
+  chmod +x webpack
+fi
+cd -
 
 echo "Prebuild script complete" 

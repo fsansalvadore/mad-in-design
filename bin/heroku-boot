@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+echo "Setting up environment before boot..."
+
+# Create symlinks if they don't exist already
+mkdir -p vendor/assets/stylesheets
+mkdir -p vendor/assets/javascripts
+cd vendor/assets/stylesheets
+ln -sf ../../../../node_modules node_modules
+cd -
+cd vendor/assets/javascripts
+ln -sf ../../../../node_modules node_modules
+cd -
+
+# Check for webpack
+if command -v webpack >/dev/null 2>&1; then
+  echo "webpack found in PATH"
+else
+  echo "webpack not found, creating link in node_modules/.bin"
+  mkdir -p node_modules/.bin
+  cd node_modules/.bin
+  if [ ! -f webpack ]; then
+    cat > webpack << 'EOL'
+#!/usr/bin/env node
+require('../../node_modules/webpack/bin/webpack.js');
+EOL
+    chmod +x webpack
+  fi
+  cd -
+fi
+
+# Start the application with puma
+bundle exec puma -C config/puma.rb 

@@ -1,8 +1,6 @@
 build:
-  languages:
-    - nodejs
-    - ruby
   config:
-    YARN_PRODUCTION: false
-    NODE_VERSION: 20.12.0
-    NODE_OPTIONS: --max_old_space_size=2560
+    RAILS_ENV: production
+  buildpacks:
+    - heroku/nodejs
+    - heroku/ruby

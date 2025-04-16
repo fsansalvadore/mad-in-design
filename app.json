@@ -1,5 +1,6 @@
 {
-  "name": "Mad in Design",
+  "name": "mad_in_design",
+  "stack": "heroku-22",
   "description": "Mad in Design website",
   "buildpacks": [
     {
@@ -18,6 +19,9 @@
     },
     "NODE_VERSION": {
       "value": "20.12.0"
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "value": "false"
     }
   },
   "scripts": {

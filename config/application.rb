@@ -18,6 +18,9 @@ module MadInDesign
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}')]
     
+    # Load logger patch before initializing
+    require Rails.root.join('config', 'initializers', 'logger_patch')
+    
     # Load custom configuration file
     config.before_initialize do
       require Rails.root.join('lib', 'custom_config')

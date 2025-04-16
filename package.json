@@ -29,6 +29,7 @@
     "trailingComma": "all"
   },
   "engines": {
-    "node": ">=0.10.3 <15"
+    "node": "16.x",
+    "npm": "8.x"
   }
 }

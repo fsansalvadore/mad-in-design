@@ -2,6 +2,10 @@
 
 echo "Setting up environment before boot..."
 
+# Set Node.js to use legacy OpenSSL provider for Node.js v22+
+export NODE_OPTIONS="--openssl-legacy-provider"
+echo "NODE_OPTIONS: $NODE_OPTIONS"
+
 # Create symlinks if they don't exist already
 mkdir -p vendor/assets/stylesheets
 mkdir -p vendor/assets/javascripts

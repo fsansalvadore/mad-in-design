@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
+# Set Node.js to use legacy OpenSSL provider for Node.js v22+
+export NODE_OPTIONS="--openssl-legacy-provider"
+
 echo "Running heroku-prebuild script"
 echo "Node version: $(node --version)"
 echo "NPM version: $(npm --version)"
 echo "Yarn version: $(yarn --version)"
+echo "NODE_OPTIONS: $NODE_OPTIONS"
 
 echo "Installing webpack and webpack-cli globally"
 npm install -g webpack webpack-cli

@@ -1,46 +1,49 @@
-require("@rails/ujs").start();
-require("turbolinks").start();
-require("@rails/activestorage").start();
-require("channels");
+require('@rails/ujs').start();
+require('turbolinks').start();
+require('@rails/activestorage').start();
+require('channels');
+
+// Import bootstrap SCSS and JS
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle';
 
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel';
-import "bootstrap";
+import 'bootstrap';
 import { ActivePage } from './active-page';
 import { cookies } from './cookies';
 import { SwiperSnippet } from './swiper';
 import { MobileMenuToggle } from './mobile-menu-toggle';
 
-$(document).on('turbolinks:load', function() {
-
+$(document).on('turbolinks:load', function () {
   SwiperSnippet();
   cookies();
   ActivePage();
 
-  (function($) {
+  (function ($) {
     'use strict';
 
     // Page loading
-    $(window).on('load', function() {
+    $(window).on('load', function () {
       $('#preloader-active').delay(450).fadeOut('slow');
       $('body').delay(450).css({
-          'overflow': 'visible'
+        overflow: 'visible',
       });
     });
 
     // Scroll Progress
     var docHeight = $(document).height(),
-        windowHeight = $(window).height(),
-        scrollPercent;
-    $(window).on('scroll', function() {
-        scrollPercent = $(window).scrollTop() / (docHeight - windowHeight) * 100;
-        $('.scroll-progress').width(scrollPercent + '%');
+      windowHeight = $(window).height(),
+      scrollPercent;
+    $(window).on('scroll', function () {
+      scrollPercent =
+        ($(window).scrollTop() / (docHeight - windowHeight)) * 100;
+      $('.scroll-progress').width(scrollPercent + '%');
     });
 
     // Menu toggle
     MobileMenuToggle();
-
-})(jQuery);
+  })(jQuery);
 });
 
-import "controllers"
+import 'controllers';

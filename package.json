@@ -32,5 +32,8 @@
     "node": "16.20.0",
     "npm": "8.x",
     "yarn": "1.22.x"
+  },
+  "scripts": {
+    "heroku-postbuild": "RAILS_ENV=production NODE_ENV=production rails assets:precompile"
   }
 }

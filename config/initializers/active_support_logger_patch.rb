@@ -11,6 +11,30 @@ Object.const_set(:ERROR, Logger::ERROR) unless Object.const_defined?(:ERROR)
 Object.const_set(:FATAL, Logger::FATAL) unless Object.const_defined?(:FATAL)
 Object.const_set(:UNKNOWN, Logger::UNKNOWN) unless Object.const_defined?(:UNKNOWN)
 
+# Ensure Logger class is defined
+unless defined?(Logger)
+  class Logger
+    module Severity
+      DEBUG = 0
+      INFO = 1
+      WARN = 2
+      ERROR = 3
+      FATAL = 4
+      UNKNOWN = 5
+    end
+    
+    include Severity
+    
+    # Define the constants at class level if needed
+    DEBUG = Severity::DEBUG
+    INFO = Severity::INFO
+    WARN = Severity::WARN
+    ERROR = Severity::ERROR
+    FATAL = Severity::FATAL
+    UNKNOWN = Severity::UNKNOWN
+  end
+end
+
 # Direct patch to ActiveSupport
 module ActiveSupport
   module LoggerThreadSafeLevel

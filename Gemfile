@@ -62,7 +62,6 @@ gem 'sticky-rails', '~> 1.0', '>= 1.0.3'
 gem 'jquery-slick-rails', '~> 1.9'
 gem 'popper_js', '~> 1.14.5'
 gem 'lightbox2-rails', '~> 2.8', '>= 2.8.2.1'
-
 gem 'geocoder', '~> 1.6', '>= 1.6.3'
 
 gem 'psych', '< 4'

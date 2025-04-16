@@ -33,7 +33,7 @@
   "engines": {
     "node": "16.20.0",
     "npm": "8.x",
-    "yarn": "1.22.x"
+    "yarn": "1.22.22"
   },
   "scripts": {
     "heroku-prebuild": "./bin/heroku-prebuild",

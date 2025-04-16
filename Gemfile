@@ -25,7 +25,7 @@ gem 'turbolinks', '~> 5.2', '>= 5.2.1'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-gem 'bundler', '~> 2.1', '>= 2.1.4'
+gem 'bundler', '~> 2.6', '>= 2.6.8'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

@@ -1,5 +1,8 @@
 require_relative 'boot'
 
+# Load the logger patch before Rails
+require_relative 'initializers/logger_patch'
+
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems

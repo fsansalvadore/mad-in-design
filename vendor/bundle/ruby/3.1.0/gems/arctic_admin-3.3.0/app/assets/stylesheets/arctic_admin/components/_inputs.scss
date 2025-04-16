@@ -1,0 +1,110 @@
+input[type="text"], input[type="email"], input[type="password"],
+input[type="tel"], input[type="date"], input[type="datetime-local"],
+input[type="month"], input[type="range"], input[type="search"],
+input[type="time"], input[type="url"], input[type="week"],
+input[type="number"], textarea {
+  @include appearance();
+  @include box-shadow(none);
+
+  display: block;
+  width: 100%;
+  height: $input-height;
+  padding: 6px 12px;
+  font-size: $font-size;
+  line-height: 1.57142857;
+  color: $text-color;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid $border-color;
+  outline: 0;
+  border-radius: $border-radius;
+  @include transition(border-color ease-in-out .15s);
+
+  &:focus {
+    border-color: $primary-color;
+    @include appearance();
+    @include transition(border .25s linear,color .25s linear,background-color .25s linear);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+  }
+
+  &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    -webkit-text-fill-color: $text-color;
+  }
+}
+
+input[type="submit"] {
+  @include appearance();
+  @include primary-button($primary-color, white);
+  width: 100%;
+  padding: 0 12px;
+  font-size: 15px;
+  font-weight: 500;
+  @include box-shadow(0 1px 0 rgba(0,0,0,.05));
+  border: none;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  height: 15px;
+  width: 15px;
+  -webkit-appearance: none!important;
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: $border-radius;
+  box-sizing: border-box;
+  @include outline();
+  @include transition-button();
+  cursor: pointer;
+
+  &:checked {
+    border-color: $primary-color;
+    background-color: $primary-color;
+  }
+}
+
+input[type="radio"] {
+  @include appearance();
+  border: 2px solid $primary-color;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin: 1px 5px 1px 1px;
+  display: inline-flex;
+  @include outline();
+  @include transition-button();
+
+  &:checked {
+    background-color: $primary-color;
+  }
+}
+
+select {
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid $border-color;
+  outline: 0;
+  border-radius: $border-radius;
+  font-size: $font-size;
+  color: #5a5a5a;
+  @include transition(border-color ease-in-out .15s);
+
+  &:focus {
+    border-color: $primary-color;
+    @include box-shadow(none);
+    @include transition(border .25s linear,color .25s linear,background-color .25s linear);
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+  }
+}
+
+textarea {
+  min-height: 80px;
+  height: auto;
+  padding: 5px 10px;
+}

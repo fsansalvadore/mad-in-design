@@ -1,0 +1,17 @@
+current directory: /Users/francescosansalvadore/code/github/fsansalvadore/mad-in-design/vendor/bundle/ruby/3.1.0/gems/unf_ext-0.0.8/ext/unf_ext
+/Users/francescosansalvadore/.asdf/installs/ruby/3.1.2/bin/ruby -I /Users/francescosansalvadore/.asdf/installs/ruby/3.1.2/lib/ruby/3.1.0 -r ./siteconf20250416-62289-d4jlaq.rb extconf.rb
+checking for -lstdc++... yes
+creating Makefile
+
+current directory: /Users/francescosansalvadore/code/github/fsansalvadore/mad-in-design/vendor/bundle/ruby/3.1.0/gems/unf_ext-0.0.8/ext/unf_ext
+make DESTDIR\= clean
+
+current directory: /Users/francescosansalvadore/code/github/fsansalvadore/mad-in-design/vendor/bundle/ruby/3.1.0/gems/unf_ext-0.0.8/ext/unf_ext
+make DESTDIR\=
+compiling unf.cc
+linking shared-object unf_ext.bundle
+ld: warning: ignoring duplicate libraries: '-lc++'
+
+current directory: /Users/francescosansalvadore/code/github/fsansalvadore/mad-in-design/vendor/bundle/ruby/3.1.0/gems/unf_ext-0.0.8/ext/unf_ext
+make DESTDIR\= install
+/usr/local/bin/ginstall -c -m 0755 unf_ext.bundle ./.gem.20250416-62289-pzrucf

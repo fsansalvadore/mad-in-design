@@ -1,0 +1,120 @@
+@mixin button() {
+  border-radius: $border-radius;
+  display: inline-block;
+  @include transition-button();
+  cursor: pointer;
+
+  &:active, &:focus {
+    outline: 0;
+  }
+
+  &.disabled, &:disabled {
+    opacity: 0.6;
+    cursor: no-drop;
+  }
+}
+
+@mixin primary-button($background-color, $color) {
+  background-color: $background-color;
+  color: $color;
+  border: none; 
+  @include button();
+
+  &:hover {
+    background-color: lighten($background-color, 10%);
+  }
+
+  &:active, &:focus {
+    background-color: darken($background-color, 10%); 
+  }
+
+  &:disabled {
+    background-color: $background-color;
+  }
+}
+
+@mixin secondary-button($color) {
+  background-color: #fff;
+  color: $color;
+  border: 1px solid $color;
+  @include button();
+
+  &:hover {
+    color: #fff;
+    background-color: $color;
+  }
+
+  &:active, &:focus {
+    background-color: darken($color, 10%);
+    color: #fff;
+  }
+}
+
+@mixin secondary-dropdown($color) {
+  @include secondary-button($color);
+  padding: 6px 25px 6px 10px;
+  position: relative;
+
+  &:after {
+    @include icon("\f0dd");
+    position: absolute;
+    right: 8px;
+  }
+
+  &:active, &:focus {
+    background-color: darken($color, 10%); 
+    color: #fff;
+  }
+
+  &.disabled, &:disabled {
+    color: $grey;
+    background-color: #f3f7f9;
+    border-color: #f3f7f9;
+    @include box-shadow(none);
+    opacity: .65;
+  }
+}
+
+@mixin group-button($color) {
+  a {
+    display: inline-block;
+    color: $color;
+    border-top: 1px solid $color;
+    border-bottom: 1px solid $color;
+    float: left;
+    padding: 6px 10px;
+    border-right: 1px solid $color;
+    @include transition-button();
+  }
+
+  &:first-child a {
+    border-left: 1px solid $color;
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+  }
+
+  &:last-child a {
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+
+  &:hover {
+    a {
+      background-color: lighten($color, 10%);
+      border-color: lighten($color, 10%);
+      color: #fff;
+    }
+  }
+
+  &:active, &:focus, &.selected {
+    a {
+      background-color: darken($color, 10%);
+      border-color: darken($color, 10%);
+      color: #fff;
+    }
+  }
+}
+
+@mixin little-button() {
+  padding: 6px 12px;
+}

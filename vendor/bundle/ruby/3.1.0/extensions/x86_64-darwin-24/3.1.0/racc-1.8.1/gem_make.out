@@ -1,0 +1,15 @@
+current directory: /Users/francescosansalvadore/code/github/fsansalvadore/mad-in-design/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
+/Users/francescosansalvadore/.asdf/installs/ruby/3.1.2/bin/ruby -I /Users/francescosansalvadore/.asdf/installs/ruby/3.1.2/lib/ruby/3.1.0 -r ./siteconf20250416-62289-dyi1wn.rb extconf.rb
+creating Makefile
+
+current directory: /Users/francescosansalvadore/code/github/fsansalvadore/mad-in-design/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= clean
+
+current directory: /Users/francescosansalvadore/code/github/fsansalvadore/mad-in-design/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\=
+compiling cparse.c
+linking shared-object racc/cparse.bundle
+
+current directory: /Users/francescosansalvadore/code/github/fsansalvadore/mad-in-design/vendor/bundle/ruby/3.1.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= install
+/usr/local/bin/ginstall -c -m 0755 cparse.bundle ./.gem.20250416-62289-g1skfs/racc

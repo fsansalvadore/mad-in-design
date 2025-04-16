@@ -17,6 +17,11 @@ module MadInDesign
     config.load_defaults 6.0
 
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}')]
+    
+    # Load custom configuration file
+    config.before_initialize do
+      require Rails.root.join('lib', 'custom_config')
+    end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

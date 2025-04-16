@@ -1,0 +1,31 @@
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+@import "reset";
+@import "fonts";
+@import "variables/variables";
+
+@import "mixins/mixins";
+
+@import "common";
+@import "buttons";
+@import "grid";
+
+@import "components/*";
+@import "layouts/*";
+@import "pages/*";
+
+body {
+  font-family: $font-family-body;
+  background-color: $body-background;
+  color: $text-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+}

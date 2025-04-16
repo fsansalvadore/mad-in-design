@@ -1,0 +1,127 @@
+body.index {
+
+  .resource_selection_toggle_cell, .resource_selection_cell {
+    display: flex;
+  }
+
+  .table_tools {
+    margin-bottom: 20px;
+    font-size: $font-size;
+
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    input[type='checkbox'] {
+      display: flex;
+    }
+
+    .collection_selection_toggle_all {
+      display: flex !important;
+    }
+
+    .batch_actions_selector {
+      display: inline-block;
+    }
+
+    .dropdown_menu_button{
+      @include secondary-dropdown($primary-color);
+    }
+
+    .dropdown_menu_list {
+      background-color: #fff;
+      padding: 10px 15px;
+      border-radius: $border-radius;
+      @include box-shadow($box-shadow);
+      display: inline-block;
+      position: absolute;
+      z-index: 1;
+    }
+
+    .indexes.table_tools_segmented_control {
+      text-align: right;
+    }
+  }
+
+  .paginated_collection_contents {
+    margin-bottom: 20px;
+    overflow-x: auto;
+  }
+
+  #index_footer {
+    font-size: $font-size;
+  }
+
+  .sortable {
+    position: relative;
+
+    &:after {
+      @include icon("\f0dc");
+      font-size: 12px;
+      position: absolute;
+      top: 50%;
+      right: 5px;
+      @include transform(translateY(-50%));
+
+      @media screen and (min-width: $md-width) {
+        font-size: $font-size/1;
+      }
+    }
+
+    &.sorted-desc:after {
+      content: "\f0dd";
+    }
+
+    &.sorted-asc:after {
+      content: "\f0de";
+    }
+  }
+
+  .table_actions {
+    margin-bottom: -4px;
+
+    .member_link {
+      @include primary-button($primary-color, white);
+      padding: 4px 8px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+  }
+
+  .scopes {
+    .scope {
+      @include group-button($primary-color);
+
+      a {
+        margin-right: .25rem;
+      }
+    }
+  }
+
+  #sidebar {
+    position: fixed;
+    right: - $filter-width;
+
+    @media screen and (min-width: $x-lg-width) {
+      right: - $lg-filter-width;
+    }
+
+    &:before {
+      cursor: pointer;
+      position: absolute;
+      top: 30px;
+      left: -40px;
+      width: 40px;
+      height: 50px;
+      background-color: #fff;
+      @include box-shadow(-1px 0 4px 0 rgba(0,0,0,.04));
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+      @include icon("\f0b0");
+      font-size: 20px;
+      padding: 15px 10px;
+    }
+  }
+}

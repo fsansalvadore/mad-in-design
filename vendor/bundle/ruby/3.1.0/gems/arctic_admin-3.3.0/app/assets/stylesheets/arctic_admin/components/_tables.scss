@@ -1,0 +1,66 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  &:not(.index_table) {
+    border-radius: $border-radius;
+    margin-bottom: 10px;
+  }
+}
+
+thead tr {
+  border: 1px solid $border-color;
+  background-color: $border-color;
+}
+
+thead th {
+  font-size: 12px;
+  text-align: left;
+
+  a {
+    color: $text-color-important;
+    font-weight: normal;
+    width: 100%;
+    display: inline-block;
+    padding: 4px 20px 4px 4px;
+
+    @media screen and (min-width: $md-width) {
+      padding: 8px 20px 8px 8px;
+    }
+  }
+
+  &.col-selectable {
+    padding-left: 4px;
+
+    @media screen and (min-width: $md-width) {
+      padding-left: 8px;
+    }
+  }
+}
+
+tbody tr {
+  border: 1px solid $border-color;
+
+  &:hover {
+    background-color: rgba(228, 234, 236, 0.3);
+  }
+
+  th {
+    font-size: $font-size;
+  }
+
+  td {
+    padding: 4px;
+    vertical-align: middle;
+    color: $text-color;
+    font-size: 12px;
+
+    &.col-actions {
+      padding: 6px 8px;
+    }
+
+    @media screen and (min-width: $md-width) {
+      padding: 8px;
+    }
+  }
+}

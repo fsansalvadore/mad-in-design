@@ -1,0 +1,65 @@
+body.logged_out {
+  .flash {
+    position: fixed;
+  }
+
+  #active_admin_content {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+}
+
+#login {
+  width: 100%;
+  margin: auto;
+  background-color: white;
+  border-top: $border-radius solid $primary-color;
+  @include box-shadow($box-shadow);
+  color: $text-color;
+  padding: 20px;
+
+  @media screen and (min-width: 400px) {
+    border-radius: $border-radius;
+    width: 400px;
+    padding: 30px;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  .label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .input.boolean {
+    @include disable-user-select();
+    label {
+      font-size: 15px;
+      cursor: pointer;
+      padding: 5px 5px 5px 0;
+    }
+
+    input[type='checkbox'] {
+      width: 15px;
+      margin: 0 5px -2px 0;
+    }
+  }
+
+  a {
+    margin-top: 10px;
+    display: inline-block;
+  }
+
+  .input_action {
+    min-width: 50%;
+  }
+
+  input[type="submit"] {
+    line-height: 43px;
+  }
+}

@@ -1,0 +1,63 @@
+@mixin transform($var) {
+  -webkit-transform: $var;
+     -moz-transform: $var;
+      -ms-transform: $var;
+       -o-transform: $var;
+          transform: $var;
+}
+
+@mixin appearance($effect:none) {
+  -webkit-appearance: $effect;
+     -moz-appearance: $effect;
+      -ms-appearance: $effect;
+       -o-appearance: $effect;
+          appearance: $effect;
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin transition-button() {
+  @include transition(border .2s linear,color .2s linear,width .2s linear,background-color .2s linear);
+}
+
+@mixin box-shadow($args...) {
+  -webkit-box-shadow: $args;
+  -moz-box-shadow: $args;
+  box-shadow: $args;
+}
+
+@mixin disable-user-select() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin clear-fix() {
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+@mixin outline() {
+  &:focus {
+    outline: 0;
+  }
+}
+
+@mixin icon($code-icon) {
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font: 900 normal normal 14px/1 'Font Awesome 5 Free', 'Font Awesome 5 Pro';
+  content: $code-icon;
+}

@@ -1,0 +1,31 @@
+current directory: /Users/francescosansalvadore/code/github/fsansalvadore/mad-in-design/vendor/bundle/ruby/3.1.0/gems/msgpack-1.4.2/ext/msgpack
+/Users/francescosansalvadore/.asdf/installs/ruby/3.1.2/bin/ruby -I /Users/francescosansalvadore/.asdf/installs/ruby/3.1.2/lib/ruby/3.1.0 -r ./siteconf20250416-62289-h3v8ce.rb extconf.rb
+checking for ruby/st.h... yes
+checking for st.h... no
+checking for rb_str_replace() in ruby.h... yes
+checking for rb_intern_str() in ruby.h... yes
+checking for rb_enc_interned_str() in ruby.h... yes
+checking for rb_sym2str() in ruby.h... yes
+checking for rb_str_intern() in ruby.h... yes
+checking for rb_block_lambda() in ruby.h... yes
+checking for rb_hash_dup() in ruby.h... yes
+checking for rb_hash_clear() in ruby.h... yes
+creating Makefile
+
+current directory: /Users/francescosansalvadore/code/github/fsansalvadore/mad-in-design/vendor/bundle/ruby/3.1.0/gems/msgpack-1.4.2/ext/msgpack
+make DESTDIR\= clean
+
+current directory: /Users/francescosansalvadore/code/github/fsansalvadore/mad-in-design/vendor/bundle/ruby/3.1.0/gems/msgpack-1.4.2/ext/msgpack
+make DESTDIR\=
+compiling buffer.c
+compiling buffer_class.c
+buffer_class.c:261:17: error: incompatible function pointer types passing 'VALUE (VALUE)' (aka 'unsigned long (unsigned long)') to parameter of type 'VALUE (*)(VALUE, VALUE)' (aka 'unsigned long (*)(unsigned long, unsigned long)') [-Wincompatible-function-pointer-types]
+  261 |                 read_until_eof_error, (VALUE)(void*) args,
+      |                 ^~~~~~~~~~~~~~~~~~~~
+/Users/francescosansalvadore/.asdf/installs/ruby/3.1.2/include/ruby-3.1.0/ruby/internal/iterator.h:388:63: note: passing argument to parameter 'r_proc' here
+  388 | VALUE rb_rescue2(VALUE (*b_proc)(VALUE), VALUE data1, VALUE (*r_proc)(VALUE, VALUE), VALUE data2, ...);
+      |                                                               ^
+1 error generated.
+make: *** [buffer_class.o] Error 1
+
+make failed, exit code 2

@@ -1,0 +1,240 @@
+body.active_admin.logged_in {
+  padding-top: 50px;
+
+  @media screen and (min-width: $sm-width) {
+    padding-top: 60px;
+  }
+
+  @media screen and (min-width: $lg-width) {
+    padding-left: $header-width;
+  }
+
+  @media screen and (min-width: $x-lg-width) {
+    padding-left: $lg-header-width;
+  }
+
+  #active_admin_content {
+    padding: 20px 0;
+    @include clear-fix();
+
+    @media screen and (min-width: $lg-width) {
+      padding: 20px 25px;
+    }
+  }
+}
+
+.header {
+  .site_title {
+    width: 160px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: $header-background;
+    border-bottom: 1px solid $header-border-color;
+    text-align: center;
+    margin: 0;
+
+    @media screen and (min-width: $sm-width) {
+      width: $header-width;
+      height: 60px;
+      font-size: 20px;
+      line-height: 60px;
+    }
+
+    @media screen and (min-width: $x-lg-width) {
+      width: $lg-header-width;
+    }
+    
+    #site_title_image {
+      height: 100%;
+      padding: 6px 0;
+    }
+  }
+
+  #utility_nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 50px;
+    width: calc(100% - 160px);
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    text-align: right;
+    background-color: $header-background;
+    border-bottom: 1px solid $header-border-color;
+
+    &:before {
+      @include icon("\f0c9");
+
+      display: inline;
+      visibility: visible;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: $text-color;
+      padding: 15px 0;
+      text-align: center;
+      width: 40px;
+      font-size: 20px;
+    }
+
+    @media screen and (min-width: $sm-width) {
+      height: 60px;
+      width: $screen-header-width;
+
+      &:before {
+        padding: 20px 0;
+      }
+    }
+
+    @media screen and (min-width: $lg-width) {
+      &:before {
+        display: none;
+      }
+    }
+
+    @media screen and (min-width: $x-lg-width) {
+      width: $lg-screen-header-width;
+    }
+
+    li {
+      display: inline-block;
+      @include transition-button();
+
+      &:hover {
+        background-color: $header-nav-action-hover-background;
+      }
+
+      &:active {
+        background-color: $header-nav-action-active-background;
+      }
+    }
+
+    #current_user {
+      a {
+        color: transparent;
+        position: relative;
+        width: 50px;
+        height: 49px;
+        display: inline-block;
+
+        &:before {
+          @include icon("\f007");
+
+          display: inline;
+          visibility: visible;
+          cursor: pointer;
+          position: absolute;
+          top: 0;
+          right: 0;
+          color: $text-color;
+          padding: 15px 0;
+          text-align: center;
+          width: 50px;
+          font-size: 20px;
+        }
+
+        @media screen and (min-width: $sm-width) {
+          width: 60px;
+          height: 59px;
+
+          &:before {
+            padding: 20px 0;
+            width: 60px;
+          }
+        }
+      }
+    }
+
+    #logout {
+      min-width: 50px;
+      min-height: 49px;
+      float: right;
+
+      a {
+        color: transparent;
+        position: relative;
+        width: 50px;
+        display: block;
+
+        &:before {
+          @include icon("\f2f5");
+
+          display: inline;
+          visibility: visible;
+          cursor: pointer;
+          position: absolute;
+          top: 0;
+          right: 0;
+          color: $text-color;
+          padding: 15px 0;
+          text-align: center;
+          width: 50px;
+          font-size: 20px;
+        }
+
+      }
+      
+      @media screen and (min-width: $sm-width) {
+        min-width: 60px;
+        min-height: 59px;
+
+        a {
+          width: 60px;
+          height: 59px;
+
+          &:before {
+            padding: 20px 0;
+            width: 60px;
+          }
+        }
+      }
+    }
+  }
+}
+
+#title_bar {
+  background-color: #fff;
+  @include box-shadow($box-shadow);
+  margin: 15px 0 0 0;
+  padding: 8px 10px;
+  @include clear-fix();
+
+  @media screen and (min-width: $lg-width) {
+    padding: 8px 20px;
+    border-radius: $border-radius;
+    margin: 15px 25px 0 25px;
+  }
+
+  #titlebar_left {
+    display: inline-block;
+    float: left;
+    line-height: 29px;
+
+    h2 {
+      display: inline-block;
+      font-size: 16px;
+    }
+  }
+
+  #titlebar_right {
+    display: inline-block;
+    float: right;
+
+    .action_item a {
+      @include primary-button($primary-color, #fff);
+      padding: 5px 8px;
+    }
+  }
+
+  #page_title {
+    font-weight: normal;
+    margin: 0;
+  }
+}

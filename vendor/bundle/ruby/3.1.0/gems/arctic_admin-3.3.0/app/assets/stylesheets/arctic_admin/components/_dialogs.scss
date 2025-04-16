@@ -1,0 +1,23 @@
+.ui-dialog {
+  background-color: #fff;
+  @include box-shadow($box-shadow);
+  border-radius: $border-radius;
+  padding: 15px 10px;
+  z-index: 1;
+
+  &:focus, &:active {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    outline: 0;
+  }
+
+  .ui-button {
+    @include primary-button($primary-color, #fff);
+    border: 0;
+    margin-right: 5px;
+    padding: 5px 10px;
+  }
+
+  .ui-dialog-titlebar-close {
+    display: none;
+  }
+}

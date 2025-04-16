@@ -1,0 +1,27 @@
+.flash {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  background-color: $flash-background-color;
+  color: $flash-text-color;
+}
+
+.flash_alert, .flash_error {
+  background-color: $error;
+  color: $flash-text-color;
+}
+
+.flash_warning {
+  background-color: $warning;
+  color: $flash-text-color;
+}
+
+.flash_notice {
+  background-color: $success;
+  color: $flash-text-color;
+}
+
+.flash_info {
+  background-color: $info;
+  color: $flash-text-color;
+}

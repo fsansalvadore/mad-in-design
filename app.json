@@ -15,6 +15,12 @@
     },
     "RAILS_ENV": {
       "value": "production"
+    },
+    "NODE_VERSION": {
+      "value": "16.20.0"
     }
+  },
+  "scripts": {
+    "postdeploy": "echo 'App deployed successfully!'"
   }
 }

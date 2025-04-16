@@ -1,0 +1,52 @@
+# Monkey patch for ActiveSupport::LoggerThreadSafeLevel to fix Rails 6.0 + Ruby 3.1 compatibility issues
+
+# First, ensure Logger and its constants are defined
+require 'logger'
+
+# Define the missing constants in the global namespace to ensure they're available
+Object.const_set(:DEBUG, Logger::DEBUG) unless Object.const_defined?(:DEBUG)
+Object.const_set(:INFO, Logger::INFO) unless Object.const_defined?(:INFO)
+Object.const_set(:WARN, Logger::WARN) unless Object.const_defined?(:WARN)
+Object.const_set(:ERROR, Logger::ERROR) unless Object.const_defined?(:ERROR)
+Object.const_set(:FATAL, Logger::FATAL) unless Object.const_defined?(:FATAL)
+Object.const_set(:UNKNOWN, Logger::UNKNOWN) unless Object.const_defined?(:UNKNOWN)
+
+# Direct patch to ActiveSupport
+module ActiveSupport
+  module LoggerThreadSafeLevel
+    # Override existing methods or define new implementations to avoid dependency on Logger::Severity
+    
+    # Override the add method to handle thread-safe level
+    def add(severity, message = nil, progname = nil, &block)
+      return true if severity.nil? || (defined?(@logdev) && @logdev.nil?)
+      
+      # Convert string severity to integer if needed
+      if severity.is_a?(String)
+        severity = case severity
+        when 'DEBUG' then 0  # Logger::DEBUG
+        when 'INFO' then 1   # Logger::INFO
+        when 'WARN' then 2   # Logger::WARN
+        when 'ERROR' then 3  # Logger::ERROR
+        when 'FATAL' then 4  # Logger::FATAL
+        when 'UNKNOWN' then 5 # Logger::UNKNOWN
+        else 1  # Default to INFO
+        end
+      end
+      
+      return true if severity < level_local(Thread.current)
+      
+      # Call the original add method (from Logger)
+      super
+    end
+    
+    # Define thread-safe level getter
+    def level_local(thread)
+      thread[:logger_thread_safe_level] || level
+    end
+    
+    # Define thread-safe level setter
+    def level_local=(level)
+      Thread.current[:logger_thread_safe_level] = level
+    end
+  end
+end 

@@ -1,7 +1,10 @@
 require_relative 'boot'
 
-# Load the logger patch before Rails
+# First load the main logger patch
 require_relative 'initializers/logger_patch'
+
+# Then load the ActiveSupport logger patch
+require_relative 'initializers/active_support_logger_patch'
 
 require 'rails/all'
 

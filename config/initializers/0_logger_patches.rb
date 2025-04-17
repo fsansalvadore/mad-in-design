@@ -184,6 +184,18 @@ if defined?(ActiveSupport)
     
     # Define our own version of ActiveSupport::Logger
     class Logger < ::Logger
+      # Define SimpleFormatter that Rails expects
+      class SimpleFormatter < ::Logger::Formatter
+        # This method is invoked when a log event occurs
+        def call(severity, timestamp, progname, msg)
+          if msg.is_a?(String) && msg.encoding == Encoding::BINARY
+            "[#{timestamp.strftime("%Y-%m-%d %H:%M:%S.%L")}] #{severity} -- : #{msg.inspect}\n"
+          else
+            "[#{timestamp.strftime("%Y-%m-%d %H:%M:%S.%L")}] #{severity} -- : #{msg}\n"
+          end
+        end
+      end
+      
       include LoggerSilence if defined?(LoggerSilence)
       include LoggerThreadSafeLevel if defined?(LoggerThreadSafeLevel)
       
@@ -191,22 +203,14 @@ if defined?(ActiveSupport)
       def initialize(*args)
         super
 
+        # Set default formatter
+        self.formatter = SimpleFormatter.new
+        
         # Set default log level based on environment (if Rails is defined)
         if defined?(Rails) && defined?(Rails.env)
           self.level = Rails.env.production? ? INFO : DEBUG
         else
           self.level = INFO # Default to INFO
-        end
-      end
-      
-      # Override formatter to include timestamps
-      def formatter
-        @formatter ||= begin
-          proc do |severity, timestamp, progname, msg|
-            formatted_severity = sprintf("%-5s", severity)
-            formatted_time = timestamp.strftime("%Y-%m-%d %H:%M:%S.%L")
-            "[#{formatted_time}] #{formatted_severity} #{msg}\n"
-          end
         end
       end
     end

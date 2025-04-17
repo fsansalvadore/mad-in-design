@@ -11,11 +11,22 @@ ERROR = 3 unless defined?(ERROR)
 FATAL = 4 unless defined?(FATAL)
 UNKNOWN = 5 unless defined?(UNKNOWN)
 
+# Pre-define SimpleFormatter for Rails
+module SimpleFormatterDefinition
+  class SimpleFormatter < ::Logger::Formatter
+    def call(severity, timestamp, progname, msg)
+      "[#{timestamp.strftime("%Y-%m-%d %H:%M:%S.%L")}] #{severity} -- : #{msg}\n"
+    end
+  end
+end
+
 # Load the Rails framework
 require 'rails/all'
 
 # Load our logger patches after Rails is required
+require_relative 'initializers/simple_formatter_patch'
 require_relative 'initializers/0_logger_patches'
+require_relative 'initializers/active_support_logger'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

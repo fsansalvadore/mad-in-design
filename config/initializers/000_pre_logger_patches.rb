@@ -38,14 +38,9 @@ LOGGER = ::Logger unless defined?(LOGGER)
 if defined?(ActiveSupport) && defined?(ActiveSupport::LoggerThreadSafeLevel)
   module ActiveSupport
     module LoggerThreadSafeLevel
-      # Remove the problematic code if it exists
-      remove_const(:DEBUG) if const_defined?(:DEBUG)
-      remove_const(:INFO) if const_defined?(:INFO)
-      remove_const(:WARN) if const_defined?(:WARN)
-      remove_const(:ERROR) if const_defined?(:ERROR)
-      remove_const(:FATAL) if const_defined?(:FATAL)
-      remove_const(:UNKNOWN) if const_defined?(:UNKNOWN)
-      
+      # Instead of removing constants, we'll directly define them
+      # This is safer and avoids the error with remove_const
+
       # Define the constants directly without referencing Logger::Severity
       DEBUG = 0
       INFO = 1

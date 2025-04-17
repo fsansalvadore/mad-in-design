@@ -6,6 +6,9 @@ require 'logger'
 # Load logger constants before anything else
 require_relative '../lib/logger_constants'
 
+# Load our early patches
+require_relative '../lib/early_patches'
+
 require 'bundler/setup' # Set up gems listed in the Gemfile.
 
 # Don't use bootsnap with Ruby 3.1+ for compatibility reasons

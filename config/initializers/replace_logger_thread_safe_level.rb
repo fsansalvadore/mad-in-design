@@ -45,18 +45,14 @@ if defined?(ActiveSupport) && defined?(ActiveSupport::LoggerThreadSafeLevel)
   module ActiveSupport
     module LoggerThreadSafeLevel
       unless @patched_for_ruby31
-        # Remove constants if they exist
-        constants.grep(/^(DEBUG|INFO|WARN|ERROR|FATAL|UNKNOWN)$/).each do |const|
-          remove_const(const) if const_defined?(const)
-        end
-        
-        # Define constants directly
-        const_set(:DEBUG, 0)
-        const_set(:INFO, 1)
-        const_set(:WARN, 2)
-        const_set(:ERROR, 3)
-        const_set(:FATAL, 4)
-        const_set(:UNKNOWN, 5)
+        # Define constants directly without trying to remove them first
+        # This avoids issues with constants inherited from parent modules
+        DEBUG = 0
+        INFO = 1
+        WARN = 2
+        ERROR = 3
+        FATAL = 4
+        UNKNOWN = 5
         
         # Define the problematic methods
         def local_level

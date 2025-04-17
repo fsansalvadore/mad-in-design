@@ -12,8 +12,35 @@ ERROR = 3 unless defined?(ERROR)
 FATAL = 4 unless defined?(FATAL)
 UNKNOWN = 5 unless defined?(UNKNOWN)
 
-# Remove the module if it's already defined to avoid warnings
-ActiveSupport.send(:remove_const, :LoggerThreadSafeLevel) if defined?(ActiveSupport::LoggerThreadSafeLevel)
+# Ensure Logger has the Severity module and constants
+unless ::Logger.const_defined?(:Severity)
+  class ::Logger
+    module Severity
+      DEBUG = 0
+      INFO = 1
+      WARN = 2
+      ERROR = 3
+      FATAL = 4
+      UNKNOWN = 5
+    end
+    
+    include Severity
+    
+    unless const_defined?(:DEBUG)
+      DEBUG = Severity::DEBUG
+      INFO = Severity::INFO
+      WARN = Severity::WARN
+      ERROR = Severity::ERROR
+      FATAL = Severity::FATAL
+      UNKNOWN = Severity::UNKNOWN
+    end
+  end
+end
+
+# Only remove the module if defined to avoid warnings
+if defined?(ActiveSupport) && defined?(ActiveSupport::LoggerThreadSafeLevel)
+  ActiveSupport.send(:remove_const, :LoggerThreadSafeLevel)
+end
 
 module ActiveSupport
   # Thread-safe logger level for systems with multiple threads.

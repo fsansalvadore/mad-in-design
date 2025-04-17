@@ -3,10 +3,19 @@ require_relative 'boot'
 # Explicitly require the logger library first
 require 'logger'
 
-# Load logger patches early
-require_relative 'initializers/0_logger_patches'
+# Define basic logger constants
+DEBUG = 0 unless defined?(DEBUG)
+INFO = 1 unless defined?(INFO)
+WARN = 2 unless defined?(WARN)
+ERROR = 3 unless defined?(ERROR)
+FATAL = 4 unless defined?(FATAL)
+UNKNOWN = 5 unless defined?(UNKNOWN)
 
+# Load the Rails framework
 require 'rails/all'
+
+# Load our logger patches after Rails is required
+require_relative 'initializers/0_logger_patches'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

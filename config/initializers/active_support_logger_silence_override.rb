@@ -3,10 +3,14 @@
 
 # First ensure Logger is loaded
 require 'logger'
-require_relative 'active_support_logger_override'
 
-# Remove the module if it's already defined to avoid warnings
-ActiveSupport.send(:remove_const, :LoggerSilence) if defined?(ActiveSupport::LoggerSilence)
+# Skip the require_relative which could cause circular dependencies
+# require_relative 'active_support_logger_override'
+
+# Only remove the module if it's already defined to avoid warnings
+if defined?(ActiveSupport) && defined?(ActiveSupport::LoggerSilence)
+  ActiveSupport.send(:remove_const, :LoggerSilence)
+end
 
 module ActiveSupport
   # Implements silencing for any Logger instance
@@ -44,5 +48,7 @@ module ActiveSupport
   end
 end
 
-# Apply LoggerSilence to the Logger class
-::Logger.include(ActiveSupport::LoggerSilence) 
+# Apply LoggerSilence to the Logger class if it's not already included
+if !::Logger.included_modules.include?(ActiveSupport::LoggerSilence)
+  ::Logger.include(ActiveSupport::LoggerSilence)
+end 

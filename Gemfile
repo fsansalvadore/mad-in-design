@@ -8,7 +8,8 @@ gem 'logger', '~> 1.5'
 gem 'listen', '~> 3.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
+gem 'rails', '~> 6.0.6'
+gem 'activesupport', '~> 6.0.6'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.3', '>= 1.3.5'
 # Use Puma as the app server
@@ -41,7 +42,7 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 gem 'simple_form', '~> 5.0', '>= 5.0.2'
 gem 'thor', '~> 1.2', '>= 1.2.1'
-gem 'actionview', '~> 6.0'
+gem 'actionview', '~> 6.0.6'
 gem 'acts_as_list', '~> 1.0', '>= 1.0.4'
 gem 'activeadmin', '~> 2.11', '>= 2.11.2'
 gem 'activeadmin_quill_editor', '~> 1.0'

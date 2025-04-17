@@ -1,8 +1,9 @@
-#!/usr/bin/env bash
-# bin/heroku-boot
-# Script that runs Rails server for Heroku
+#!/bin/bash
+set -e
 
-cd $HOME
+# Apply logger fixes first, before the app even starts to initialize
+echo "Applying Ruby 3.1 logger compatibility fixes..."
+bundle exec rake heroku:fix_logger || echo "Logger fix task failed, but continuing anyway"
 
-# Start the Rails server
-bundle exec rails server -p ${PORT:-5000} -e ${RAILS_ENV:-development} 
+# Then start the server
+bundle exec puma -C config/puma.rb 

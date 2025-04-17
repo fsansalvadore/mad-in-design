@@ -3,6 +3,9 @@ require_relative 'boot'
 # Explicitly require the logger library first
 require 'logger'
 
+# Load our critical pre-patch file before anything else
+require_relative 'initializers/000_pre_logger_patches'
+
 # Define global Logger constants to be available everywhere
 DEBUG = 0 unless defined?(DEBUG)
 INFO = 1 unless defined?(INFO)

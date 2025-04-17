@@ -145,4 +145,14 @@ namespace :heroku do
     
     puts "Logger fixes completed!"
   end
+
+  desc "Fix Node.js OpenSSL issues on Heroku for asset compilation"
+  task fix_node: :environment do
+    puts "Setting Node.js OpenSSL legacy provider flag..."
+    
+    # Set environment variable for Node.js
+    ENV['NODE_OPTIONS'] = '--openssl-legacy-provider'
+    
+    puts "NODE_OPTIONS set to: #{ENV['NODE_OPTIONS']}"
+  end
 end 

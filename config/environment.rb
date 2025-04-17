@@ -4,6 +4,11 @@ require_relative 'application'
 # Final verification to ensure Logger patches are in place
 # This is a safeguard for the Heroku environment
 if defined?(ActiveSupport)
+  # Apply our direct patch
+  if defined?(patch_logger_thread_safe_level)
+    patch_logger_thread_safe_level
+  end
+  
   # Force-patch ActiveSupport::LoggerThreadSafeLevel if it's still using Logger::Severity
   if ActiveSupport.const_defined?(:LoggerThreadSafeLevel)
     module ActiveSupport

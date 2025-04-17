@@ -38,32 +38,51 @@ end
 Object.const_set(:LOGGER, ::Logger) unless Object.const_defined?(:LOGGER)
 
 # Preparatory patch for ActiveSupport::LoggerThreadSafeLevel
-# This will be applied later when ActiveSupport is loaded
 module EarlyLoggerPatch
   def self.patch_logger_thread_safe_level
     if defined?(ActiveSupport) && defined?(ActiveSupport::LoggerThreadSafeLevel)
-      module ActiveSupport
-        module LoggerThreadSafeLevel
-          # Define constants directly
-          DEBUG = 0 unless const_defined?(:DEBUG)
-          INFO = 1 unless const_defined?(:INFO)
-          WARN = 2 unless const_defined?(:WARN)
-          ERROR = 3 unless const_defined?(:ERROR)
-          FATAL = 4 unless const_defined?(:FATAL)
-          UNKNOWN = 5 unless const_defined?(:UNKNOWN)
-          
-          # Patch the local_level methods
-          unless method_defined?(:local_level_patched_for_ruby31)
-            define_method(:local_level) do
-              Thread.current["logger_#{object_id}_level"] || level
-            end
-            
-            define_method(:local_level=) do |level|
-              Thread.current["logger_#{object_id}_level"] = level
-            end
-            
-            define_method(:local_level_patched_for_ruby31) { true }
-          end
+      if ActiveSupport::LoggerThreadSafeLevel.instance_methods.include?(:local_level_patched_for_ruby31)
+        # Already patched
+        return
+      end
+      
+      # Define constants on the module
+      unless ActiveSupport::LoggerThreadSafeLevel.const_defined?(:DEBUG)
+        ActiveSupport::LoggerThreadSafeLevel.const_set(:DEBUG, 0) 
+      end
+      
+      unless ActiveSupport::LoggerThreadSafeLevel.const_defined?(:INFO)
+        ActiveSupport::LoggerThreadSafeLevel.const_set(:INFO, 1)
+      end
+      
+      unless ActiveSupport::LoggerThreadSafeLevel.const_defined?(:WARN)
+        ActiveSupport::LoggerThreadSafeLevel.const_set(:WARN, 2)
+      end
+      
+      unless ActiveSupport::LoggerThreadSafeLevel.const_defined?(:ERROR)
+        ActiveSupport::LoggerThreadSafeLevel.const_set(:ERROR, 3)
+      end
+      
+      unless ActiveSupport::LoggerThreadSafeLevel.const_defined?(:FATAL)
+        ActiveSupport::LoggerThreadSafeLevel.const_set(:FATAL, 4)
+      end
+      
+      unless ActiveSupport::LoggerThreadSafeLevel.const_defined?(:UNKNOWN)
+        ActiveSupport::LoggerThreadSafeLevel.const_set(:UNKNOWN, 5)
+      end
+      
+      # Patch the local_level methods
+      ActiveSupport::LoggerThreadSafeLevel.module_eval do
+        def local_level
+          Thread.current["logger_#{object_id}_level"] || level
+        end
+        
+        def local_level=(level)
+          Thread.current["logger_#{object_id}_level"] = level
+        end
+        
+        def local_level_patched_for_ruby31
+          true
         end
       end
       
@@ -75,10 +94,10 @@ end
 # Try to patch now if ActiveSupport is already loaded
 EarlyLoggerPatch.patch_logger_thread_safe_level
 
-# And set up to patch later if not
+# Set up for pre-initialization using an initializer if possible
 if defined?(Rails) && defined?(Rails::Application)
-  Rails::Application.initializer :patch_logger_thread_safe_level, 
-                                before: :bootstrap_hook do
+  Rails::Application.initializer(:patch_logger_thread_safe_level, 
+                               before: :bootstrap_hook) do
     EarlyLoggerPatch.patch_logger_thread_safe_level
   end
 end 

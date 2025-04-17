@@ -3,11 +3,8 @@ ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../Gemfile', __dir__)
 # Explicitly require the logger library before anything else
 require 'logger'
 
-# Load logger constants before anything else
-require_relative '../lib/logger_constants'
-
-# Load our early patches
-require_relative '../lib/early_patches'
+# Load our direct logger fix, which is much simpler and doesn't have syntax issues
+require_relative '../lib/direct_logger_fix'
 
 require 'bundler/setup' # Set up gems listed in the Gemfile.
 

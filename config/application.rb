@@ -3,13 +3,38 @@ require_relative 'boot'
 # Explicitly require the logger library first
 require 'logger'
 
-# Define basic logger constants
+# Define global Logger constants to be available everywhere
 DEBUG = 0 unless defined?(DEBUG)
 INFO = 1 unless defined?(INFO)
 WARN = 2 unless defined?(WARN)
 ERROR = 3 unless defined?(ERROR)
 FATAL = 4 unless defined?(FATAL)
 UNKNOWN = 5 unless defined?(UNKNOWN)
+
+# Ensure the Logger class is properly set up
+if defined?(::Logger) && !::Logger.const_defined?(:Severity)
+  class ::Logger
+    module Severity
+      DEBUG = 0
+      INFO = 1
+      WARN = 2
+      ERROR = 3
+      FATAL = 4
+      UNKNOWN = 5
+    end
+    
+    include Severity
+    
+    unless const_defined?(:DEBUG)
+      DEBUG = Severity::DEBUG
+      INFO = Severity::INFO
+      WARN = Severity::WARN
+      ERROR = Severity::ERROR
+      FATAL = Severity::FATAL
+      UNKNOWN = Severity::UNKNOWN
+    end
+  end
+end
 
 # Pre-define SimpleFormatter for Rails
 module SimpleFormatterDefinition
@@ -20,10 +45,13 @@ module SimpleFormatterDefinition
   end
 end
 
+# Define this to prevent errors in ActiveSupport::LoggerThreadSafeLevel
+LOGGER = ::Logger unless defined?(LOGGER)
+
 # Load the Rails framework
 require 'rails/all'
 
-# Load our logger patches after Rails is required
+# Load our logger patches in specific order
 require_relative 'initializers/simple_formatter_patch'
 require_relative 'initializers/0_logger_patches'
 require_relative 'initializers/active_support_logger'

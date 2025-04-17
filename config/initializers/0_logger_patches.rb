@@ -37,6 +37,9 @@ unless ::Logger.const_defined?(:Severity)
   end
 end
 
+# Define LOGGER constant to avoid uninitialized constant errors
+LOGGER = ::Logger unless defined?(LOGGER)
+
 # Define our patches regardless of whether Rails is loaded yet
 module ActiveSupport
   # Thread-safe logger level for systems with multiple threads
@@ -50,6 +53,13 @@ module ActiveSupport
       "FATAL" => 4,
       "UNKNOWN" => 5
     }
+    
+    # Copy Logger severity constants to avoid references to Logger::Severity
+    ::Logger::Severity.constants.each do |severity|
+      const_name = severity.to_s
+      const_value = ::Logger::Severity.const_get(severity)
+      const_set(const_name, const_value) unless const_defined?(const_name)
+    end
     
     def local_level(level)
       case level
@@ -211,6 +221,94 @@ if defined?(ActiveSupport)
           self.level = Rails.env.production? ? INFO : DEBUG
         else
           self.level = INFO # Default to INFO
+        end
+      end
+    end
+  end
+end
+
+# Ensure Logger class and its Severity module are properly defined
+unless defined?(::Logger) && ::Logger.const_defined?(:Severity)
+  class ::Logger
+    module Severity
+      DEBUG = 0
+      INFO = 1
+      WARN = 2
+      ERROR = 3
+      FATAL = 4
+      UNKNOWN = 5
+    end
+    
+    include Severity
+    
+    # Define constants at Logger class level if they don't exist
+    unless const_defined?(:DEBUG)
+      DEBUG = Severity::DEBUG
+      INFO = Severity::INFO
+      WARN = Severity::WARN
+      ERROR = Severity::ERROR
+      FATAL = Severity::FATAL
+      UNKNOWN = Severity::UNKNOWN
+    end
+  end
+end
+
+# Define a global logger constant to prevent errors
+LOGGER = ::Logger unless defined?(LOGGER)
+
+if defined?(ActiveSupport) && defined?(ActiveSupport::LoggerThreadSafeLevel)
+  # Fix for LoggerThreadSafeLevel to use explicit ::Logger reference
+  module ActiveSupport
+    module LoggerThreadSafeLevel
+      # Copy severity constants to ensure they're available
+      ::Logger::Severity.constants.each do |severity|
+        const_name = severity.to_sym
+        const_value = ::Logger::Severity.const_get(const_name)
+        
+        unless const_defined?(const_name)
+          const_set(const_name, const_value)
+        end
+      end
+      
+      # Override local_level method to ensure thread safety
+      def local_level
+        Thread.current["logger_#{object_id}_level"] || level
+      end
+      
+      # Override local_level= method
+      def local_level=(level)
+        Thread.current["logger_#{object_id}_level"] = level
+      end
+    end
+  end
+end
+
+# Fix for SimpleFormatter if needed
+if defined?(ActiveSupport) && defined?(ActiveSupport::Logger)
+  module ActiveSupport
+    class Logger < ::Logger
+      # Make sure SimpleFormatter is defined
+      unless defined?(SimpleFormatter)
+        class SimpleFormatter < ::Logger::Formatter
+          def call(severity, timestamp, progname, msg)
+            "[#{timestamp.strftime("%Y-%m-%d %H:%M:%S.%L")}] #{severity} -- : #{msg}\n"
+          end
+        end
+      end
+    end
+  end
+end
+
+# Make sure format_message fallback is available for older Rails versions
+if defined?(ActiveSupport) && defined?(ActiveSupport::Logger) && 
+   defined?(ActiveSupport::Logger::SimpleFormatter) && 
+   !ActiveSupport::Logger::SimpleFormatter.method_defined?(:format_message)
+  
+  module ActiveSupport
+    class Logger < ::Logger
+      class SimpleFormatter < ::Logger::Formatter
+        def format_message(severity, timestamp, progname, msg)
+          call(severity, timestamp, progname, msg)
         end
       end
     end

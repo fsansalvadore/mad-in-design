@@ -12,34 +12,104 @@ namespace :heroku do
         
         if File.exist?(logger_thread_safe_level_file)
           puts "Found #{logger_thread_safe_level_file}"
-          content = File.read(logger_thread_safe_level_file)
           
-          if content.include?('Logger::Severity.constants.each') && !content.include?('# PATCHED FOR RUBY 3.1')
-            puts "Patching LoggerThreadSafeLevel..."
+          # Instead of patching, completely replace the file
+          patched_content = <<~RUBY
+            # frozen_string_literal: true
+
+            # PATCHED FOR RUBY 3.1 COMPATIBILITY
             
-            # Create a backup
-            File.write("#{logger_thread_safe_level_file}.backup", content)
+            require "logger"
             
-            # Replace the problematic code
-            patched_content = content.gsub(
-              /Logger::Severity\.constants\.each do \|severity\|.*?end/m,
-              <<-PATCH
-      # PATCHED FOR RUBY 3.1
-      # Define constants directly
-      DEBUG = 0
-      INFO = 1
-      WARN = 2
-      ERROR = 3
-      FATAL = 4
-      UNKNOWN = 5
-      PATCH
-            )
+            module ActiveSupport
+              # Implements the ActiveSupport::Logger::Silence extension for
+              # thread safety in a logger level changes.
+              module LoggerThreadSafeLevel
+                # Define constants directly without using Logger::Severity
+                DEBUG = 0
+                INFO = 1
+                WARN = 2
+                ERROR = 3
+                FATAL = 4
+                UNKNOWN = 5
+                
+                def local_level
+                  Thread.current["logger_\#{object_id}_level"] || level
+                end
             
-            File.write(logger_thread_safe_level_file, patched_content)
-            puts "Successfully patched #{logger_thread_safe_level_file}"
-          else
-            puts "File does not need patching or already patched"
-          end
+                def local_level=(level)
+                  Thread.current["logger_\#{object_id}_level"] = level
+                end
+            
+                def level
+                  @level ||= DEBUG
+                end
+            
+                def level=(level)
+                  case level
+                  when Integer
+                    @level = level
+                  when Symbol, String
+                    @level = map_level(level)
+                  else
+                    raise ArgumentError, "Invalid log level: \#{level.inspect}"
+                  end
+                end
+                
+                def add(severity, message = nil, progname = nil, &block)
+                  severity ||= UNKNOWN
+                  return true if severity < local_level
+                  super
+                end
+                
+                def debug(progname = nil, &block)
+                  add(DEBUG, nil, progname, &block)
+                end
+            
+                def info(progname = nil, &block)
+                  add(INFO, nil, progname, &block)
+                end
+            
+                def warn(progname = nil, &block)
+                  add(WARN, nil, progname, &block)
+                end
+            
+                def error(progname = nil, &block)
+                  add(ERROR, nil, progname, &block)
+                end
+            
+                def fatal(progname = nil, &block)
+                  add(FATAL, nil, progname, &block)
+                end
+            
+                def unknown(progname = nil, &block)
+                  add(UNKNOWN, nil, progname, &block)
+                end
+                
+                private
+                
+                def map_level(level)
+                  case level.to_s.downcase
+                  when "debug" then DEBUG
+                  when "info" then INFO
+                  when "warn" then WARN
+                  when "error" then ERROR
+                  when "fatal" then FATAL
+                  when "unknown" then UNKNOWN
+                  else INFO
+                  end
+                end
+              end
+            end
+          RUBY
+          
+          # Create a backup of the original file
+          backup_file = "#{logger_thread_safe_level_file}.backup"
+          File.write(backup_file, File.read(logger_thread_safe_level_file)) unless File.exist?(backup_file)
+          
+          # Write the completely new implementation
+          File.write(logger_thread_safe_level_file, patched_content)
+          puts "Successfully patched #{logger_thread_safe_level_file} for Ruby 3.1 compatibility"
         else
           puts "Could not find logger_thread_safe_level.rb"
         end
@@ -71,36 +141,6 @@ namespace :heroku do
       ::Logger::Severity.const_set(:FATAL, 4)
       ::Logger::Severity.const_set(:UNKNOWN, 5)
       ::Logger.send(:include, ::Logger::Severity)
-    end
-    
-    # Also monkey patch ActiveSupport::LoggerThreadSafeLevel
-    if defined?(ActiveSupport) && defined?(ActiveSupport::LoggerThreadSafeLevel)
-      puts "Monkey patching ActiveSupport::LoggerThreadSafeLevel..."
-      
-      module ActiveSupport
-        module LoggerThreadSafeLevel
-          unless @patched_for_ruby31
-            # Define constants directly
-            DEBUG = 0
-            INFO = 1
-            WARN = 2
-            ERROR = 3
-            FATAL = 4
-            UNKNOWN = 5
-            
-            # Override methods
-            define_method(:local_level) do
-              Thread.current["logger_#{object_id}_level"] || level
-            end
-            
-            define_method(:local_level=) do |level|
-              Thread.current["logger_#{object_id}_level"] = level
-            end
-            
-            @patched_for_ruby31 = true
-          end
-        end
-      end
     end
     
     puts "Logger fixes completed!"

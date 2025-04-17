@@ -32,29 +32,24 @@ unless ::Logger.const_defined?(:Severity)
   ::Logger.send(:include, ::Logger::Severity)
 end
 
-# This is the critical patch for ActiveSupport
-# We're simply defining the module and its constants early
-if defined?(ActiveSupport)
-  # Only patch if the module exists
-  if ActiveSupport.const_defined?(:LoggerThreadSafeLevel)
-    # Ensure constants are defined
-    unless ActiveSupport::LoggerThreadSafeLevel.const_defined?(:DEBUG)
-      ActiveSupport::LoggerThreadSafeLevel.const_set(:DEBUG, 0)
-      ActiveSupport::LoggerThreadSafeLevel.const_set(:INFO, 1)
-      ActiveSupport::LoggerThreadSafeLevel.const_set(:WARN, 2)
-      ActiveSupport::LoggerThreadSafeLevel.const_set(:ERROR, 3)
-      ActiveSupport::LoggerThreadSafeLevel.const_set(:FATAL, 4)
-      ActiveSupport::LoggerThreadSafeLevel.const_set(:UNKNOWN, 5)
-    end
-  end
-end
+# Check if we're in an initializer context (not during application.rb loading)
+if defined?(Rails) && Rails.application && Rails.application.initialized?
+  # We have a properly initialized Rails app, safe to patch
+  if defined?(ActiveSupport) && ActiveSupport.const_defined?(:LoggerThreadSafeLevel) 
+    # Check if patch is needed
+    unless ActiveSupport::LoggerThreadSafeLevel.method_defined?(:already_patched_for_ruby31)
+      # Set constants safely
+      unless ActiveSupport::LoggerThreadSafeLevel.const_defined?(:DEBUG)
+        ActiveSupport::LoggerThreadSafeLevel.const_set(:DEBUG, 0)
+        ActiveSupport::LoggerThreadSafeLevel.const_set(:INFO, 1)
+        ActiveSupport::LoggerThreadSafeLevel.const_set(:WARN, 2)
+        ActiveSupport::LoggerThreadSafeLevel.const_set(:ERROR, 3)
+        ActiveSupport::LoggerThreadSafeLevel.const_set(:FATAL, 4)
+        ActiveSupport::LoggerThreadSafeLevel.const_set(:UNKNOWN, 5)
+      end
 
-# Create a callback to patch the module once Rails is initialized
-ActiveSupport.on_load(:before_initialize) do
-  if defined?(ActiveSupport::LoggerThreadSafeLevel)
-    # Override the methods that are causing issues
-    module ActiveSupport
-      module LoggerThreadSafeLevel
+      # Define methods using module_eval for safety
+      ActiveSupport::LoggerThreadSafeLevel.module_eval do
         def local_level
           Thread.current["logger_#{object_id}_level"] || level
         end
@@ -62,7 +57,11 @@ ActiveSupport.on_load(:before_initialize) do
         def local_level=(level)
           Thread.current["logger_#{object_id}_level"] = level
         end
+        
+        def already_patched_for_ruby31
+          true
+        end
       end
     end
   end
-end if defined?(ActiveSupport) 
+end 

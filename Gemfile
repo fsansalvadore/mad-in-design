@@ -62,7 +62,7 @@ gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 gem 'rack-rewrite', '~> 1.5.0'
 gem 'swiper-rails', '~> 1.0', '>= 1.0.4'
 gem 'uglifier', '>= 1.3.0'
-gem 'nokogiri', '~> 1.18', '>= 1.18.7'
+gem 'nokogiri', '~> 1.18'
 
 gem 'modernizr-rails', '~> 2.7', '>= 2.7.1'
 gem 'sticky-rails', '~> 1.0', '>= 1.0.3'

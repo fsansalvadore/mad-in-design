@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Kill any existing processes on exit
+trap 'kill $(jobs -p)' EXIT
+
+# Set OpenSSL legacy provider for Node.js compatibility
+export NODE_OPTIONS=--openssl-legacy-provider
+
+# Check if CLOUDINARY_URL is set
+if [ -z "$CLOUDINARY_URL" ]; then
+  echo "⚠️  WARNING: CLOUDINARY_URL environment variable is not set."
+  echo "   Images may not display correctly."
+  echo "   Set it using: export CLOUDINARY_URL=cloudinary://<api_key>:<api_secret>@associazione-mind-mad-in-design"
+  echo ""
+fi
+
+# Run webpack in watch mode
+echo "🚀 Starting webpack in watch mode..."
+bin/webpack --watch &
+
+# Run Rails server
+echo "🚀 Starting Rails server..."
+rails s
+
+# Wait for all background processes to finish
+wait 

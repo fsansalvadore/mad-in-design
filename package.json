@@ -40,6 +40,7 @@
     "heroku-postbuild": "NODE_OPTIONS=--openssl-legacy-provider ./bin/yarn-heroku install --production=false && NODE_OPTIONS=--openssl-legacy-provider RAILS_ENV=production NODE_ENV=production bin/rails webpacker:compile",
     "postinstall": "echo 'Node.js version:' && node --version",
     "webpack": "NODE_OPTIONS=--openssl-legacy-provider webpack",
-    "update-browserslist": "npx update-browserslist-db@latest"
+    "update-browserslist": "npx update-browserslist-db@latest",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider bin/dev"
   }
 }

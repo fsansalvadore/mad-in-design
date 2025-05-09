@@ -1,15 +1,6 @@
 # Configuration for Heroku environment
 if ENV['HEROKU_APP_NAME'] || ENV['DYNO'] 
-  # Configure Cloudinary for production
-  if defined?(Cloudinary)
-    Cloudinary.config do |config|
-      config.cloud_name = ENV['CLOUDINARY_CLOUD_NAME'] || 'demo'
-      config.api_key = ENV['CLOUDINARY_API_KEY'] || '111111111111111'
-      config.api_secret = ENV['CLOUDINARY_API_SECRET'] || 'xxxxxxxxxxxxxxxxxxxxxxx'
-      config.secure = true
-      config.cdn_subdomain = true
-    end
-  end
+  # Note: Cloudinary configuration moved to config/initializers/cloudinary.rb
   
   # Use HTTP caching to improve performance
   if defined?(ActiveSupport::Cache)

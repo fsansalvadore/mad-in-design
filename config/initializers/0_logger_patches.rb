@@ -194,6 +194,15 @@ if defined?(ActiveSupport)
     
     # Define our own version of ActiveSupport::Logger
     class Logger < ::Logger
+      # Add the missing method that's causing the server startup failure
+      def self.logger_outputs_to?(logger, *sources)
+        return false unless logger
+        logdev = logger.instance_variable_get("@logdev")
+        return false unless logdev
+        logger_source = logdev.respond_to?(:dev) ? logdev.dev : nil
+        sources.any? { |source| source == logger_source }
+      end
+      
       # Define SimpleFormatter that Rails expects
       class SimpleFormatter < ::Logger::Formatter
         # This method is invoked when a log event occurs

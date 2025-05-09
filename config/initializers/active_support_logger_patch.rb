@@ -73,4 +73,50 @@ module ActiveSupport
       Thread.current[:logger_thread_safe_level] = level
     end
   end
+
+  class Logger < ::Logger
+    # Add the missing method that's causing the server to fail
+    def self.logger_outputs_to?(logger, *sources)
+      return false unless logger
+      logdev = logger.instance_variable_get("@logdev")
+      return false unless logdev
+      logger_source = logdev.respond_to?(:dev) ? logdev.dev : nil
+      sources.any? { |source| source == logger_source }
+    end
+    
+    # Add the missing broadcast method
+    def self.broadcast(logger)
+      Module.new do
+        define_method(:add) do |*args, &block|
+          logger.add(*args, &block)
+          super(*args, &block)
+        end
+
+        define_method(:<<) do |x|
+          logger << x
+          super(x)
+        end
+
+        define_method(:close) do
+          logger.close
+          super()
+        end
+
+        define_method(:progname=) do |name|
+          logger.progname = name
+          super(name)
+        end
+
+        define_method(:formatter=) do |formatter|
+          logger.formatter = formatter
+          super(formatter)
+        end
+
+        define_method(:level=) do |level|
+          logger.level = level
+          super(level)
+        end
+      end
+    end
+  end
 end 
